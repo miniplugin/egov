@@ -1,8 +1,8 @@
 ## 전자정부표준프레임웍(이하 egov로 표기)<br> 심플홈템플릿(이하 sht로 표기)을 이용한 CMS 만들기
 ***
-전자정부 표준프레임워크 라이선스는 Apache 2.0 라이선스를 따릅니다.
-UI작업에 사용된 부트스트랩은 MIT 라이센스에 따름니다.
-<a href="https://www.egovframe.go.kr/EgovLicense.jsp" target="_blank">[라이센스 보기]</a>
+전자정부 표준프레임워크 라이선스는 Apache 2.0 라이선스를 따릅니다.부트스트랩/AdminLTE/기타등등<br>
+표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
+<a href="https://www.egovframe.go.kr/EgovLicense.jsp" target="_new">[라이센스 보기]</a>
 ***
 > 작업일자: 20200128
 ### egov-sht 프로젝트 Mysql을 Hsql로 변환
