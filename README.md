@@ -2,7 +2,7 @@
 ***
 전자정부 표준프레임워크 라이선스는 Apache 2.0 라이선스를 따릅니다.부트스트랩/AdminLTE/기타등등<br>
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
-[라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp/?target=_blank)
+[라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
 >작업일자(아래): 20200128
 ### egov-sht 프로젝트 Mysql을 Hsql로 변환
