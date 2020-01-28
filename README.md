@@ -2,7 +2,7 @@
 ***
 전자정부 표준프레임워크 라이선스는 Apache 2.0 라이선스를 따릅니다.
 UI작업에 사용된 부트스트랩은 MIT 라이센스에 따름니다.
-[라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp){: target="_blank"}
+[라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp){:target="_blank"}
 ***
 > 작업일자: 20200128
 ### egov-sht 프로젝트 Mysql을 Hsql로 변환
