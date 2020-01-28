@@ -1,6 +1,8 @@
 ## 전자정부표준프레임웍(이하 egov로 표기)<br> 심플홈템플릿(이하 sht로 표기)을 이용한 CMS 만들기
 
--------------- 작업일자: 20200128
+***
+> 작업일자: 20200128
+***
 
 ### egov-sht 프로젝트 Mysql을 Hsql로 변환
 - egov3.8개발환경에서는 초기 sht프로젝트는 HsqlDb를 사용합니다.
@@ -9,6 +11,6 @@
 
 #### Mysql 일때와 Hsql 일대 스키마 차이는 아래와 같습니다(나머지 테이블 17개는 동일함).
 DB구분 | 테이블명 | 확인쿼리
----|:---:|---:
+---|:---:|:---
 `Mysql용` | comtecopseq / comvnusermaster | `SELECT * FROM comtecopseq;`
 `Hsql용` | LETTHEMPLYRINFOCHANGEDTLS / LETTNAUTHORINFO / LETTNEMPLYRSCRTYESTBS | `SELECT * FROM LETTNAUTHORINFO;`
