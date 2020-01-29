@@ -6,10 +6,12 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="java.sql" level="INFO" additivity="false">
+    		<!-- log SQL INFO 에서 DEBUG 변경: KIK -->
+        <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Logger name="egovframework" level="DEBUG" additivity="false">
+        	<!-- log egovframework DEBUG 에서 INFO 변경: KIK -->
+        <Logger name="egovframework" level="INFO" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
 		  <!-- log SQL with timing information, post execution -->
