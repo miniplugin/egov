@@ -62,7 +62,7 @@
 			</form>
 			<nav>
 			<ul class="gnb clear">
-				<li><a class="openAll1" href="#LINK" onclick="javascript:fn_main_headPageMove('11','main/sample_menu/EgovAboutSite')" >사이트소개</a>
+				<li><a class="openAll1 openAll" href="javascript:fn_main_headPageMove('11','main/sample_menu/EgovAboutSite')">사이트소개</a>
 					<div class="gnb_depth gnb_depth2_1">
                         <ul class="submenu_list">
                             <li><a href="javascript:fn_main_headPageMove('11','main/sample_menu/EgovAboutSite')">소개</a></li>	
@@ -70,13 +70,32 @@
 							<li><a href="javascript:fn_main_headPageMove('13','main/sample_menu/EgovOrganization')">조직소개</a></li>
 							<li><a href="javascript:fn_main_headPageMove('14','main/sample_menu/EgovLocation')">찾아오시는 길</a></li>
                         </ul>
+                        <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
                     </div>
 				</li>
-				<li><a href="#LINK" onclick="javascript:fn_main_headPageMove('21','main/sample_menu/EgovProductInfo')">정보마당</a>
+				<li><a class="openAll2 openAll" href="javascript:fn_main_headPageMove('21','main/sample_menu/EgovProductInfo')">정보마당</a>
+					<div class="gnb_depth gnb_depth2_2">
+                        <ul class="submenu_list">
+                            <li><a href="javascript:fn_main_headPageMove('21','main/sample_menu/EgovProductInfo')">주요사업 소개</a></li>	
+                        </ul>
+                        <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
+                    </div>
 				</li>
-				<li><a href="#LINK" onclick="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')" >고객지원</a>
+				<li><a class="openAll3 openAll" href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">고객지원</a>
+					<div class="gnb_depth gnb_depth2_3">
+                        <ul class="submenu_list">
+                            <li><a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">자료실</a></li>	
+                        </ul>
+                        <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
+                    </div>
 				</li>
-				<li><a href="#LINK" onclick="javascript:fn_main_headPageAction('42','cop/smt/sim/EgovIndvdlSchdulManageWeekList.do')" >알림마당</a>
+				<li><a class="openAll4 openAll" href="javascript:fn_main_headPageAction('42','cop/smt/sim/EgovIndvdlSchdulManageWeekList.do')">알림마당</a>
+					<div class="gnb_depth gnb_depth2_4">
+                        <ul class="submenu_list">
+                            <li><a href="javascript:fn_main_headPageAction('42','cop/smt/sim/EgovIndvdlSchdulManageWeekList.do')">오늘의 행사</a></li>	
+                        </ul>
+                        <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
+                    </div>
 				</li>
 			</ul>
                </nav>
