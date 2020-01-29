@@ -4,6 +4,8 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200129
+### 반응형(모바일)에서 2차메뉴 보이기 추가 common_bottom.jsp 에 자바스크립트 추가
 >작업일자(아래): 20200128
 ### egov-sht 프로젝트 Mysql을 Hsql로 변환
 - egov3.8개발환경에서는 초기 sht프로젝트는 HsqlDb를 사용합니다.
