@@ -77,6 +77,7 @@
 					<div class="gnb_depth gnb_depth2_2">
                         <ul class="submenu_list">
                             <li><a href="javascript:fn_main_headPageMove('21','main/sample_menu/EgovProductInfo')">주요사업 소개</a></li>	
+                            <li><a href="javascript:fn_main_headPageMove('22','main/sample_menu/EgovServiceInfo')">대표서비스 소개</a></li>
                         </ul>
                         <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
                     </div>

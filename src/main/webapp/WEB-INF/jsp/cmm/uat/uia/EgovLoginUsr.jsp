@@ -17,14 +17,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<meta http-equiv="content-language" content="ko">
-<title>경량환경 단순홈페이지 템플릿 - 로그인</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
-<link href="<c:url value='/'/>css/login.css" rel="stylesheet" type="text/css" >
+
+<!-- common_top 시작 -->
+<c:import url="/EgovPageLink.do?link=include/common_top" />
+<!-- common_top 끝 -->
+<!-- sub CSS 추가 -->
+<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/sub.css">
+<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/login.css">
+<!-- wrap -->
+<div id="wrap">
+	<!-- header 시작 -->
+	<c:import url="/EgovPageLink.do?link=include/header" />
+	<!-- header 끝 -->
+	
+	<!-- container 시작 -->
 <script type="text/javascript">
 <!--
 function actionLogin() {
@@ -85,18 +91,9 @@ function fnInit() {
     }
     getid(document.loginForm);
 }
+$(document).ready(function() { fnInit(); });
 //-->
 </script>
-</head>
-<body  onload="fnInit();">
-<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>    
-<!-- 전체 레이어 시작 -->
-<div id="wrap">
-    <!-- header 시작 -->
-    <div id="header_mainsize"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncHeader" /></div>
-    <div id="topnavi"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncTopnav" /></div>
-    <!-- //header 끝 -->
-    <!-- container 시작 -->
     <div id="container">
         <!-- 좌측메뉴 시작 -->
         <div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
@@ -119,7 +116,7 @@ function fnInit() {
                             <div class="user_login_ultop">
                                 <ul>
                                     <li>
-                                        <label for="id"><img alt="login" src="<c:url value='/'/>images/login/img_idtext.gif" /></label>
+                                        <label for="id"><img style="padding-right:10px;" alt="login" src="<c:url value='/'/>images/login/img_idtext.gif" /></label>
                                         <input type="text" class="input_style" title="아이디를 입력하세요." id="id" name="id" maxlength="10"/>
                                     </li>
                                     <li>
@@ -127,11 +124,10 @@ function fnInit() {
                                         <input type="password" class="input_style" maxlength="25" title="비밀번호를 입력하세요." id="password" name="password" 
                                                onkeydown="javascript:if (event.keyCode == 13) { actionLogin(); }"/>
                                     </li>
-                                    <li>
-                                        <input type="checkbox" name="checkId" onclick="javascript:saveid(this.form);" id="checkId" /><label for="checkId">ID저장</label>
-                                    </li>
                                 </ul>
                                 <input type="image" alt="로그인 버튼" class="btn_style" onclick="javascript:actionLogin()" src="<c:url value='/'/>images/login/btn_login.gif"  />
+                                <div class="checkIdSave"><input type="checkbox" name="checkId" onclick="javascript:saveid(this.form);" id="checkId" /><label for="checkId">ID저장</label>
+                            </div>
                             </div>
                             <input type="hidden" name="message" value="${message}" />
 				            <input type="hidden" name="userSe"  value="USR"/>
@@ -143,25 +139,18 @@ function fnInit() {
                                     <li>쉬운 비밀번호나 자주 쓰는 사이트의 비밀번호가 같을 경우, 도용되기 쉬우므로 주기적으로 변경하셔서 사용하는 것이 좋습니다.</li>
                                 </ul>
                             </div>
-                        <!-- 
-                        <div class="user_login_btstyle">
-                            <ul class="bt_ulstyle1">
-                                <li><a href="" ><img src="<c:url value='/'/>images/login/btn_regist.gif" /></a></li>
-                            </ul>
-                            <ul class="bt_ulstyle2">
-                                <li><a href="" ><img src="<c:url value='/'/>images/login/btn_findidpw.gif" /></a></li>
-                            </ul>
-                        </div>
-                         -->
                     </div>
             </div>                      
             <!-- //content 끝 -->    
     </div>  
-    <!-- //container 끝 -->
-    <!-- footer 시작 -->
-    <div id="footer"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncFooter" /></div>
-    <!-- //footer 끝 -->
+	<!-- //container -->
+	
+	<!-- footer 시작 -->
+	<c:import url="/EgovPageLink.do?link=include/footer" />
+	<!-- //footer 끝 -->
 </div>
-<!-- //전체 레이어 끝 -->
-</body>
-</html>
+<!-- //wrap 끝 -->
+
+<!-- common_bottom 시작 -->
+<c:import url="/EgovPageLink.do?link=include/common_bottom" />
+<!-- common_bottom 끝 -->

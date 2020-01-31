@@ -12,25 +12,19 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Language" content="ko" >
-<title>표준프레임워크 경량환경 홈페이지템플릿</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
-</head>
-<body>
-<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
-<!-- 전체 레이어 시작 -->
+
+<!-- common_top 시작 -->
+<c:import url="/EgovPageLink.do?link=include/common_top" />
+<!-- common_top 끝 -->
+<!-- sub CSS 추가 -->
+<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/sub.css">
+
+<!-- wrap -->
 <div id="wrap">
 	<!-- header 시작 -->
-    <div id="header_mainsize">
-        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncHeader" />
-    </div>
-    <div id="topnavi">
-        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncTopnav" />
-    </div>
-    <!-- //header 끝 -->
+	<c:import url="/EgovPageLink.do?link=include/header" />
+	<!-- header 끝 -->
+	
 	<!-- container 시작 -->
 	<div id="container">
 		<!-- 좌측메뉴 시작 -->
@@ -81,11 +75,14 @@
 				</div>
 				<!-- //main content 끝 -->	
 	</div>	
-	<!-- //container 끝 -->
+	<!-- //container -->
+	
 	<!-- footer 시작 -->
-	<div id="footer"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncFooter" /></div>
+	<c:import url="/EgovPageLink.do?link=include/footer" />
 	<!-- //footer 끝 -->
 </div>
-<!-- //전체 레이어 끝 -->
-</body>
-</html>
+<!-- //wrap 끝 -->
+
+<!-- common_bottom 시작 -->
+<c:import url="/EgovPageLink.do?link=include/common_bottom" />
+<!-- common_bottom 끝 -->
