@@ -1,5 +1,5 @@
 @charset "utf-8";
-.user_login {float:left;background: url("../../../images/login/bg_login.gif") no-repeat left top;}
+.user_login {float:left;}
 .user_login .user_login_ultop {
     display: inline-block;
     margin: 0;

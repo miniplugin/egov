@@ -122,7 +122,7 @@ hr {display:none;}
 
 /* layout */
 #wrap {}
-.box_inner {width:1050px; margin:0 auto;}
+.box_inner {margin:0 auto;}
 
 /* header */
 header {position:absolute; left:0; top:0; width:100%; height:113px; background:rgba(0,0,0,0.5); z-index:100;}
@@ -253,7 +253,7 @@ footer .foot_area .snslink li + li + li a {background-image:url(../img/ico_insta
 .location_area p.location {padding:20px 0 0 50px; color:#fff;}
 .location_area p.location .path {display:inline-block; padding:0 10px;}
 .location_area ul.page_menu {display:none;}
-.bodytext_area {box-sizing:border-box; padding:55px 50px 0;}
+.bodytext_area {box-sizing:border-box; padding:0px;}
 
 /* 공지사항 목록 */
 .minisrch_form {width:100%; text-align:right; margin-bottom:20px;}
@@ -278,7 +278,7 @@ footer .foot_area .snslink li + li + li a {background-image:url(../img/ico_insta
 .bbsview_list {padding-bottom:30px;  border-top:2px solid #384d75;}
 .bbsview_list li {box-sizing:border-box; padding:0 15px; border-bottom:1px solid #ccc; font-size:14px; color:#666;}
 .bbsview_list li.bbs_title {width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; height:50px; line-height:50px; font-weight:bold; font-size:16px;}
-.bbsview_list li.bbs_hit {height:40px; line-height:40px; float:left; width:50%;}
+.bbsview_list li.bbs_hit {overflow:hidden; height:40px; line-height:40px; float:left; width:50%;}
 .bbsview_list li.bbs_date {height:40px; line-height:40px; float:left; width:50%;}
 .bbsview_list li.bbs_content {clear:both; min-height:200px; padding:20px 15px;}
 .bbsview_list li.bbs_content .editer_content {line-height:1.4;}
@@ -383,7 +383,7 @@ h1.loginTit a img {width:100%;}
 }
 
 @media all and (max-width:800px) {
-	.btn_bbs {display:inline-block; width:100%; text-align:center; height:35px; font-size:14px; line-height:35px; vertical-align:middle; background:#384d75; color:#fff !important;}
+	.btn_bbs {margin-bottom:5px;float:right;display:inline-block; width:100%; text-align:center; height:35px; font-size:14px; line-height:35px; vertical-align:middle; background:#384d75; color:#fff !important;}
 	.btn_baseColor {display:inline-block; width:100%; height:50px; line-height:50px; background:#384d75; font-weight:bold; font-size:20px; color:#fff !important;}
 
 	.box_inner {width:100%;}
@@ -486,7 +486,7 @@ h1.loginTit a img {width:100%;}
 	.location_area ul.page_menu li {float:left; padding-bottom:10px;}
 	.location_area ul.page_menu li a {display:block; margin-right:20px; font-size:15px; color:#ddd;}
 	.location_area ul.page_menu li a.on {border-bottom:1px solid #fff; color:#fff;}
-	.bodytext_area {box-sizing:border-box; padding:33px 20px 0;}
+	.bodytext_area {box-sizing:border-box;}/*padding:20px 15px 0px 0px;*/
 
 	/* 공지사항 */
 	.bbsListTbl {width:100%; border-top:2px solid #384d75;}

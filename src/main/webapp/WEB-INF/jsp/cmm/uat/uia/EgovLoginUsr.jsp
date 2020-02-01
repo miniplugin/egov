@@ -111,35 +111,45 @@ $(document).ready(function() { fnInit(); });
                 </div>
                 <!-- 타이틀 이미지 -->            
                 <div id="content_img_div"><img  alt="LOGIN 표준프레임워크 경량환경 단순 홈페이지에 오신것을 환영합니다." src="<c:url value='/'/>images/subtitle/img_subtitle_login.gif" width="776" height="230" /></div>       
-                    <div class="user_login">
-                            <form:form name="loginForm" method="post" action="#LINK">
-                            <div class="user_login_ultop">
-                                <ul>
-                                    <li>
-                                        <label for="id"><img style="padding-right:10px;" alt="login" src="<c:url value='/'/>images/login/img_idtext.gif" /></label>
-                                        <input type="text" class="input_style" title="아이디를 입력하세요." id="id" name="id" maxlength="10"/>
-                                    </li>
-                                    <li>
-                                        <label for="password"><img alt="password" src="<c:url value='/'/>images/login/img_pwtext.gif" /></label>
-                                        <input type="password" class="input_style" maxlength="25" title="비밀번호를 입력하세요." id="password" name="password" 
-                                               onkeydown="javascript:if (event.keyCode == 13) { actionLogin(); }"/>
-                                    </li>
-                                </ul>
-                                <input type="image" alt="로그인 버튼" class="btn_style" onclick="javascript:actionLogin()" src="<c:url value='/'/>images/login/btn_login.gif"  />
-                                <div class="checkIdSave"><input type="checkbox" name="checkId" onclick="javascript:saveid(this.form);" id="checkId" /><label for="checkId">ID저장</label>
-                            </div>
-                            </div>
-                            <input type="hidden" name="message" value="${message}" />
-				            <input type="hidden" name="userSe"  value="USR"/>
-				            <!-- <input type="hidden" name="j_username" />-->
-                            </form:form>
-                            <div class="text_area">
-                                <ul>
-                                    <li>비밀번호는 6~12자의 영문 대/소문자, 숫자, 특수문자를 혼합해서 사용하실 수 있습니다.</li>
-                                    <li>쉬운 비밀번호나 자주 쓰는 사이트의 비밀번호가 같을 경우, 도용되기 쉬우므로 주기적으로 변경하셔서 사용하는 것이 좋습니다.</li>
-                                </ul>
-                            </div>
-                    </div>
+                    <!-- bodytext_area -->
+					<div class="bodytext_area box_inner">
+						<!-- appForm -->
+						<form:form name="loginForm" method="post" action="#LINK" class="appForm">
+							<fieldset>
+								<legend>입력 양식</legend>
+								<p class="info_pilsoo pilsoo_item">필수입력</p>
+								<ul class="app_list">
+									<li class="clear">
+										<label for="id" class="tit_lbl pilsoo_item">아이디</label>
+										<div class="app_content"><input type="text" class="w100p" id="id" name="id" placeholder="아이디를 입력해주세요"/></div>
+									</li>
+									<li class="clear">
+										<label for="password" class="tit_lbl pilsoo_item">비밀번호</label>
+										<div class="app_content"><input type="password" class="w100p" id="password" name="password" onkeydown="javascript:if (event.keyCode == 13) { actionLogin(); }" placeholder="비밀번호를 입력해주세요"/></div>
+									</li>
+									<li class="clear">
+										<div class="app_content checkbox_area">
+											<input type="checkbox"  onclick="javascript:saveid(this.form);" class="css-checkbox" id="checkId" name="checkId"><label for="checkId">ID저장</label>
+										</div>
+									</li>
+								</ul>
+								<input type="hidden" name="message" value="${message}" />
+				            	<input type="hidden" name="userSe"  value="USR"/>
+								<p class="btn_line">
+								<a href="javascript:;" onclick="javascript:actionLogin()" class="btn_baseColor">로그인</a>
+								</p>
+							</fieldset>
+						</form:form>
+						<!-- //appForm -->
+						<div class="content_field">
+                            <h3>로그인안내</h3>
+							<fieldset><legend>정보영역</legend>
+                                <p>비밀번호는 6~12자의 영문 대/소문자, 숫자, 특수문자를 혼합해서 사용하실 수 있습니다.</p>
+                                <p>쉬운 비밀번호나 자주 쓰는 사이트의 비밀번호가 같을 경우, 도용되기 쉬우므로 주기적으로 변경하셔서 사용하는 것이 좋습니다.</p>
+                            </fieldset>
+                        </div>
+					</div>
+					<!-- //bodytext_area -->
             </div>                      
             <!-- //content 끝 -->    
     </div>  

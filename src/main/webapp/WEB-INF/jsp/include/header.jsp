@@ -85,7 +85,8 @@
 				<li><a class="openAll3 openAll" href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">고객지원</a>
 					<div class="gnb_depth gnb_depth2_3">
                         <ul class="submenu_list">
-                            <li><a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">자료실</a></li>	
+                            <li><a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">갤러리 자료실</a></li>
+                            <li><a href="javascript:fn_main_headPageMove('33','main/sample_menu/EgovService')">서비스신청</a></li>	
                         </ul>
                         <p class="closeSubmenu" style="float:right"><a href="javascript:;" style="padding:0 10px 0 50px;background:none;">닫기</a></p>
                     </div>
