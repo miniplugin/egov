@@ -89,13 +89,13 @@
 	
 		<!-- about_area -->
 		<div class="about_area">
-			<h2><a href="#LINK" onclick="javascript:fn_main_headPageAction('43','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB'); return false;">겔러리 게시판</a> <b>TOP 3</b></h2>
+			<h2><a href="#LINK" onclick="javascript:fn_main_headPageAction('31','main/sample_menu/EgovDownload.do?bbsId=BBSMSTR_BBBBBBBBBBBB'); return false;">겔러리 게시판</a> <b>TOP 3</b></h2>
 			<div class="about_box">
 				<ul class="place_list box_inner clear">
 				<c:forEach var="result" items="${galList}" varStatus="status">
 					<c:if test="${status.index < 3}">
 					<li style="padding:4px 0">
-                    <form name="subForm" method="post" action="<c:url value='/cop/bbs${prefix}/selectBoardArticle.do'/>">
+                    <form name="subForm" method="post" action="<c:url value='/main/sample_menu${prefix}/EgovDownloadDetail.do'/>">
                     <a href="javascript:void(0);" onclick="$(this).closest('form').submit();">
 		            <c:if test="${result.replyLc!=0}">
 		                <c:forEach begin="0" end="${result.replyLc}" step="1">

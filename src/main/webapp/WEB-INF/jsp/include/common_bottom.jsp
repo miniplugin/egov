@@ -45,6 +45,8 @@ $( document ).ready(function() {
     	 $('.closeSubmenu').click(function(){$(this).parents().children('.gnb_depth').css({ display:'none' });});
      }
      if ( parseInt($('header').css('width')) > 800 ){
+    	 $('.openAll').unbind('click').click();
+    	 //$('.openAll').unbind()
     	 $('.gnb_depth').css({ margin:'inherit' });
     	 $('.gnb_depth .submenu_list').css({ padding:'0 0 0 480px',width:'1050px' });
     	 $('.closeSubmenu').css({ display:'none' });

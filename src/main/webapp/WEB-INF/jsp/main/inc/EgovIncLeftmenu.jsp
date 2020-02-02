@@ -42,10 +42,12 @@ String menuNo = ((String)session.getAttribute("menuNo")!=null)?(String)session.g
 		<% } %>
         <% if (menuNo.indexOf("3")== 0) {%>
 		<li class="leftmenu_dept01">
-			<a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">고객지원</a>
+			<!-- <a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">고객지원</a>  -->
+			<a href="javascript:fn_main_headPageAction('31','main/sample_menu/EgovDownload.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">고객지원</a>
 			<ul>
-				<li class="dept02"><a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">갤러리 자료실</a></li>
-				<!-- <li class="dept02"><a href="javascript:fn_main_headPageMove('32','main/sample_menu/EgovQA')">묻고답하기</a></li> -->
+				<!-- <li class="dept02"><a href="javascript:fn_main_headPageMove('31','main/sample_menu/EgovDownload')">갤러리 자료실</a></li>
+				<li class="dept02"><a href="javascript:fn_main_headPageMove('32','main/sample_menu/EgovQA')">묻고답하기</a></li> -->
+				<li class="dept02"><a href="javascript:fn_main_headPageAction('31','main/sample_menu/EgovDownload.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">갤러리 자료실</a></li>
 				<li class="dept02"><a href="javascript:fn_main_headPageMove('33','main/sample_menu/EgovService')">서비스신청</a></li>
 			</ul>
 		</li>

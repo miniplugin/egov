@@ -29,6 +29,7 @@ public class ImagePaginationRenderer extends AbstractPaginationRenderer implemen
 	
 	}
 	
+	/* KIK 페이징 디자인 수정
 	public void initVariables(){
 		firstPageLabel    = "<li>&#160;</li><li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/images/egovframework/com/cmm/mod/icon/icon_prevend.gif\" alt=\"처음\"   border=\"0\"/></a></li>";
         previousPageLabel = "<li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/images/egovframework/com/cmm/mod/icon/icon_prev.gif\"    alt=\"이전\"   border=\"0\"/></a></li>";
@@ -36,6 +37,15 @@ public class ImagePaginationRenderer extends AbstractPaginationRenderer implemen
         otherPageLabel    = "<li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \">{2}</a></li>";
         nextPageLabel     = "<li>&#160;<a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/images/egovframework/com/cmm/mod/icon/icon_next.gif\"    alt=\"다음\"   border=\"0\"/></a></li>";
         lastPageLabel     = "<li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/images/egovframework/com/cmm/mod/icon/icon_nextend.gif\" alt=\"마지막\" border=\"0\"/></a></li>";
+	}
+	*/
+	public void initVariables(){
+		firstPageLabel    = "<a class=\"firstpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_firstpage.png\" alt=\"처음\" /></a>";
+        previousPageLabel = "<a class=\"prevpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_prevpage.png\"    alt=\"이전\" /></a>";
+        currentPageLabel  = "<a href=\"javascript:;\"><span class=\"pagenum currentpage\">{0}</span></a>";
+        otherPageLabel    = "<a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><span class=\"pagenum\">{2}</span></a>";
+        nextPageLabel     = "<a class=\"nextpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_nextpage.png\"    alt=\"다음\" /></a>";
+        lastPageLabel     = "<a class=\"lastpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_lastpage.png\" alt=\"마지막\" /></a>";
 	}
 
 	
