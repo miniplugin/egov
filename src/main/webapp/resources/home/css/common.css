@@ -571,4 +571,4 @@ h1.loginTit a img {width:100%;}
 }
 /* Below add KIK */
 table img{max-width:100% !important;}
-.link *{cursor:pointer;}
+.link,.link *{cursor:pointer;display:inline-block;}

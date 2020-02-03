@@ -8,6 +8,7 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.EgovFileMngUtil;
 import egovframework.com.cmm.service.FileVO;
+import egovframework.com.cmm.util.EgovDoubleSubmitHelper;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.bbs.service.Board;
 import egovframework.let.cop.bbs.service.BoardMaster;
@@ -15,12 +16,10 @@ import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -81,7 +80,7 @@ public class BBSManageController {
     //SHT-CUSTOMIZING//@Resource(name = "EgovBBSScrapService")
     //SHT-CUSTOMIZING//private EgovBBSScrapService bbsScrapService;
     ////-------------------------------
-
+    
     @Autowired
     private DefaultBeanValidator beanValidator;
 
@@ -291,7 +290,7 @@ public class BBSManageController {
      * @throws Exception
      */
     @RequestMapping("/main/sample_menu/insertEgovDownload.do")
-    public String insertBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
+    public String insertBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, SessionStatus status,
 	    ModelMap model) throws Exception {
 	// 사용자권한 처리
@@ -330,23 +329,29 @@ public class BBSManageController {
 	}
 
 	if (isAuthenticated) {
-	    List<FileVO> result = null;
-	    String atchFileId = "";
+		
+		/* KIK 이중 등록 방지 if 조건 추가 */
+		if (EgovDoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
+			
+			List<FileVO> result = null;
+		    String atchFileId = "";
 
-	    final Map<String, MultipartFile> files = multiRequest.getFileMap();
-	    if (!files.isEmpty()) {
-		result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
-		atchFileId = fileMngService.insertFileInfs(result);
-	    }
-	    board.setAtchFileId(atchFileId);
-	    board.setFrstRegisterId(user.getUniqId());
-	    board.setBbsId(board.getBbsId());
+		    final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		    if (!files.isEmpty()) {
+			result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
+			atchFileId = fileMngService.insertFileInfs(result);
+		    }
+		    board.setAtchFileId(atchFileId);
+		    board.setFrstRegisterId(user.getUniqId());
+		    board.setBbsId(board.getBbsId());
 
-	    board.setNtcrNm("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-	    board.setPassword("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-	    //board.setNttCn(unscript(board.getNttCn()));	// XSS 방지
+		    board.setNtcrNm("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+		    board.setPassword("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+		    //board.setNttCn(unscript(board.getNttCn()));	// XSS 방지
 
-	    bbsMngService.insertBoardArticle(board);
+		    bbsMngService.insertBoardArticle(board);
+		    
+		}   
 	}
 
 	//status.setComplete();
@@ -362,7 +367,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/cop/bbs/addReplyEgovDownload.do")
+    @RequestMapping("/main/sample_menu/addReplyEgovDownload.do")
     public String addReplyBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
     	// 사용자권한 처리
     	if(!EgovUserDetailsHelper.isAuthenticated()) {
@@ -393,7 +398,7 @@ public class BBSManageController {
 	model.addAttribute("brdMstrVO", master);
 	////-----------------------------
 
-	return "cop/bbs/EgovNoticeReply";
+	return "main/sample_menu/EgovDownloadReply";
     }
 
     /**
@@ -406,8 +411,8 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/cop/bbs/replyEgovDownload.do")
-    public String replyBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
+    @RequestMapping("/main/sample_menu/replyEgovDownload.do")
+    public String replyBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, ModelMap model,
 	    SessionStatus status) throws Exception {
 
@@ -443,34 +448,39 @@ public class BBSManageController {
 	    model.addAttribute("brdMstrVO", master);
 	    ////-----------------------------
 
-	    return "cop/bbs/EgovNoticeReply";
+	    return "main/sample_menu/EgovDownloadReply";
 	}
 
 	if (isAuthenticated) {
-	    final Map<String, MultipartFile> files = multiRequest.getFileMap();
-	    String atchFileId = "";
+		/* KIK 이중 등록 방지 if 조건 추가 */
+		if (EgovDoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
+			
+			final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		    String atchFileId = "";
 
-	    if (!files.isEmpty()) {
-		List<FileVO> result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
-		atchFileId = fileMngService.insertFileInfs(result);
+		    if (!files.isEmpty()) {
+			List<FileVO> result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
+			atchFileId = fileMngService.insertFileInfs(result);
+		    }
+
+		    board.setAtchFileId(atchFileId);
+		    board.setReplyAt("Y");
+		    board.setFrstRegisterId(user.getUniqId());
+		    board.setBbsId(board.getBbsId());
+		    board.setParnts(Long.toString(boardVO.getNttId()));
+		    board.setSortOrdr(boardVO.getSortOrdr());
+		    board.setReplyLc(Integer.toString(Integer.parseInt(boardVO.getReplyLc()) + 1));
+
+		    board.setNtcrNm("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+		    board.setPassword("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
+
+		    board.setNttCn(unscript(board.getNttCn()));	// XSS 방지
+
+		    bbsMngService.insertBoardArticle(board);
+		    
 	    }
-
-	    board.setAtchFileId(atchFileId);
-	    board.setReplyAt("Y");
-	    board.setFrstRegisterId(user.getUniqId());
-	    board.setBbsId(board.getBbsId());
-	    board.setParnts(Long.toString(boardVO.getNttId()));
-	    board.setSortOrdr(boardVO.getSortOrdr());
-	    board.setReplyLc(Integer.toString(Integer.parseInt(boardVO.getReplyLc()) + 1));
-
-	    board.setNtcrNm("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-	    board.setPassword("");	// dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-
-	    board.setNttCn(unscript(board.getNttCn()));	// XSS 방지
-
-	    bbsMngService.insertBoardArticle(board);
 	}
-
+	//status.setComplete();
 	return "forward:/main/sample_menu/EgovDownload.do";
     }
 
@@ -540,7 +550,7 @@ public class BBSManageController {
      * @throws Exception
      */
     @RequestMapping("/main/sample_menu/updateEgovDownload.do")
-    public String updateBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
+    public String updateBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, ModelMap model,
 	    SessionStatus status) throws Exception {
 

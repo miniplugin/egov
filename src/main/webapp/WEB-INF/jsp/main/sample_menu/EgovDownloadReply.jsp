@@ -1,14 +1,14 @@
 <%--
-  Class Name : EgovDownloadRegist.jsp
-  Description : 샘플화면 - 자료실 등록(sample)
+  Class Name : EgovDownloadReply.jsp
+  Description : 샘플화면 - 답글 등록(sample)
   Modification Information
  
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2020.02.02   KIK       경량환경 버전 생성
+     2020.02.03   KIK       경량환경 버전 생성
  
     author   : 타임스페이스 KIK
-    since    : 2020.02.02 
+    since    : 2020.02.03 
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -32,35 +32,30 @@
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 <c:if test="${anonymous == 'true'}"><c:set var="prefix" value="/anonymous"/></c:if>
 <script type="text/javascript">
+
     function fn_egov_validateForm(obj) {
         return true;
     }
-    
+
     function fn_egov_regist_notice() {
         //document.board.onsubmit();
-        
+
         if (!validateBoard(document.board)){
             return;
         }
-        <c:if test="${bdMstr.bbsAttrbCode == 'BBSA02'}">
-        if(document.getElementById("egovComFileUploader").value==""){
-            alert("갤러리 게시판의 경우 이미지 파일 첨부가 필수사항입니다.");
-            return false;
-        }
-        </c:if>
+        
         if (confirm('<spring:message code="common.regist.msg" />')) {
-            //document.board.onsubmit();
-            document.board.action = "<c:url value='/main/sample_menu${prefix}/insertEgovDownload.do'/>";
-            document.board.submit();
+            document.board.action = "<c:url value='/main/sample_menu${prefix}/replyEgovDownload.do'/>";
+            document.board.submit();                    
         }
     }
     
     function fn_egov_select_noticeList() {
-        document.board.action = "<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>"+ "?bbsId=" +"<c:out value='${bdMstr.bbsId}'/>";
-        document.board.submit();
-    }   
+        document.board.action = "<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>";
+        document.board.submit();    
+    }
 </script>
-<title><c:out value='${bdMstr.bbsNm}'/> - 게시글쓰기</title>
+<title><c:out value='${bdMstr.bbsNm}'/> - 답글쓰기</title>
 
 <!-- wrap -->
 <div id="wrap">
@@ -95,7 +90,13 @@
 					<!-- appForm -->
 					<form:form class="appForm" commandName="board" name="board" method="post" enctype="multipart/form-data" >
 						<double-submit:preventer tokenKey="someKey"/>
-						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+						<input type="hidden" name="replyAt" value="Y" />
+						<input type="hidden" name="pageIndex"  value="<c:out value='${searchVO.pageIndex}'/>"/>
+						<input type="hidden" name="nttId" value="<c:out value='${searchVO.nttId}'/>" />
+						<input type="hidden" name="parnts" value="<c:out value='${searchVO.parnts}'/>" />
+						<input type="hidden" name="sortOrdr" value="<c:out value='${searchVO.sortOrdr}'/>" />
+						<input type="hidden" name="replyLc" value="<c:out value='${searchVO.replyLc}'/>" />
+						
 						<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
 						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
 						<input type="hidden" name="bbsTyCode" value="<c:out value='${bdMstr.bbsTyCode}'/>" />
@@ -106,7 +107,6 @@
 						<input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
 						
 						<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
-						<input type="hidden" name="authFlag" value="<c:out value='${bdMstr.authFlag}'/>" />
 						
 						<c:if test="${anonymous != 'true'}">
 							<input type="hidden" name="ntcrNm" value="dummy">   <!-- validator 처리를 위해 지정 -->
@@ -124,7 +124,7 @@
 								<li class="clear">
 									<label for="nttSj" class="tit_lbl pilsoo_item">제목</label>
 									<div class="app_content">
-									<input class="w100p" name="nttSj" title="<spring:message code="cop.nttSj" />" type="text" value=''>
+									<input class="w100p" name="nttSj" title="<spring:message code="cop.nttSj" />" type="text" value="RE: <c:out value='${result.nttSj}'/>">
 					           		<br/><form:errors path="nttSj" />
 									</div>
 								</li>

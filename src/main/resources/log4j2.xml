@@ -11,7 +11,7 @@
             <AppenderRef ref="console" />
         </Logger>
         	<!-- log egovframework DEBUG 에서 INFO 변경: KIK -->
-        <Logger name="egovframework" level="INFO" additivity="false">
+        <Logger name="egovframework" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
 		  <!-- log SQL with timing information, post execution -->
