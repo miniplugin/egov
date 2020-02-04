@@ -9,7 +9,7 @@
 - [공통]egov3.8개발환경 심플템플릿 기반.
 - /src/main/wepapp/resources 추가 후 template_start 추가.
 - WEB-INF/jsp/main/template_start 추가.
-- 기존 소수 변경한 파일2개: 1).홈페이지 초기화면 EgovMainView.jsp 수정. 기존백업 EgovMainView_org.jsp
+- 기존 소스 변경한 파일2개: 1).홈페이지 초기화면 EgovMainView.jsp 수정. 기존백업 EgovMainView_org.jsp
 - 2).WEB-INF/jsp/cmm/uat/uia/EgovLoginUsr.jsp 수정. 기존백업  EgovLoginUsr_org.jsp
 
 >작업일자(아래): 20200203
