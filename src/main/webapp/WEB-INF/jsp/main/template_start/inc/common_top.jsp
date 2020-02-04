@@ -16,20 +16,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:if test="${empty brdMstrVO.bbsNm}">
 <title>반응형-표준프레임워크 경량환경 홈페이지 템플릿</title>
+</c:if>
+<title><c:out value="${brdMstrVO.bbsNm}"/></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/swiper.min.css">
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/common.css">
-<script src="<c:url value='/'/>resources/home/js/jquery-1.11.3.min.js"></script>
-<script src="<c:url value='/'/>resources/home/js/rollmain.js"></script>
-<script src="<c:url value='/'/>resources/home/js/jquery.easing.js"></script>	
-<script src="<c:url value='/'/>resources/home/js/common.js"></script>  
-<script src="<c:url value='/'/>resources/home/js/jquery.smooth-scroll.min.js"></script> 
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/swiper.min.css">
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/common.css">
+<script src="<c:url value='/'/>resources/template_start/js/jquery-1.11.3.min.js"></script>
+<script src="<c:url value='/'/>resources/template_start/js/rollmain.js"></script>
+<script src="<c:url value='/'/>resources/template_start/js/jquery.easing.js"></script>	
+<script src="<c:url value='/'/>resources/template_start/js/common.js"></script>  
+<script src="<c:url value='/'/>resources/template_start/js/jquery.smooth-scroll.min.js"></script> 
 <!--[if lte IE 9]>
-    <script src="<c:url value='/'/>resources/home/js/html5shiv.js"></script>
-	<script src="<c:url value='/'/>resources/home/js/placeholders.min.js"></script>
+    <script src="<c:url value='/'/>resources/template_start/js/html5shiv.js"></script>
+	<script src="<c:url value='/'/>resources/template_start/js/placeholders.min.js"></script>
 <![endif]-->
 </head>
 <body>

@@ -1,5 +1,5 @@
 <%--
-  Class Name : EgovDownloadRegist.jsp
+  Class Name : BoardRegist.jsp
   Description : 샘플화면 - 자료실 등록(sample)
   Modification Information
  
@@ -20,10 +20,10 @@
 <%@ taglib prefix="double-submit" uri="http://www.egovframe.go.kr/tags/double-submit/jsp" %>
 
 <!-- common_top 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_top" />
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_top" />
 <!-- common_top 끝 -->
 <!-- sub CSS 추가 -->
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/sub.css">
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/sub.css">
 <link href="<c:url value='${brdMstrVO.tmplatCours}' />" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>" ></script>
@@ -50,28 +50,26 @@
         </c:if>
         if (confirm('<spring:message code="common.regist.msg" />')) {
             //document.board.onsubmit();
-            document.board.action = "<c:url value='/main/sample_menu${prefix}/insertEgovDownload.do'/>";
+            document.board.action = "<c:url value='/main/template_start${prefix}/insertBoard.do'/>";
             document.board.submit();
         }
     }
     
     function fn_egov_select_noticeList() {
-        document.board.action = "<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>"+ "?bbsId=" +"<c:out value='${bdMstr.bbsId}'/>";
+        document.board.action = "<c:url value='/main/template_start${prefix}/Board.do'/>"+ "?bbsId=" +"<c:out value='${bdMstr.bbsId}'/>";
         document.board.submit();
     }   
 </script>
-<title><c:out value='${bdMstr.bbsNm}'/> - 게시글쓰기</title>
-
 <!-- wrap -->
 <div id="wrap">
 	<!-- header 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/header" />
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/header" />
 	<!-- header 끝 -->
 	
 	<!-- container 시작 -->
 	<div id="container">
 		<!-- 좌측메뉴 시작 -->
-		<div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
+		<div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/template_start/inc/left" /></div>
 		<!-- //좌측메뉴 끝 -->			
 			<!-- content 시작 -->			
 			<div id="content">
@@ -149,7 +147,7 @@
 							<c:if test="${bdMstr.authFlag == 'Y'}">
 				              <a class="btn_bbs" href="#LINK" onclick="javascript:fn_egov_regist_notice(); return false;"><spring:message code="button.save" /></a> 
 					        </c:if>
-					        <a class="btn_bbs" href="<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>" onclick="javascript:fn_egov_select_noticeList(); return false;"><spring:message code="button.list" />
+					        <a class="btn_bbs" href="<c:url value='/main/template_start${prefix}/Board.do'/>" onclick="javascript:fn_egov_select_noticeList(); return false;"><spring:message code="button.list" />
 							</a>
 							</p>	
 						</fieldset>
@@ -163,7 +161,7 @@
 	<!-- //container -->
 	
 	<!-- footer 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/footer" />
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/footer" />
 	<!-- //footer 끝 -->
 </div>
 <!-- //wrap 끝 -->
@@ -178,5 +176,5 @@ multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
 </script>    
 </c:if>
 <!-- common_bottom 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_bottom" />
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_bottom" />
 <!-- common_bottom 끝 -->

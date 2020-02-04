@@ -4,6 +4,14 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200204
+### 기존 심플템플릿과 신규 템플릿 분리 
+- [공통]egov3.8개발환경 심플템플릿 기반.
+- /src/main/wepapp/resources 추가 후 template_start 추가.
+- WEB-INF/jsp/main/template_start 추가.
+- 기존 소수 변경한 파일2개: 1).홈페이지 초기화면 EgovMainView.jsp 수정. 기존백업 EgovMainView_org.jsp
+- 2).WEB-INF/jsp/cmm/uat/uia/EgovLoginUsr.jsp 수정. 기존백업  EgovLoginUsr_org.jsp
+
 >작업일자(아래): 20200203
 ### 갤러리 자료실 답글 CRUD프로그램 적용 및 입력/수정후 페이지 새로고침시 데이터중복등록되는 문제 처리
 >작업일자(아래): 20200202

@@ -1,4 +1,4 @@
-package egovframework.let.cop.bbs.web;
+package egovframework.miniplugin.start;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,6 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.EgovFileMngUtil;
 import egovframework.com.cmm.service.FileVO;
-import egovframework.com.cmm.util.EgovDoubleSubmitHelper;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.bbs.service.Board;
 import egovframework.let.cop.bbs.service.BoardMaster;
@@ -16,6 +15,7 @@ import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
+import egovframework.miniplugin.com.DoubleSubmitHelper;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import javax.annotation.Resource;
@@ -124,7 +124,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/EgovDownload.do")
+    @RequestMapping("/main/template_start/Board.do")
     public String selectBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
 	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 
@@ -178,7 +178,7 @@ public class BBSManageController {
 	model.addAttribute("brdMstrVO", master);
 	model.addAttribute("paginationInfo", paginationInfo);
 
-	return "main/sample_menu/EgovDownload";
+	return "main/template_start/Board";
     }
 
     /**
@@ -190,7 +190,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/EgovDownloadDetail.do")
+    @RequestMapping("/main/template_start/BoardDetail.do")
     public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
     	LoginVO user = new LoginVO();
 	    if(EgovUserDetailsHelper.isAuthenticated()){
@@ -231,7 +231,7 @@ public class BBSManageController {
 
 		model.addAttribute("brdMstrVO", masterVo);
 
-		return "main/sample_menu/EgovDownloadDetail";
+		return "main/template_start/BoardDetail";
     }
 
     /**
@@ -243,7 +243,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/addEgovDownload.do")
+    @RequestMapping("/main/template_start/addBoard.do")
     public String addBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
 	// 사용자권한 처리
 	if(!EgovUserDetailsHelper.isAuthenticated()) {
@@ -276,7 +276,7 @@ public class BBSManageController {
 	model.addAttribute("brdMstrVO", bdMstr);
 	////-----------------------------
 
-	return "main/sample_menu/EgovDownloadRegist";
+	return "main/template_start/BoardRegist";
     }
 
     /**
@@ -289,7 +289,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/insertEgovDownload.do")
+    @RequestMapping("/main/template_start/insertBoard.do")
     public String insertBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, SessionStatus status,
 	    ModelMap model) throws Exception {
@@ -325,13 +325,13 @@ public class BBSManageController {
 	    model.addAttribute("brdMstrVO", master);
 	    ////-----------------------------
 
-	    return "main/sample_menu/EgovDownloadRegist";
+	    return "main/template_start/BoardRegist";
 	}
 
 	if (isAuthenticated) {
 		
 		/* KIK 이중 등록 방지 if 조건 추가 */
-		if (EgovDoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
+		if (DoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
 			
 			List<FileVO> result = null;
 		    String atchFileId = "";
@@ -355,7 +355,7 @@ public class BBSManageController {
 	}
 
 	//status.setComplete();
-	return "forward:/main/sample_menu/EgovDownload.do";
+	return "forward:/main/template_start/Board.do";
     }
 
     /**
@@ -367,7 +367,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/addReplyEgovDownload.do")
+    @RequestMapping("/main/template_start/addReplyBoard.do")
     public String addReplyBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
     	// 사용자권한 처리
     	if(!EgovUserDetailsHelper.isAuthenticated()) {
@@ -398,7 +398,7 @@ public class BBSManageController {
 	model.addAttribute("brdMstrVO", master);
 	////-----------------------------
 
-	return "main/sample_menu/EgovDownloadReply";
+	return "main/template_start/BoardReply";
     }
 
     /**
@@ -411,7 +411,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/replyEgovDownload.do")
+    @RequestMapping("/main/template_start/replyBoard.do")
     public String replyBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, ModelMap model,
 	    SessionStatus status) throws Exception {
@@ -448,12 +448,12 @@ public class BBSManageController {
 	    model.addAttribute("brdMstrVO", master);
 	    ////-----------------------------
 
-	    return "main/sample_menu/EgovDownloadReply";
+	    return "main/template_start/BoardReply";
 	}
 
 	if (isAuthenticated) {
 		/* KIK 이중 등록 방지 if 조건 추가 */
-		if (EgovDoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
+		if (DoubleSubmitHelper.checkAndSaveToken(request,"someKey")) {  
 			
 			final Map<String, MultipartFile> files = multiRequest.getFileMap();
 		    String atchFileId = "";
@@ -481,7 +481,7 @@ public class BBSManageController {
 	    }
 	}
 	//status.setComplete();
-	return "forward:/main/sample_menu/EgovDownload.do";
+	return "forward:/main/template_start/Board.do";
     }
 
     /**
@@ -494,7 +494,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/forUpdateEgovDownload.do")
+    @RequestMapping("/main/template_start/forUpdateBoard.do")
     public String selectBoardArticleForUpdt(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("board") BoardVO vo, ModelMap model)
 	    throws Exception {
 
@@ -536,7 +536,7 @@ public class BBSManageController {
 	model.addAttribute("brdMstrVO", bmvo);
 	////-----------------------------
 
-	return "main/sample_menu/EgovDownloadModify";
+	return "main/template_start/BoardModify";
     }
 
     /**
@@ -549,7 +549,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/updateEgovDownload.do")
+    @RequestMapping("/main/template_start/updateBoard.do")
     public String updateBoardArticle(final MultipartHttpServletRequest multiRequest, HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, @ModelAttribute("board") Board board, BindingResult bindingResult, ModelMap model,
 	    SessionStatus status) throws Exception {
@@ -583,7 +583,7 @@ public class BBSManageController {
 	    model.addAttribute("result", bdvo);
 	    model.addAttribute("bdMstr", bmvo);
 
-	    return "main/sample_menu/EgovDownloadModify";
+	    return "main/template_start/BoardModify";
 	}
 
 	if (isAuthenticated) {
@@ -611,7 +611,7 @@ public class BBSManageController {
 	    bbsMngService.updateBoardArticle(board);
 	}
 
-	return "forward:/main/sample_menu/EgovDownload.do";
+	return "forward:/main/template_start/Board.do";
     }
 
     /**
@@ -624,7 +624,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/deleteEgovDownload.do")
+    @RequestMapping("/main/template_start/deleteBoard.do")
     public String deleteBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("board") Board board,
 	    @ModelAttribute("bdMstr") BoardMaster bdMstr, ModelMap model) throws Exception {
 
@@ -643,7 +643,7 @@ public class BBSManageController {
 	    bbsMngService.deleteBoardArticle(board);
 	}
 
-	return "forward:/main/sample_menu/EgovDownload.do";
+	return "forward:/main/template_start/Board.do";
     }
 
     /**
@@ -655,7 +655,7 @@ public class BBSManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/main/sample_menu/previewEgovDownload.do")
+    @RequestMapping("/main/template_start/previewBoard.do")
     public String previewBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
 	//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 
@@ -723,6 +723,6 @@ public class BBSManageController {
 
 	model.addAttribute("preview", "true");
 
-	return "main/sample_menu/EgovDownload";
+	return "main/template_start/Board";
     }
 }

@@ -12,32 +12,27 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Language" content="ko" >
-<title>표준프레임워크 경량환경 홈페이지템플릿</title>
-<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
-</head>
-<body>
-<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
-<!-- 전체 레이어 시작 -->
+
+<!-- common_top 시작 -->
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_top" />
+<!-- common_top 끝 -->
+<!-- sub CSS 추가 -->
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/sub.css">
+
+<!-- wrap -->
 <div id="wrap">
 	<!-- header 시작 -->
-    <div id="header_mainsize">
-        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncHeader" />
-    </div>
-    <div id="topnavi">
-        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncTopnav" />
-    </div>
-    <!-- //header 끝 -->
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/header" />
+	<!-- header 끝 -->
+	
 	<!-- container 시작 -->
 	<div id="container">
 		<!-- 좌측메뉴 시작 -->
-		<div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
+		<div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/template_start/inc/left" /></div>
 		<!-- //좌측메뉴 끝 -->
-			<!-- 현재위치 네비게이션 시작 -->
+			<!-- content 시작 -->
 			<div id="content">
+				<!-- 현재위치 네비게이션 시작 -->
 				<div id="cur_loc">
 					<div id="cur_loc_align">
 						<ul>
@@ -53,9 +48,12 @@
 				<!-- main content 시작 -->
 				<div class="content_field">
 						<div><h2>찾아오시는길</h2></div>
-							<h3>무교청사 찾아 오시는 길 </h3>
-							<p><img src="<c:url value='/'/>images/img_content/img_egovframelocation.gif" width="656" height="402" alt="무교청사 약도" /></p>
-						<div>
+							<h3>무교청사 찾아 오시는 길</h3>
+							<div>
+								<p>
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3194.013814772011!2d127.14930725102933!3d36.81818887428783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b285cb903dcbf%3A0xbfa1cdcd9b991212!2z7LKc6rSR67mM65Sp!5e0!3m2!1sko!2skr!4v1571849036809!5m2!1sko!2skr" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+								</p>
+							</div>
 							<h3>상세안내 </h3>
 							<fieldset><legend>조건정보 영역</legend>
 								<ul>
@@ -105,17 +103,20 @@
 										</ul>
 									</li>
 								</ul>								
-							</fieldset>						
-						</div>		
+							</fieldset>	
 				</div>
 				<!-- //main content 끝 -->
+			</div>
+			<!-- //content 끝 -->
 	</div>	
-	<!-- //container 끝 -->
+	<!-- //container -->
+	
 	<!-- footer 시작 -->
-	<div id="footer"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncFooter" /></div>
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/footer" />
 	<!-- //footer 끝 -->
 </div>
-</div>
-<!-- //전체 레이어 끝 -->
-</body>
-</html>
+<!-- //wrap 끝 -->
+
+<!-- common_bottom 시작 -->
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_bottom" />
+<!-- common_bottom 끝 -->

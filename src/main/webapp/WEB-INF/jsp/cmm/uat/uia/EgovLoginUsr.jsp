@@ -19,15 +19,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!-- common_top 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_top" />
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_top" />
 <!-- common_top 끝 -->
 <!-- sub CSS 추가 -->
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/sub.css">
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/login.css">
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/sub.css">
+<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/login.css">
 <!-- wrap -->
 <div id="wrap">
 	<!-- header 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/header" />
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/header" />
 	<!-- header 끝 -->
 	
 	<!-- container 시작 -->
@@ -156,11 +156,11 @@ $(document).ready(function() { fnInit(); });
 	<!-- //container -->
 	
 	<!-- footer 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/footer" />
+	<c:import url="/EgovPageLink.do?link=main/template_start/inc/footer" />
 	<!-- //footer 끝 -->
 </div>
 <!-- //wrap 끝 -->
 
 <!-- common_bottom 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_bottom" />
+<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_bottom" />
 <!-- common_bottom 끝 -->

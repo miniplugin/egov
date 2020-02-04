@@ -1,20 +1,18 @@
-package egovframework.com.cmm.util;
+package egovframework.miniplugin.com;
 
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
+import egovframework.com.cmm.util.EgovDoubleSubmitHelper;
 /**
- * Utility class  to support to double submit preventer
+ * from HttpServletRequest to MultipartHttpServletRequest 확장 to double submit preventer
  * @author Vincent Han
- * @since 2014.08.07
+ * @since 2020.02.04
  * @version 1.0
  * @see
  *
@@ -22,31 +20,21 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * << 개정이력(Modification Information) >>
  *   
  *   수정일        수정자       수정내용
- *  -------       --------    ---------------------------
- *   2014.08.07	표준프레임워크센터	최초 생성
+ *  -------    --------    ---------------------------
+ *  2020.02.04	KIK			최초 생성
  *
  * </pre>
  */
-public class EgovDoubleSubmitHelper {
+public class DoubleSubmitHelper extends EgovDoubleSubmitHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovDoubleSubmitHelper.class);
-		
-	public final static String SESSION_TOKEN_KEY = "egovframework.double.submit.preventer.session.key";
 	
-	public final static String PARAMETER_NAME = "egovframework.double.submit.preventer.parameter.name";
-	
-	public final static String DEFAULT_TOKEN_KEY = "DEFAULT";
-	
-	public static String getNewUUID() {
-		return UUID.randomUUID().toString().toUpperCase();
+	public static boolean checkAndSaveToken(HttpServletRequest request) {
+		return checkAndSaveToken(request, DEFAULT_TOKEN_KEY);
 	}
 	
-	public static boolean checkAndSaveToken() {
-		return checkAndSaveToken(DEFAULT_TOKEN_KEY);
-	}
-	
-	public static boolean checkAndSaveToken(String tokenKey) {
+	public static boolean checkAndSaveToken(HttpServletRequest request, String tokenKey) {
 		
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		//RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));//request 재설정
 		HttpSession session = request.getSession();
 		
 		// check session...
@@ -55,12 +43,10 @@ public class EgovDoubleSubmitHelper {
 		}
 
 		String parameter = request.getParameter(EgovDoubleSubmitHelper.PARAMETER_NAME);
-		
-		// check parameter
+		// check parameter...
 		if (parameter == null) {
 			throw new RuntimeException("Double Submit Preventer parameter isn't set. Check JSP.");
 		}
-		
 		@SuppressWarnings("unchecked")
 		Map<String, String> map = (Map<String, String>) session.getAttribute(EgovDoubleSubmitHelper.SESSION_TOKEN_KEY);
 		

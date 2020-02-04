@@ -11,74 +11,26 @@
     since    : 2011.08.31 
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="egovframework.com.cmm.service.EgovProperties" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="ImgUrl" value="/images/egovframework/cop/bbs/"/>
-<!-- common_top 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_top" />
-<!-- common_top 끝 -->
-<!-- sub CSS 추가 -->
-<link rel="stylesheet" href="<c:url value='/'/>resources/home/css/sub.css">
-<c:if test="${anonymous == 'true'}"><c:set var="prefix" value="/anonymous"/></c:if>
-<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />" ></script>
-<c:choose>
-<c:when test="${preview == 'true'}">
-<script type="text/javascript">
-<!--
-    function press(event) {
-    }
-
-    function fn_egov_addNotice() {
-    }
-    
-    function fn_egov_select_noticeList(pageNo) {
-    }
-    
-    function fn_egov_inqire_notice(nttId, bbsId) {      
-    }
-//-->
-</script>
-</c:when>
-<c:otherwise>
-<script type="text/javascript">
-<!--
-    function press(event) {
-        if (event.keyCode==13) {
-            fn_egov_select_noticeList('1');
-        }
-    }
-
-    function fn_egov_addNotice() {
-        document.frm.action = "<c:url value='/main/sample_menu${prefix}/addEgovDownload.do'/>";
-        document.frm.submit();
-    }
-    
-    function fn_egov_select_noticeList(pageNo) {
-        document.frm.pageIndex.value = pageNo;
-        document.frm.action = "<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>";
-        document.frm.submit();  
-    }
-    
-    function fn_egov_inqire_notice(nttId, bbsId) {
-        document.subForm.nttId.value = nttId;
-        document.subForm.bbsId.value = bbsId;
-        document.subForm.action = "<c:url value='/main/sample_menu${prefix}/EgovDownloadDetail.do'/>";
-        document.subForm.submit();          
-    }
-//-->
-</script>
-</c:otherwise>
-</c:choose>
-<title><c:out value="${brdMstrVO.bbsNm}"/> 목록</title>
-<!-- wrap -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Language" content="ko" >
+<title>표준프레임워크 경량환경 홈페이지템플릿</title>
+<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+</head>
+<body>
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
+<!-- 전체 레이어 시작 -->
 <div id="wrap">
 	<!-- header 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/header" />
-	<!-- header 끝 -->
-	
+    <div id="header_mainsize">
+        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncHeader" />
+    </div>
+    <div id="topnavi">
+        <c:import url="/EgovPageLink.do?link=main/inc/EgovIncTopnav" />
+    </div>      
+    <!-- //header 끝 -->
 	<!-- container 시작 -->
 	<div id="container">
 		<!-- 좌측메뉴 시작 -->
@@ -91,10 +43,10 @@
 					<div id="cur_loc_align">
 						<ul>
 							<li>HOME</li>
-                            <li>&gt;</li>
-                            <li>고객지원</li>
-                            <li>&gt;</li>
-                            <li><strong>${brdMstrVO.bbsNm}</strong></li>
+							<li>&gt;</li>
+							<li>고객지원</li>
+							<li>&gt;</li>
+							<li><strong>자료실</strong></li>
 						</ul>
 					</div>
 				</div>	
@@ -102,144 +54,211 @@
 				<!-- 타이틀 이미지 -->			
 				<div id="content_img_div"><img src="<c:url value='/'/>images/subtitle/img_subtitle03-01.gif" width="776" height="230" alt="자료실 전자정부표준프레임워크 경량환경 페이지의 다양한 종류의 쟈료를 다운 받으실 수 있습니다."/></div>
 
-                <!-- bodytext_area -->
-				<div class="bodytext_area box_inner">
-					<form class="minisrch_form" name="frm" action ="<c:url value='/main/sample_menu${prefix}/EgovDownload.do'/>" method="post">
-						<input type="hidden" name="bbsId" value="<c:out value='${boardVO.bbsId}'/>" />
-						<input type="hidden" name="nttId"  value="0" />
-						<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
-						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
-						<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
-						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
-                        <fieldset>
-					    <select id="search_select" name="searchCnd" class="select" title="검색조건 선택">
-					           <option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >제목</option>
-					           <option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if> >내용</option>             
-					           <option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if> >작성자</option>            
-                        </select>
-                        <legend>검색</legend>
-                        <input class="tbox" name="searchWrd" type="text" size="35" value='<c:out value="${searchVO.searchWrd}"/>' maxlength="35" onkeypress="press(event);" title="검색어 입력"> 
-                        <a class="btn_srch" href="#LINK" onclick="javascript:fn_egov_select_noticeList('1'); return false;">검색</a>
-                        </fieldset>
-                    </form>
-					<table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
-						<caption class="hdd">공지사항  목록</caption>
-						<thead>
-							<tr>
-								<th scope="col">번호</th>
-		                        <th scope="col">제목</th>
-		                        <c:if test="${brdMstrVO.bbsAttrbCode == 'BBSA01'}">
-			                        <th scope="col">게시시작일</th>
-			                        <th scope="col">게시종료일</th>
-			                    </c:if>
-			                    <c:if test="${anonymous != 'true'}">
-			                        <th scope="col">작성자</th>
-			                    </c:if>
-		                        <th scope="col">조회수</th>
-								<th scope="col">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="result" items="${resultList}" varStatus="status">
-		                    <!-- loop 시작 -->
-		                      <tr>
-		                        <td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>            
-						        <td class="tit_notice">
-						            <form name="subForm" method="post" action="<c:url value='/main/sample_menu${prefix}/EgovDownloadDetail.do'/>">
-						            <c:if test="${result.replyLc!=0}">
-						                <c:forEach begin="0" end="${result.replyLc}" step="1">
-						                    &nbsp;
-						                </c:forEach>
-						                <img src="<c:url value='/images/reply_arrow.gif'/>" alt="reply arrow"/>
-						            </c:if>
-						            <c:choose>
-						                <c:when test="${result.isExpired=='Y' || result.useAt == 'N'}">
-						                    <c:out value="${result.nttSj}" />
-						                </c:when>
-						                <c:otherwise>
-						                        <input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
-						                        <input type="hidden" name="nttId"  value="<c:out value="${result.nttId}"/>" />
-						                        <input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
-						                        <input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
-						                        <input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
-						                        <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
-						                        <span class="link"><input type="submit" style="background-color:inherit;width:100%;border:solid 0px black;text-align:left;" value="<c:out value="${result.nttSj}"/>" ></span>
-						                </c:otherwise>
-						            </c:choose>
-						            </form>
-						        </td>
-						        <c:if test="${brdMstrVO.bbsAttrbCode == 'BBSA01'}">
-						            <td ><c:out value="${result.ntceBgnde}"/></td>
-						            <td ><c:out value="${result.ntceEndde}"/></td>
-						        </c:if>
-						        <c:if test="${anonymous != 'true'}">
-						            <td ><c:out value="${result.frstRegisterNm}"/></td>
-						        </c:if>
-						        <td ><c:out value="${result.inqireCo}"/></td>
-						        <td ><c:out value="${result.frstRegisterPnttm}"/></td>
-						      </tr>
-				        	</c:forEach>     
-						     <c:if test="${fn:length(resultList) == 0}">
-						      <tr>
-						        <c:choose>
-						            <c:when test="${brdMstrVO.bbsAttrbCode == 'BBSA01'}">
-						                <td colspan="7" ><spring:message code="common.nodata.msg" /></td>
-						            </c:when>
-						            <c:otherwise>
-						                <c:choose>
-						                    <c:when test="${anonymous == 'true'}">
-						                        <td colspan="4" ><spring:message code="common.nodata.msg" /></td>
-						                    </c:when>
-						                    <c:otherwise>
-						                        <td colspan="5" ><spring:message code="common.nodata.msg" /></td>
-						                    </c:otherwise>
-						                </c:choose>     
-						            </c:otherwise>
-						        </c:choose>       
-						          </tr>      
-						     </c:if>  
-						</tbody>
-					</table>
-					<!-- 페이지 네비게이션 시작 -->
-	                <div class="pagination" id="paging_div">
-	                    <ul class="paging_align">
-	                        <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="fn_egov_select_noticeList" />    
-	                    </ul>
-	                </div>
-	                <!-- //페이지 네비게이션 끝 -->  
-					<!-- pagination ImagePaginationRenderer.java 에 디자인적용
-					<div class="pagination">
-						<a href="javascript:;" class="firstpage  pbtn"><img src="<c:url value='/'/>resources/home/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-						<a href="javascript:;" class="prevpage  pbtn"><img src="<c:url value='/'/>resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-						<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-						<a href="javascript:;"><span class="pagenum">2</span></a>
-						<a href="javascript:;"><span class="pagenum">3</span></a>
-						<a href="javascript:;"><span class="pagenum">4</span></a>
-						<a href="javascript:;"><span class="pagenum">5</span></a>
-						<a href="javascript:;" class="nextpage  pbtn"><img src="<c:url value='/'/>resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
-						<a href="javascript:;" class="lastpage  pbtn"><img src="<c:url value='/'/>resources/home/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
-					</div>
-					//pagination -->
-					<% if(null != session.getAttribute("LoginVO")){ %>
-					<p class="btn_line txt_right">
-                       <c:if test="${brdMstrVO.authFlag == 'Y'}">
-                           <a class="btn_bbs" href="<c:url value='/main/sample_menu${prefix}/addEgovDownload.do'/>?bbsId=<c:out value="${boardVO.bbsId}"/>">등록</a>
-                       </c:if>
-                    </p>
-                    <%} %>					
+                <!-- 검색 필드 박스 시작 -->
+				<div id="search_field">
+					<form action="form_action.jsp" method="post">
+					  	<fieldset><legend>조건정보 영역</legend>	  
+					  	<div class="sf_start">
+					  		<ul id="search_first_ul">
+					  			<li>
+					  				<div class="search_leftselect">
+									<select name="search_select" id="search_select">
+									    <option value="0" selected="selected">전체</option>
+									    <option value="1">제목</option>
+									    <option value="2">제목/내용</option>
+									    <option value="3">작성자</option>
+									</select>	
+									</div>					
+					  			</li>
+					  			<li><div class="inputbox_style01"><input type="text" name="st_date" /></div></li>
+					  			<li><div class="buttons" style="float:left;padding-left:2px;">
+									<a href="#"><img src="<c:url value='/'/>images/img_search.gif" alt="search" />검색 </a>
+									</div></li>		
+					  		</ul>		
+						</div>			
+						</fieldset>
+					</form>
 				</div>
-				<!-- //bodytext_area -->
+				<!-- //검색 필드 박스 끝 -->		
+				<!-- 추천다운로드 시작 -->
+				<div id="download_div01">
+					<h3>추천 다운로드 자료</h3>
+					<div class="download_loc">
+						<div class="download_content_top_wrap">
+							<div class="download_img_loc">
+								<img src="<c:url value='/'/>images/sample/img_download.gif" alt="다운로드 자료 이미지"/>
+							</div>
+							<div class="download_text_loc">
+								<ul>
+									<li><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">egovframe installer v1.03</a></li>
+									<li>egovframe의 템플릿 설치를 도와주는 인스톨러.....egovframe의 템플릿 설치를 도와주는 인스톨러</li>
+								</ul>	
+							</div>
+						</div>
+						<div class="download_content_btm_wrap">
+							<div class="download_img_loc">
+								<img src="<c:url value='/'/>images/sample/img_download.gif" alt="다운로드 자료 이미지"/>
+							</div>
+							<div class="download_text_loc">
+								<ul>
+									<li>egovframe installer v1.03</li>
+									<li>egovframe의 템플릿 설치를 도와주는 인스톨러.....egovframe의 템플릿 설치를 도와주는 인스톨러</li>
+								</ul>	
+							</div>
+						</div>
+					
+					</div>
+					<div style="float:left;width:400px;height:270px;padding-top:10px; background-color:#f7f7f7">
+						<div class="download_content_top_wrap">
+							<div class="download_img_loc">
+								<img src="<c:url value='/'/>images/sample/img_download.gif" alt="다운로드 자료 이미지"/>
+							</div>
+							<div class="download_text_loc">
+								<ul>
+									<li>egovframe installer v1.03</li>
+									<li>egovframe의 템플릿 설치를 도와주는 인스톨러.....egovframe의 템플릿 설치를 도와주는 인스톨러</li>
+								</ul>	
+							</div>
+						</div>
+						<div class="download_content_btm_wrap">
+							<div class="download_img_loc">
+								<img src="<c:url value='/'/>images/sample/img_download.gif" alt="다운로드 자료 이미지"/>
+							</div>
+							<div class="download_text_loc">
+								<ul>
+									<li>egovframe installer v1.03</li>
+									<li>egovframe의 템플릿 설치를 도와주는 인스톨러.....egovframe의 템플릿 설치를 도와주는 인스톨러</li>
+								</ul>	
+							</div>
+						</div>					
+					</div>
+				</div>
+				<!-- //추천다운로드 끝-->
+				<!-- 최신등록자료 시작 -->
+				<div id="download_new"><h3>최신등록자료</h3></div>
+				<div id="top10_div">
+					<div class="top10_loc">
+						<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number01.gif" alt="" /></span><a class="top10name" href="#">2011년도 표준프레임워크 기술지원 안내</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number02.gif" alt="" /></span><a class="top10name" href="#">2011년도 표준프레임워크 기술지원 안내</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>	
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number03.gif" alt="" /></span><a class="top10name" href="#">2011년도 표준프레임워크 기술지원 안내</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number04.gif" alt="" /></span><a class="top10name" href="#">2011년도 표준프레임워크 기술지원 안내</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>	
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number05.gif" alt="" /></span><a class="top10name" href="#">2011년도 표준프레임워크 기술지원 안내</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>				
+					</div>				
+					<div class="top10_rightloc">						
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number06.gif" alt="" /></span><a class="top10name" href="#">egovframework online installer v1.03</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>	
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number07.gif" alt="" /></span><a class="top10name" href="#">egovframework online installer v1.03</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number08.gif" alt="" /></span><a class="top10name" href="#">egovframework online installer v1.03</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>	
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number09.gif" alt="" /></span><a class="top10name" href="#">egovframework online installer v1.03</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>	
+					 	<ol>
+					 		<li><span class="top10_img"><img src="<c:url value='/'/>images/num/ico_number10.gif" alt="" /></span><a class="top10name" href="#">egovframework online installer v1.03</a><span class="top10date">2011-06-03</span></li>
+					 	</ol>		
+						</div>
+				</div>
+				<!-- //최신등록자료 끝 -->
+				<!-- 검색결과 시작 -->
+				<div id="page_info"><div id="page_info_align"></div></div>					
+				<!-- table add start -->
+				<div class="default_tablestyle">
+					<table summary="사용자목록관리" cellpadding="0" cellspacing="0">
+					<caption>사용자목록관리</caption>
+					<colgroup>
+    					<col width="38" >
+    					<col width="550" >  
+    					<col width="50" >
+    					<col width="50" >
+    					<col width="%" >
+					</colgroup>
+					<thead>
+					<tr>
+						<th scope="col" class="f_field">번호</th>
+						<th scope="col">소프트웨어명</th>
+						<th scope="col">다운</th>
+						<th scope="col">크기</th>
+						<th scope="col">등록일</th>
+					</tr>
+					</thead>
+					<tbody>		  			
+					<!-- loop 시작 -->								
+					<tr>
+						<td><strong>1</strong></td>
+						<td class="align_left_text"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">전자정부표준프레임워크 인스톨러(Egovframework installer) V1.037</a></td>
+						<td>100</td>
+						<td>16MB</td>
+						<td>2011-04-04</td>
+					</tr>
+					<tr>
+						<td><strong>2</strong></td>
+						<td class="align_left_text"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">전자정부표준프레임워크 인스톨러(Egovframework installer) V1.037</a></td>
+						<td>100</td>
+						<td>16MB</td>
+						<td>2011-04-04</td>
+					</tr>
+					<tr>
+						<td><strong>3</strong></td>
+						<td class="align_left_text"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">전자정부표준프레임워크 인스톨러(Egovframework installer) V1.037</a></td>
+						<td>100</td>
+						<td>16MB</td>
+						<td>2011-04-04</td>
+					</tr>	
+					<tr>
+						<td><strong>4</strong></td>
+						<td class="align_left_text"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">전자정부표준프레임워크 인스톨러(Egovframework installer) V1.037</a></td>
+						<td>100</td>
+						<td>16MB</td>
+						<td>2011-04-04</td>
+					</tr>	
+					<tr>
+						<td><strong>5</strong></td>
+						<td class="align_left_text"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadDetail'/>">전자정부표준프레임워크 인스톨러(Egovframework installer) V1.037</a></td>
+						<td>100</td>
+						<td>16MB</td>
+						<td>2011-04-04</td>
+					</tr>													
+					</tbody>
+					</table> 
+				</div>
+				<!-- //검색결과 끝 -->
+				<!-- 페이지 네비게이션 시작 -->
+				<div id="paging_div">
+					<ul class="paging_align">
+						<li class="first"><img src="<c:url value='/'/>images/btn/btn_prev.gif" alt="prev" /></li>
+						<li><a href="#">1</a></li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li class="first"><img src="<c:url value='/'/>images/btn/btn_next.gif" alt="next" /></li>
+					</ul>
+				</div>	
+				<!-- //페이지 네비게이션 끝 -->
+				<div class="buttons" style="clear:both;float:right;padding-left:2px;"><a href="<c:url value='/EgovPageLink.do?link=main/sample_menu/EgovDownloadModify'/>">자료올리기 </a></div> 						
 			</div>
+		
+			</div>				
 			<!-- //content 끝 -->
-	</div>				
-	<!-- //container -->
-	
+	<!-- //container 끝 -->
 	<!-- footer 시작 -->
-	<c:import url="/EgovPageLink.do?link=include/footer" />
-	<!-- //footer 끝 -->
+	<div id="footer"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncFooter" /></div>
+	<!-- //footer 끝 -->				
 </div>
-<!-- //wrap 끝 -->
-
-<!-- common_bottom 시작 -->
-<c:import url="/EgovPageLink.do?link=include/common_bottom" />
-<!-- common_bottom 끝 -->
+<!-- //전체 레이어 끝 -->
+</body>
+</html>
