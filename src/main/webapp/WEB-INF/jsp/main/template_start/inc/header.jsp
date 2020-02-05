@@ -10,7 +10,7 @@
     author   : 타임스페이스 KIK
     since    : 2020.01.24 
 --%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <header id="header">
@@ -49,7 +49,8 @@
 			    <%
 			       if(loginVO != null){ 
 			    %>
-			    <li><a href="#LINK" onclick="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')" >사이트관리(관리자)</a></li>
+			    <!-- <li><a href="#LINK" onclick="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')" >사이트관리(관리자)</a></li>  -->
+			    <li><a href="<c:url value='/admin/mainPage.do'/>" target="_blank">사이트관리(관리자)</a></li>
 			    <li><a href="<c:url value='/uat/uia/actionLogout.do'/>">로그아웃</a></li>
 			    <%
 			       }

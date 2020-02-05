@@ -43,6 +43,13 @@
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
+        <!-- admin 하위 페이지로 접속하려 한다면, -->
+		 <mvc:interceptor>
+		  <mvc:mapping path="/admin/**"/>
+		  <mvc:exclude-mapping path="/admin/actionLogin.do"/>
+		  <mvc:exclude-mapping path="/admin/adminLoginUsr.do"/>
+		  <bean class="egovframework.miniplugin.com.AdminAuthenticInterceptor" />
+		</mvc:interceptor>
     </mvc:interceptors>
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
