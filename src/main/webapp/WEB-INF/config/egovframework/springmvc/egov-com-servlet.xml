@@ -43,12 +43,20 @@
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
+        <!-- 사용자 홈 template 페이지로 접속하려 한다면,
+		 <mvc:interceptor>
+		 <mvc:mapping path="/main/template/**"/>
+		  <mvc:exclude-mapping path="/main/template/actionLogin.do"/>
+		  <mvc:exclude-mapping path="/main/template/userLoginUsr.do"/>
+		  <bean class="egovframework.miniplugin.com.AuthenticInterceptor" />
+		</mvc:interceptor>
+		 -->
         <!-- admin 하위 페이지로 접속하려 한다면, -->
 		 <mvc:interceptor>
 		  <mvc:mapping path="/admin/**"/>
 		  <mvc:exclude-mapping path="/admin/actionLogin.do"/>
 		  <mvc:exclude-mapping path="/admin/adminLoginUsr.do"/>
-		  <bean class="egovframework.miniplugin.com.AdminAuthenticInterceptor" />
+		  <bean class="egovframework.miniplugin.com.AuthenticInterceptor" />
 		</mvc:interceptor>
     </mvc:interceptors>
 

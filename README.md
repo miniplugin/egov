@@ -4,6 +4,15 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200206
+### 사이트관리(관리자) 페이지 분리 후 문제 발생 처리
+- 관리자관리 기능 추가에 따른 EgovMberManage_SQL_Hsql.xml 추가.
+- Hsql, Mysql 2개 같이 호환 않되는 문제가 있어서 초기 파일 EgovMberManage.jsp 수정.
+- HsqlDb일때 Select쿼리 preparation구문에서 아래와 같은 쿼리문제 발생(Update, Insert는 정상).
+- Hsql 에러메시지(Mysql은 정상): SQL Statement (preparation failed) unexpected token: ?.
+- Select, Update, Insert는 문제없고, MysqlDb일때는 문제 없음. 그래서, 확인만 하고 넘어감.
+- Hsql 더미데이터: shtdb.sql , Mysql 더미데이터: sht20200206.sql 수정.
+
 >작업일자(아래): 20200205
 ### 사이트관리(관리자) 페이지 로그인 부분 분리 후 적용(Admin LTE 공개 플러그인 적용)
 - egov-com-servlet.xml 파일에 admin 하위 페이지 접속 제한 및 관리자 로그인 경로 사용자와 분리.

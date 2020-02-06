@@ -15,7 +15,7 @@
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <header id="header">
 	<div class="header_area box_inner clear">	
-		<h1><a href="<c:url value='/cmm/main/mainPage.do' />">스프링 in EDU</a></h1>
+		<h1><a href="<c:url value='/main/template/mainPage.do' />">스프링 in EDU</a></h1>
 		<p class="openMOgnb"><a href="#"><b class="hdd">메뉴열기</b> <span></span><span></span><span></span></a></p>
 		<!-- header_cont -->
 		<div class="header_cont">
@@ -41,7 +41,7 @@
 			       LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO"); 
 			       if(loginVO == null){ 
 			    %>
-			    	<li><a href="<c:url value='/uat/uia/egovLoginUsr.do'/>">로그인</a></li>
+			    	<li><a href="<c:url value='/main/template/userLoginUsr.do'/>">로그인</a></li>
 			    <% }else { %>
 			    	<c:set var="loginName" value="<%= loginVO.getName()%>"/>
 			    	<li><span style="color:#fff"><c:out value="${loginName}"/>님 환영합니다</span></li>
@@ -50,8 +50,9 @@
 			       if(loginVO != null){ 
 			    %>
 			    <!-- <li><a href="#LINK" onclick="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')" >사이트관리(관리자)</a></li>  -->
-			    <li><a href="<c:url value='/admin/mainPage.do'/>" target="_blank">사이트관리(관리자)</a></li>
-			    <li><a href="<c:url value='/uat/uia/actionLogout.do'/>">로그아웃</a></li>
+			    <li><a href="<c:url value='/cmm/main/mainPage.do'/>" target="_blank">예전홈 확인</a></li>
+			    <li><a href="<c:url value='/admin/mainPage.do'/>" target="_blank">사이트관리</a></li>
+			    <li><a href="<c:url value='/main/template/actionLogout.do'/>">로그아웃</a></li>
 			    <%
 			       }
 			    %>
@@ -63,7 +64,7 @@
 			</form>
 			<nav>
 			<ul class="gnb clear">
-				<li><a href="<c:url value='/cmm/main/mainPage.do' />">홈</a>
+				<li><a href="<c:url value='/main/template/mainPage.do' />">홈</a>
 				<li><a class="openAll1 openAll" href="javascript:fn_main_headPageMove('11','main/template_start/AboutSite')">사이트소개</a>
 					<div class="gnb_depth gnb_depth2_1">
                         <ul class="submenu_list">

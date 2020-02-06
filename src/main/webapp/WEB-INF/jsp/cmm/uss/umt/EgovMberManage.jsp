@@ -227,15 +227,15 @@ function fnSearch(){
                             <input name="checkId" type="hidden" value="<c:out value='${result.userTy}'/>:<c:out value='${result.uniqId}'/>"/>
                         </td>
                         <td class="lt_text3" style="cursor:pointer;cursor:hand" >
-                            <span class="link"><a href="<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>?selectedId=<c:out value="${result.uniqId}"/>"  onclick="javascript:fnSelectUser('<c:out value="${result.userTy}"/>:<c:out value="${result.uniqId}"/>'); return false;"><c:out value="${result.userId}"/></a></span>
+                            <span class="link"><a href="<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>?selectedId=<c:out value="${result.uniqId}"/>"  onclick="javascript:fnSelectUser('<c:out value="${result.userTy}"/>:<c:out value="${result.uniqId}"/>'); return false;"><c:out value="${result.mberId}"/></a></span>
                         </td>
-                        <td class="lt_text3" ><c:out value="${result.userNm}"/></td>
-                        <td class="lt_text3" ><c:out value="${result.emailAdres}"/></td>
+                        <td class="lt_text3" ><c:out value="${result.mberNm}"/></td>
+                        <td class="lt_text3" ><c:out value="${result.mberEmailAdres}"/></td>
                         <td class="lt_text3" ><c:out value="${result.areaNo}"/>)<c:out value="${result.middleTelno}"/>-<c:out value="${result.endTelno}"/></td>
                         <td class="lt_text3" ><c:out value="${result.sbscrbDe}"/></td>
                         <td class="lt_text3" >
                             <c:forEach var="entrprsMberSttus_result" items="${entrprsMberSttus_result}" varStatus="status">
-                                <c:if test="${result.sttus == entrprsMberSttus_result.code}"><c:out value="${entrprsMberSttus_result.codeNm}"/></c:if>
+                                <c:if test="${result.mberSttus == entrprsMberSttus_result.code}"><c:out value="${entrprsMberSttus_result.codeNm}"/></c:if>
                             </c:forEach>
                         </td>
                     </tr>

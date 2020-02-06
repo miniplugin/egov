@@ -17,20 +17,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<!-- common_top 시작 -->
-<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_top" />
-<!-- common_top 끝 -->
-<!-- sub CSS 추가 -->
-<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/sub.css">
-<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/login.css">
-<!-- wrap -->
-<div id="wrap">
-	<!-- header 시작 -->
-	<c:import url="/EgovPageLink.do?link=main/template_start/inc/header" />
-	<!-- header 끝 -->
-	
-	<!-- container 시작 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta http-equiv="content-language" content="ko">
+<title>경량환경 단순홈페이지 템플릿 - 로그인</title>
+<link href="<c:url value='/'/>css/common.css" rel="stylesheet" type="text/css" >
+<link href="<c:url value='/'/>css/login.css" rel="stylesheet" type="text/css" >
 <script type="text/javascript">
 <!--
 function actionLogin() {
@@ -91,9 +85,18 @@ function fnInit() {
     }
     getid(document.loginForm);
 }
-$(document).ready(function() { fnInit(); });
 //-->
 </script>
+</head>
+<body  onload="fnInit();">
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>    
+<!-- 전체 레이어 시작 -->
+<div id="wrap">
+    <!-- header 시작 -->
+    <div id="header_mainsize"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncHeader" /></div>
+    <div id="topnavi"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncTopnav" /></div>
+    <!-- //header 끝 -->
+    <!-- container 시작 -->
     <div id="container">
         <!-- 좌측메뉴 시작 -->
         <div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
@@ -111,56 +114,54 @@ $(document).ready(function() { fnInit(); });
                 </div>
                 <!-- 타이틀 이미지 -->            
                 <div id="content_img_div"><img  alt="LOGIN 표준프레임워크 경량환경 단순 홈페이지에 오신것을 환영합니다." src="<c:url value='/'/>images/subtitle/img_subtitle_login.gif" width="776" height="230" /></div>       
-                    <!-- bodytext_area -->
-					<div class="bodytext_area box_inner">
-						<!-- appForm -->
-						<form:form name="loginForm" method="post" action="#LINK" class="appForm">
-							<fieldset>
-								<legend>입력 양식</legend>
-								<p class="info_pilsoo pilsoo_item">필수입력</p>
-								<ul class="app_list">
-									<li class="clear">
-										<label for="id" class="tit_lbl pilsoo_item">아이디</label>
-										<div class="app_content"><input type="text" class="w100p" id="id" name="id" placeholder="아이디를 입력해주세요"/></div>
-									</li>
-									<li class="clear">
-										<label for="password" class="tit_lbl pilsoo_item">비밀번호</label>
-										<div class="app_content"><input type="password" class="w100p" id="password" name="password" onkeydown="javascript:if (event.keyCode == 13) { actionLogin(); }" placeholder="비밀번호를 입력해주세요"/></div>
-									</li>
-									<li class="clear">
-										<div class="app_content checkbox_area">
-											<input type="checkbox"  onclick="javascript:saveid(this.form);" class="css-checkbox" id="checkId" name="checkId"><label for="checkId">ID저장</label>
-										</div>
-									</li>
-								</ul>
-								<input type="hidden" name="message" value="${message}" />
-				            	<input type="hidden" name="userSe"  value="USR"/>
-								<p class="btn_line">
-								<a href="javascript:;" onclick="javascript:actionLogin()" class="btn_baseColor">로그인</a>
-								</p>
-							</fieldset>
-						</form:form>
-						<!-- //appForm -->
-						<div class="content_field">
-                            <h3>로그인안내</h3>
-							<fieldset><legend>정보영역</legend>
-                                <p>비밀번호는 6~12자의 영문 대/소문자, 숫자, 특수문자를 혼합해서 사용하실 수 있습니다.</p>
-                                <p>쉬운 비밀번호나 자주 쓰는 사이트의 비밀번호가 같을 경우, 도용되기 쉬우므로 주기적으로 변경하셔서 사용하는 것이 좋습니다.</p>
-                            </fieldset>
+                    <div class="user_login">
+                            <form:form name="loginForm" method="post" action="#LINK">
+                            <div class="user_login_ultop">
+                                <ul>
+                                    <li>
+                                        <label for="id"><img alt="login" src="<c:url value='/'/>images/login/img_idtext.gif" /></label>
+                                        <input type="text" class="input_style" title="아이디를 입력하세요." id="id" name="id" maxlength="10"/>
+                                    </li>
+                                    <li>
+                                        <label for="password"><img alt="password" src="<c:url value='/'/>images/login/img_pwtext.gif" /></label>
+                                        <input type="password" class="input_style" maxlength="25" title="비밀번호를 입력하세요." id="password" name="password" 
+                                               onkeydown="javascript:if (event.keyCode == 13) { actionLogin(); }"/>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" name="checkId" onclick="javascript:saveid(this.form);" id="checkId" /><label for="checkId">ID저장</label>
+                                    </li>
+                                </ul>
+                                <input type="image" alt="로그인 버튼" class="btn_style" onclick="javascript:actionLogin()" src="<c:url value='/'/>images/login/btn_login.gif"  />
+                            </div>
+                            <input type="hidden" name="message" value="${message}" />
+				            <input type="hidden" name="userSe"  value="USR"/>
+				            <!-- <input type="hidden" name="j_username" />-->
+                            </form:form>
+                            <div class="text_area">
+                                <ul>
+                                    <li>비밀번호는 6~12자의 영문 대/소문자, 숫자, 특수문자를 혼합해서 사용하실 수 있습니다.</li>
+                                    <li>쉬운 비밀번호나 자주 쓰는 사이트의 비밀번호가 같을 경우, 도용되기 쉬우므로 주기적으로 변경하셔서 사용하는 것이 좋습니다.</li>
+                                </ul>
+                            </div>
+                        <!-- 
+                        <div class="user_login_btstyle">
+                            <ul class="bt_ulstyle1">
+                                <li><a href="" ><img src="<c:url value='/'/>images/login/btn_regist.gif" /></a></li>
+                            </ul>
+                            <ul class="bt_ulstyle2">
+                                <li><a href="" ><img src="<c:url value='/'/>images/login/btn_findidpw.gif" /></a></li>
+                            </ul>
                         </div>
-					</div>
-					<!-- //bodytext_area -->
+                         -->
+                    </div>
             </div>                      
             <!-- //content 끝 -->    
     </div>  
-	<!-- //container -->
-	
-	<!-- footer 시작 -->
-	<c:import url="/EgovPageLink.do?link=main/template_start/inc/footer" />
-	<!-- //footer 끝 -->
+    <!-- //container 끝 -->
+    <!-- footer 시작 -->
+    <div id="footer"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncFooter" /></div>
+    <!-- //footer 끝 -->
 </div>
-<!-- //wrap 끝 -->
-
-<!-- common_bottom 시작 -->
-<c:import url="/EgovPageLink.do?link=main/template_start/inc/common_bottom" />
-<!-- common_bottom 끝 -->
+<!-- //전체 레이어 끝 -->
+</body>
+</html>

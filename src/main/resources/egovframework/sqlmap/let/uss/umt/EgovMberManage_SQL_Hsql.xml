@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Mber">
+
+    <typeAlias  alias="egovMap"      type = "egovframework.rte.psl.dataaccess.util.EgovMap"/>
+    <typeAlias  alias="userSearchVO" type = "egovframework.let.uss.umt.service.UserDefaultVO"/>
+    <typeAlias  alias="mberVO"       type = "egovframework.let.uss.umt.service.MberManageVO"/>
+
+    <resultMap id="stplatMap" class="egovframework.let.uss.umt.service.StplatVO">
+        <result property="useStplatId"         column="USE_STPLAT_ID"          columnIndex="1"/>
+        <result property="useStplatCn"         column="USE_STPLAT_CN"          columnIndex="2"/>
+        <result property="infoProvdAgeCn"      column="INFO_PROVD_AGRE_CN"     columnIndex="3"/>
+    </resultMap>
+	<!-- Hsql과 호환때문에 아래 resultMap 추가: KIK -->
+	<resultMap id="userList" class="egovframework.let.uss.umt.service.MberManageVO">
+			<result property="uniqId" column="uniqId" columnIndex="1"/>
+			<result property="userTy" column="userTy" columnIndex="2"/>
+			<result property="mberId" column="userId" columnIndex="3"/>
+			<result property="mberNm" column="userNm" columnIndex="4"/>
+			<result property="mberEmailAdres" column="emailAdres" columnIndex="5"/>
+			<result property="areaNo" column="areaNo" columnIndex="6"/>
+			<result property="middleTelno" column="middleTelno" columnIndex="7"/>
+			<result property="endTelno" column="endTelno" columnIndex="8"/>
+			<result property="moblphonNo" column="moblphonNo" columnIndex="9"/>		
+			<result property="groupId" column="groupId" columnIndex="10"/>
+			<result property="mberSttus" column="sttus" columnIndex="11"/>
+			<result property="sbscrbDe" column="sbscrbDe" columnIndex="12"/>
+	</resultMap>
+<!-- <select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultClass="egovMap">  -->
+ 	<select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultMap="userList">
+	SELECT 
+	    uniqId, userTy, userId , userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe
+	FROM(
+	    SELECT 
+	        ESNTL_ID               uniqId,
+	        'USR01'               userTy,
+	        EMPLYR_ID             userId,
+	        USER_NM             userNm,
+	        EMAIL_ADRES           emailAdres,
+	        AREA_NO               areaNo,
+	        HOUSE_MIDDLE_TELNO      middleTelno,
+	        HOUSE_END_TELNO         endTelno,
+	        MBTLNUM           moblphonNo,
+	        GROUP_ID              groupId,
+	        EMPLYR_STTUS_CODE     sttus,
+	        SBSCRB_DE             sbscrbDe
+	    FROM    LETTNEMPLYRINFO
+	    ) A
+	        WHERE 1=1
+	        <isNotEqual prepend="AND" property="sbscrbSttus" compareValue="0">
+	            sttus LIKE  #sbscrbSttus#
+	        </isNotEqual>
+	        <isEqual prepend="AND" property="searchCondition" compareValue="0">
+	            userId LIKE #searchKeyword#
+	        </isEqual>
+	        <isEqual prepend="AND" property="searchCondition" compareValue="1">
+	            userNm LIKE '%' #searchKeyword# '%'
+	        </isEqual>
+	        ORDER BY sbscrbDe DESC
+	        LIMIT #recordCountPerPage# OFFSET #firstIndex#
+    	</select>    
+    
+        <select id="mberManageDAO.selectMberListTotCnt" parameterClass="userSearchVO" resultClass="int">
+            SELECT COUNT(1) totcnt
+            FROM(
+            SELECT 
+                ESNTL_ID               uniqId,
+                'USR01'               userTy,
+                EMPLYR_ID               userId,
+                USER_NM               userNm,
+                EMAIL_ADRES      emailAdres,
+                AREA_NO               areaNo,
+                HOUSE_MIDDLE_TELNO          middleTelno,
+                HOUSE_END_TELNO             endTelno,
+                MBTLNUM           moblphonNo,
+                GROUP_ID              groupId,
+                EMPLYR_STTUS_CODE            sttus,
+                SBSCRB_DE             sbscrbDe
+            FROM    LETTNEMPLYRINFO
+            ) A
+        WHERE 1=1
+            <isNotEqual prepend="AND" property="sbscrbSttus" compareValue="0">
+                sttus LIKE  #sbscrbSttus#
+            </isNotEqual>
+            <isEqual prepend="AND" property="searchCondition" compareValue="0">
+                userId LIKE #searchKeyword#
+            </isEqual>
+            <isEqual prepend="AND" property="searchCondition" compareValue="1">
+                userNm LIKE '%' #searchKeyword# '%'
+            </isEqual>
+    </select>
+    
+    <insert id="mberManageDAO.insertMber_S">
+        <![CDATA[
+            INSERT INTO LETTNEMPLYRINFO 
+                (   
+                    ESNTL_ID          ,
+                    EMPLYR_ID          ,
+                    USER_NM          ,
+                    PASSWORD         ,
+                    PASSWORD_HINT    ,
+                    PASSWORD_CNSR    ,
+                    IHIDNUM          ,
+                    SEXDSTN_CODE     ,
+                    ZIP              ,
+                    HOUSE_ADRES            ,
+                    AREA_NO          ,
+                    EMPLYR_STTUS_CODE       ,
+                    DETAIL_ADRES     ,
+                    HOUSE_END_TELNO        ,
+                    MBTLNUM      ,
+                    GROUP_ID         ,
+                    FXNUM       ,
+                    EMAIL_ADRES ,
+                    HOUSE_MIDDLE_TELNO     ,
+                    SBSCRB_DE        )
+              VALUES(
+                    #uniqId#,
+                    #mberId#,
+                    #mberNm#,
+                    #password#,
+                    #passwordHint#,
+                    #passwordCnsr#,
+                    #ihidnum#,
+                    #sexdstnCode#,
+                    #zip#,
+                    #adres#,
+                    #areaNo#,
+                    #mberSttus#,
+                    #detailAdres#,
+                    #endTelno#,
+                    #moblphonNo#,
+                    #groupId#,
+                    #mberFxnum#,
+                    #mberEmailAdres#,
+                    #middleTelno#,
+                    sysdate()  )              
+        ]]>
+    </insert>
+    
+    <delete id="mberManageDAO.deleteMber_S">
+        <![CDATA[
+            DELETE FROM LETTNEMPLYRINFO 
+            WHERE ESNTL_ID=#delId#
+        ]]>
+    </delete>
+    
+    <select id="mberManageDAO.selectMber_S" resultClass="mberVO">
+        <![CDATA[
+            SELECT
+                ESNTL_ID          uniqId,
+                'USR01'          userTy,
+                EMPLYR_ID          mberId,
+                USER_NM          mberNm,
+                PASSWORD         password,
+                PASSWORD_HINT    passwordHint,
+                PASSWORD_CNSR    passwordCnsr,
+                IHIDNUM          ihidnum,
+                SEXDSTN_CODE     sexdstnCode,
+                ZIP              zip,
+                HOUSE_ADRES            adres,
+                AREA_NO          areaNo,
+                EMPLYR_STTUS_CODE       mberSttus,
+                DETAIL_ADRES     detailAdres,
+                HOUSE_END_TELNO        endTelno,
+                MBTLNUM      moblphonNo,
+                GROUP_ID         groupId,
+                FXNUM       mberFxnum,
+                EMAIL_ADRES mberEmailAdres,
+                HOUSE_MIDDLE_TELNO     middleTelno,
+                SBSCRB_DE        sbscrbDe
+            FROM LETTNEMPLYRINFO
+            WHERE ESNTL_ID=#uniqId#
+        ]]>
+    </select>
+    
+    <update id="mberManageDAO.updateMber_S">
+        <![CDATA[
+            UPDATE LETTNEMPLYRINFO 
+            SET EMPLYR_ID          = #mberId#,
+                USER_NM          = #mberNm#,
+                PASSWORD_HINT    = #passwordHint#,
+                PASSWORD_CNSR    = #passwordCnsr#,
+                IHIDNUM          = #ihidnum#,
+                SEXDSTN_CODE     = #sexdstnCode#,
+                ZIP              = #zip#,
+                HOUSE_ADRES            = #adres#,
+                AREA_NO          = #areaNo#,
+                EMPLYR_STTUS_CODE       = #mberSttus#,
+                DETAIL_ADRES     = #detailAdres#,
+                HOUSE_END_TELNO        = #endTelno#,
+                MBTLNUM      = #moblphonNo#,
+                GROUP_ID         = #groupId#,
+                FXNUM       = #mberFxnum#,
+                EMAIL_ADRES = #mberEmailAdres#,
+                HOUSE_MIDDLE_TELNO     = #middleTelno#
+            WHERE ESNTL_ID=#uniqId#
+        ]]>
+    </update>
+    
+    <select id="mberManageDAO.selectStplat_S" resultMap="stplatMap">
+        <![CDATA[
+            SELECT
+                USE_STPLAT_ID           ,
+                USE_STPLAT_CN           ,
+                INFO_PROVD_AGRE_CN      
+            FROM LETTNSTPLATINFO
+            WHERE USE_STPLAT_ID=#stplatId#
+        ]]>
+    </select>
+    
+    <update id="mberManageDAO.updatePassword_S">
+        <![CDATA[
+            UPDATE LETTNEMPLYRINFO 
+            SET 
+                   PASSWORD   =  #password#
+            WHERE  ESNTL_ID  = #uniqId#
+        ]]>
+    </update>
+    
+    <select id="mberManageDAO.selectPassword_S" resultClass="mberVO">
+        <![CDATA[
+            SELECT
+                    PASSWORD          password 
+            FROM    LETTNEMPLYRINFO
+            WHERE   ESNTL_ID=#uniqId#
+        ]]>
+    </select>
+    
+    <select id="mberManageDAO.checkIdDplct_S" resultClass="int">
+     <![CDATA[
+         SELECT COUNT(1) usedCnt
+             FROM(
+             SELECT
+                 EMPLYR_ID             userId
+             FROM    LETTNEMPLYRINFO
+             UNION ALL
+             SELECT
+                 ENTRPRS_MBER_ID        userId
+             FROM    LETTNENTRPRSMBER
+             UNION ALL
+             SELECT
+                 MBER_ID               userId
+             FROM    LETTNGNRLMBER
+             ) A
+         WHERE userId = #checkId#
+     ]]>
+    </select>
+</sqlMap>

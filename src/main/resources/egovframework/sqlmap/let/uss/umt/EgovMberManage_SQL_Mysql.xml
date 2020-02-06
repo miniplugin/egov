@@ -12,8 +12,23 @@
         <result property="useStplatCn"         column="USE_STPLAT_CN"          columnIndex="2"/>
         <result property="infoProvdAgeCn"      column="INFO_PROVD_AGRE_CN"     columnIndex="3"/>
     </resultMap>
-    
- <select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultClass="egovMap">
+    <!-- Hsql과 호환때문에 아래 resultMap 추가: KIK -->
+    <resultMap id="userList" class="egovframework.let.uss.umt.service.MberManageVO">
+			<result property="uniqId" column="uniqId" columnIndex="1"/>
+			<result property="userTy" column="userTy" columnIndex="2"/>
+			<result property="mberId" column="userId" columnIndex="3"/>
+			<result property="mberNm" column="userNm" columnIndex="4"/>
+			<result property="mberEmailAdres" column="emailAdres" columnIndex="5"/>
+			<result property="areaNo" column="areaNo" columnIndex="6"/>
+			<result property="middleTelno" column="middleTelno" columnIndex="7"/>
+			<result property="endTelno" column="endTelno" columnIndex="8"/>
+			<result property="moblphonNo" column="moblphonNo" columnIndex="9"/>		
+			<result property="groupId" column="groupId" columnIndex="10"/>
+			<result property="mberSttus" column="sttus" columnIndex="11"/>
+			<result property="sbscrbDe" column="sbscrbDe" columnIndex="12"/>
+	</resultMap>
+<!-- <select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultClass="egovMap"> -->
+<select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultMap="userList">
 SELECT 
     uniqId, userTy, userId , userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe
 FROM(

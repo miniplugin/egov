@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.WebContentInterceptor;
  *  
  *  </pre>
  */
-public class AdminAuthenticInterceptor extends WebContentInterceptor {
+public class AuthenticInterceptor extends WebContentInterceptor {
 	/**
 	 * 세션에 계정정보(LoginVO)가 있는지 여부로 인증 여부를 체크한다.
 	 * 계정정보(LoginVO)가 없다면, 로그인 페이지로 이동한다.

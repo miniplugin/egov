@@ -143,8 +143,7 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="javascript:alert('준비중입니다.');"><i class="fa fa-circle-o"></i> Board</a></li>
-                <li><a href="javascript:alert('준비중입니다.');"><i class="fa fa-circle-o"></i> Member</a></li>
+                <li><a href="javascript:alert('준비중입니다.');"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
               </ul>
             </li>
             <!-- 
