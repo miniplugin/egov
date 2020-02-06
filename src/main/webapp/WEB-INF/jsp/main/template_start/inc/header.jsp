@@ -50,12 +50,12 @@
 			       if(loginVO != null){ 
 			    %>
 			    <!-- <li><a href="#LINK" onclick="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')" >사이트관리(관리자)</a></li>  -->
-			    <li><a href="<c:url value='/cmm/main/mainPage.do'/>" target="_blank">예전홈 확인</a></li>
 			    <li><a href="<c:url value='/admin/mainPage.do'/>" target="_blank">사이트관리</a></li>
 			    <li><a href="<c:url value='/main/template/actionLogout.do'/>">로그아웃</a></li>
 			    <%
 			       }
 			    %>
+			    <li><a href="<c:url value='/cmm/main/mainPage.do'/>" target="_blank">예전홈 확인</a></li>
 			</ul>
 			<!-- topmenu start -->
 			<form name="selectOne" action="#LINK">
