@@ -1,5 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%--
+  Class Name : header.jsp
+  Description : 화면상단 Header(include)
+  Modification Information
+ 
+      수정일         수정자                   수정내용
+    -------    --------    ---------------------------
+     2020.01.24   KIK       경량환경 버전 생성
+ 
+    author   : 타임스페이스 KIK
+    since    : 2020.02.07 
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
@@ -30,13 +41,33 @@
   </head>
       <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    
+    <script type="text/javascript">
+	    function fn_main_headPageMove(menuNo, url){
+		    document.selectOne.menuNo.value=menuNo;
+		    document.selectOne.link.value=url;
+		    document.selectOne.action = "<c:url value='/EgovPageLink.do'/>";
+		    //alert(document.selectOne.action);
+		    document.selectOne.submit();
+	    }
+	    function fn_main_headPageAction(menuNo, url){
+	        document.selectOne.menuNo.value=menuNo;
+	        document.selectOne.link.value="";
+	        document.selectOne.action = "<c:url value='/' />"+url;
+	        document.selectOne.method = "post";
+	        //alert(document.selectOne.action);
+	        document.selectOne.submit();
+	    }
+	</script>
   <body class="skin-blue sidebar-mini">
+  <form name="selectOne" action="#LINK">
+	<input name="menuNo" type="hidden" />
+	<input name="link" type="hidden" />
+  </form>
     <div class="wrapper">
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="/" class="logo">
+        <a href="<c:url value='/admin/mainPage.do'/>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
@@ -92,7 +123,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div> -->
                     <div class="pull-right">
-                      <a href="/admin/actionLogout.do" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<c:url value='/admin/actionLogout.do'/>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -138,12 +169,17 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
+            <li>
+              <a href="/">
+                <i class="fa fa-files-o"></i> <span>사용자 홈</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+            <li class="treeview active menu-open">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="javascript:alert('준비중입니다.');"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
+                <li><a href="javascript:fn_main_headPageAction('11','admin/member/MberManage.do')"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
               </ul>
             </li>
             <!-- 

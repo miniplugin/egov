@@ -174,8 +174,8 @@
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
       <div class='control-sidebar-bg'></div>
-    </div><!-- ./wrapper -->
 
+    </div><!-- ./wrapper -->
 
     <!-- Bootstrap 3.3.2 JS -->
     <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
