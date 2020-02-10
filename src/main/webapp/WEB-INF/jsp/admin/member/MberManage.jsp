@@ -17,8 +17,7 @@
 
 <c:import url="/EgovPageLink.do?link=admin/include/header" />
 
-<script type="text/javaScript" language="javascript" defer="defer">
-<!--
+<script type="text/javascript">
 function fnCheckAll() {
     var checkField = document.listForm.checkField;
     if(document.listForm.checkAll.checked) {
@@ -98,7 +97,6 @@ function fnSearch(){
     document.listForm.submit();
 }
 <c:if test="${!empty resultMsg}">alert("<spring:message code="${resultMsg}" />");</c:if>
-//-->
 </script>
 <!-- Main content -->
 <section class="content">
@@ -168,14 +166,14 @@ function fnSearch(){
 				
 				<c:if test="${fn:length(resultList) == 0}">
                 <tr> 
-                      <tdcolspan="8">
+                      <td colspan="8">
                           <spring:message code="common.nodata.msg" />
                       </td>
                 </tr>                                                 
                 </c:if>
                 <c:forEach var="result" items="${resultList}" varStatus="status">
                     <tr>
-                        <td><c:out value="${status.count}"/></td>
+                        <td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
                         <td>
                             <input name="checkField" title="checkField <c:out value="${status.count}"/>" type="checkbox"/>
                             <input name="checkId" type="hidden" value="<c:out value='${result.userTy}'/>:<c:out value='${result.uniqId}'/>"/>
@@ -194,7 +192,6 @@ function fnSearch(){
                         </td>
                     </tr>
                     </c:forEach>
-					</tr>
 				
 				</table>
 
