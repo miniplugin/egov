@@ -184,6 +184,9 @@
               <ul class="treeview-menu">
                 <li><a href="javascript:fn_main_headPageAction('53','admin/board/SelectBBSMasterInfs.do')"><i class="fa fa-circle-o"></i> 게시판생성관리</a></li>
               </ul>
+              <ul class="treeview-menu">
+                <li><a href="javascript:fn_main_headPageAction('54','admin/common/selectBBSUseInfs.do')"><i class="fa fa-circle-o"></i> 게시판사용관리</a></li>
+              </ul>
             </li>
             <!-- 
             <li class="treeview">

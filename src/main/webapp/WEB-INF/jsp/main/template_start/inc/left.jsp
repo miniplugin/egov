@@ -53,27 +53,22 @@ String menuNo = ((String)session.getAttribute("menuNo")!=null)?(String)session.g
 		<% } %>
         <% if (menuNo.indexOf("4")== 0) {%>
 		<li class="leftmenu_dept01">
-			<a href="javascript:fn_main_headPageAction('41','cop/smt/sim/EgovIndvdlSchdulManageDailyList.do')">알림마당</a>
+			<a href="javascript:fn_main_headPageAction('31','main/template_start/Board.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">고객지원</a>
 			<ul>
-			    <li class="dept02"><a href="javascript:fn_main_headPageAction('41','cop/smt/sim/EgovIndvdlSchdulManageDailyList.do')">오늘의 행사</a></li>	
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('42','cop/smt/sim/EgovIndvdlSchdulManageWeekList.do')">금주의 행사</a></li>
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('43','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA')">공지사항</a></li>
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('44','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">사이트갤러리</a></li>
-			</ul> 
+				<li class="dept02"><a href="javascript:fn_main_headPageAction('31','main/template_start/Board.do?bbsId=BBSMSTR_AAAAAAAAAAAA')">공지사항</a></li>
+				<li class="dept02"><a href="javascript:fn_main_headPageAction('32','main/template_start/Board.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">갤러리</a></li>
+				<li class="dept02"><a href="javascript:fn_main_headPageMove('33','main/template_start/Service')">서비스신청</a></li>
+			</ul>
 		</li>
 		<% } %>
         <% if (menuNo.indexOf("5")== 0) {%>
 		<li class="leftmenu_dept01">
-			<a href="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')">사이트관리</a>
-			<ul>	
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('51','cop/smt/sim/EgovIndvdlSchdulManageMonthList.do')">일정관리</a></li>
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('52','cop/com/selectTemplateInfs.do')">게시판템플릿관리</a></li>
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('53','cop/bbs/SelectBBSMasterInfs.do')">게시판생성관리</a></li>
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('54','cop/com/selectBBSUseInfs.do')">게시판사용관리</a></li> 
-				<li class="dept02"><a href="javascript:fn_main_headPageAction('55','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA')">공지사항관리</a></li>
-                <li class="dept02"><a href="javascript:fn_main_headPageAction('56','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">사이트갤러리관리</a></li>
-                <li class="dept02"><a href="javascript:fn_main_headPageAction('57','uss/umt/mber/EgovMberManage.do')">관리자관리</a></li>
-			</ul> 
+			<a href="javascript:fn_main_headPageAction('31','main/template_start/Board.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">고객지원</a>
+			<ul>
+				<li class="dept02"><a href="javascript:fn_main_headPageAction('31','main/template_start/Board.do?bbsId=BBSMSTR_AAAAAAAAAAAA')">공지사항</a></li>
+				<li class="dept02"><a href="javascript:fn_main_headPageAction('32','main/template_start/Board.do?bbsId=BBSMSTR_BBBBBBBBBBBB')">갤러리</a></li>
+				<li class="dept02"><a href="javascript:fn_main_headPageMove('33','main/template_start/Service')">서비스신청</a></li>
+			</ul>
 		</li>
 		<% } %>
 	</ul>
