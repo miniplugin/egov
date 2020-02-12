@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="include/header.jsp"%>
+<c:import url="/EgovPageLink.do?link=admin/include/header" />
 
 <!-- Main content -->
 <section class="content">

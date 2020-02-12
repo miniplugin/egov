@@ -13,6 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -67,7 +68,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="<c:url value='/admin/mainPage.do'/>" class="logo">
+        <a href="javascript:fn_main_headPageAction('00','admin/mainPage.do')" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
@@ -179,13 +180,13 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="javascript:fn_main_headPageAction('11','admin/member/MberManage.do')"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
+                <li <c:if test="${menuNo=='11'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('11','admin/member/MberManage.do')"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
               </ul>
               <ul class="treeview-menu">
-                <li><a href="javascript:fn_main_headPageAction('53','admin/board/SelectBBSMasterInfs.do')"><i class="fa fa-circle-o"></i> 게시판생성관리</a></li>
+                <li <c:if test="${menuNo=='53'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('53','admin/board/SelectBBSMasterInfs.do')"><i class="fa fa-circle-o"></i> 게시판생성관리</a></li>
               </ul>
               <ul class="treeview-menu">
-                <li><a href="javascript:fn_main_headPageAction('54','admin/common/selectBBSUseInfs.do')"><i class="fa fa-circle-o"></i> 게시판사용관리</a></li>
+                <li <c:if test="${menuNo=='54'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('54','admin/common/selectBBSUseInfs.do')"><i class="fa fa-circle-o"></i> 게시판사용관리</a></li>
               </ul>
             </li>
             <!-- 

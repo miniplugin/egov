@@ -4,6 +4,11 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200212
+### HsqlDb일때 Select쿼리 preparation구문에서 쿼리문제 발생.
+- 원인은 Hsqldb에서다중쿼리를 날릴때 문제가 아님.
+- EgovMberManage_SQL_Hsql.xml 쿼리 수정 후 정상 작동OK.
+- 관리자메뉴 Active 표시 핵심 코드. <c:import url="/EgovPageLink.do?link=admin/include/header" />
 >작업일자(아래): 20200211
 ### 게시판 관리중 게시판 사용관리 CRUD 적용.
 
