@@ -29,6 +29,7 @@
 	</resultMap>
 <!-- <select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultClass="egovMap">  -->
  	<select id="mberManageDAO.selectMberList" parameterClass="userSearchVO" resultMap="userList">
+	<![CDATA[
 	SELECT 
 	    uniqId, userTy, userId , userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe
 	FROM(
@@ -48,20 +49,24 @@
 	    FROM    LETTNEMPLYRINFO
 	    ) A
 	        WHERE 1=1
+	    ]]>
 	        <isNotEqual prepend="AND" property="sbscrbSttus" compareValue="0">
-	            sttus LIKE  #sbscrbSttus#
+	           <![CDATA[ sttus LIKE '%' || #sbscrbSttus# || '%' ]]>
 	        </isNotEqual>
 	        <isEqual prepend="AND" property="searchCondition" compareValue="0">
-	            userId LIKE #searchKeyword#
+	           <![CDATA[ userId LIKE '%' || #searchKeyword# || '%' ]]>
 	        </isEqual>
 	        <isEqual prepend="AND" property="searchCondition" compareValue="1">
-	            userNm LIKE '%' #searchKeyword# '%'
+	           <![CDATA[ userNm LIKE '%' || #searchKeyword# || '%' ]]>
 	        </isEqual>
+	     <![CDATA[	
 	        ORDER BY sbscrbDe DESC
 	        LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	     ]]>	
     	</select>    
     
         <select id="mberManageDAO.selectMberListTotCnt" parameterClass="userSearchVO" resultClass="int">
+          <![CDATA[
             SELECT COUNT(1) totcnt
             FROM(
             SELECT 
@@ -80,14 +85,15 @@
             FROM    LETTNEMPLYRINFO
             ) A
         WHERE 1=1
+        ]]>
             <isNotEqual prepend="AND" property="sbscrbSttus" compareValue="0">
-                sttus LIKE  #sbscrbSttus#
+               <![CDATA[ sttus LIKE '%' || #sbscrbSttus#  || '%' ]]>
             </isNotEqual>
             <isEqual prepend="AND" property="searchCondition" compareValue="0">
-                userId LIKE #searchKeyword#
+               <![CDATA[ userId LIKE '%' || #searchKeyword#  || '%' ]]>
             </isEqual>
             <isEqual prepend="AND" property="searchCondition" compareValue="1">
-                userNm LIKE '%' #searchKeyword# '%'
+               <![CDATA[ userNm LIKE '%' || #searchKeyword#  || '%' ]]>
             </isEqual>
     </select>
     
