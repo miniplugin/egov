@@ -1,4 +1,5 @@
 package egovframework.miniplugin.com;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,8 @@ import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
+import egovframework.let.cop.bbs.service.BoardMasterVO;
+import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.com.service.EgovTemplateManageService;
 import egovframework.let.cop.com.service.TemplateInf;
 import egovframework.let.cop.com.service.TemplateInfVO;
@@ -244,7 +247,7 @@ public class AdminTemplateManageController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/admin/board/deleteTemplateInf.do")
+    @RequestMapping("/admin/common/deleteTemplateInf.do")
     public String deleteTemplateInf(@ModelAttribute("searchVO") TemplateInfVO searchVO, @ModelAttribute("tmplatInf") TemplateInf tmplatInf,
 	    SessionStatus status, ModelMap model) throws Exception {
 
@@ -252,7 +255,7 @@ public class AdminTemplateManageController {
 
 		LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-
+		
 		tmplatInf.setLastUpdusrId(user.getUniqId());
 
 		if (isAuthenticated) {
@@ -371,5 +374,85 @@ public class AdminTemplateManageController {
     	}else{
     		return true;
     	}
+    }
+    
+    /**
+     * 템플릿에 대한 미리보기용 게시물 목록을 조회한다.
+     *
+     * @param boardVO
+     * @param sessionVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/main/template/previewBoardList.do")
+    public String previewBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+	//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+
+	String template = boardVO.getSearchWrd();	// 템플릿 URL
+
+	BoardMasterVO master = new BoardMasterVO();
+
+	master.setBbsNm("미리보기 게시판");
+
+	boardVO.setPageUnit(propertyService.getInt("pageUnit"));
+	boardVO.setPageSize(propertyService.getInt("pageSize"));
+
+	PaginationInfo paginationInfo = new PaginationInfo();
+
+	paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+	paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+	paginationInfo.setPageSize(boardVO.getPageSize());
+
+	boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+	boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+	boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+	BoardVO target = null;
+	List<BoardVO> list = new ArrayList<BoardVO>();
+
+	target = new BoardVO();
+	target.setNttSj("게시판 기능 설명");
+	target.setFrstRegisterId("ID");
+	target.setFrstRegisterNm("관리자");
+	target.setFrstRegisterPnttm("2009-01-01");
+	target.setInqireCo(7);
+	target.setParnts("0");
+	target.setReplyAt("N");
+	target.setReplyLc("0");
+	target.setUseAt("Y");
+
+	list.add(target);
+
+	target = new BoardVO();
+	target.setNttSj("게시판 부가 기능 설명");
+	target.setFrstRegisterId("ID");
+	target.setFrstRegisterNm("관리자");
+	target.setFrstRegisterPnttm("2009-01-01");
+	target.setInqireCo(7);
+	target.setParnts("0");
+	target.setReplyAt("N");
+	target.setReplyLc("0");
+	target.setUseAt("Y");
+
+	list.add(target);
+
+	boardVO.setSearchWrd("");
+
+	int totCnt = list.size();
+
+	paginationInfo.setTotalRecordCount(totCnt);
+
+	master.setTmplatCours(template);
+
+	model.addAttribute("resultList", list);
+	model.addAttribute("resultCnt", Integer.toString(totCnt));
+	model.addAttribute("boardVO", boardVO);
+	model.addAttribute("brdMstrVO", master);
+	model.addAttribute("paginationInfo", paginationInfo);
+
+	model.addAttribute("preview", "true");
+
+	return "main/template_start/Board";
     }
 }

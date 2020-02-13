@@ -135,7 +135,7 @@
  		]]>
  	</update>
 			 
- 	<update id="TemplateManageDAO.deleteTemplateInf" parameterClass="TemplateInf">
+ 	<update id="TemplateManageDAO.deleteTemplateInf_TMPT01" parameterClass="TemplateInf">
  		<![CDATA[
 			UPDATE LETTNBBSMASTER SET 
 				USE_AT = 'N',
@@ -143,6 +143,13 @@
 				LAST_UPDT_PNTTM = NOW()
 			WHERE TMPLAT_ID = #tmplatId#
  		]]>
+ 	</update>
+ 	
+ 	<update id="TemplateManageDAO.deleteTemplateInf" parameterClass="TemplateInf">
+		<![CDATA[ 
+			DELETE FROM LETTNTMPLATINFO 
+			WHERE TMPLAT_ID = #tmplatId#
+		]]>
  	</update>
 
 	<select id="TemplateManageDAO.selectTemplateInfsByCode" parameterClass="TemplateInfVO" resultMap="tmplatList" >
