@@ -104,4 +104,5 @@
 	#content{width:93%;display:grid;}
 	#leftmenu,#content_img_div{display:none;}
 	#cur_loc{border-bottom:inherit;}
+	.editer_content img{max-width:100%;height:inherit !important;}
 }
