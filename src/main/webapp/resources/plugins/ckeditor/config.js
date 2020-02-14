@@ -35,4 +35,9 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	
+	//KIK 추가
+	CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+	CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_P;
+    CKEDITOR.config.enterMode = CKEDITOR.ENTER_DIV;
 };

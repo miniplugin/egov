@@ -94,7 +94,7 @@ $(document).ready(function() { fnInit(); });
 </script>
     <div id="container">
         <!-- 좌측메뉴 시작 -->
-        <div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/inc/EgovIncLeftmenu" /></div>
+        <div id="leftmenu"><c:import url="/EgovPageLink.do?link=main/template_start/inc/left" /></div>
         <!-- //좌측메뉴 끝 -->
             <!-- content 시작 --> 
             <div id="content">

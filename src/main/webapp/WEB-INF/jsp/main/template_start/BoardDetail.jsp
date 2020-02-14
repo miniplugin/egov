@@ -149,7 +149,7 @@
 					     </c:if>
 						<li class="bbs_content">
 							<div class="editer_content">
-							    <c:out value="${result.nttCn}" escapeXml="true" />
+							    <c:out value="${result.nttCn}" escapeXml="false" />
 		                    </div>
 						</li>
 					</ul>

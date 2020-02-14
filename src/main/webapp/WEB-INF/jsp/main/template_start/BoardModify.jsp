@@ -38,11 +38,16 @@
 
     function fn_egov_regist_notice(){
         //document.board.onsubmit();
-
         if (!validateBoard(document.board)){
             return;
         }
-        
+      	//ck에디터 내용 입력 제약 조건 추가
+        var editor_data = CKEDITOR.instances.nttCn.getData();
+		if (editor_data  == '') {
+			alert('내용을 입력해 주세요.');
+		    CKEDITOR.instances.nttCn.focus();
+		    return false;
+		}
         if (confirm('<spring:message code="common.update.msg" />')) {
             document.board.action = "<c:url value='/main/template_start${prefix}/updateBoard.do'/>";
             document.board.submit();                    
@@ -64,6 +69,8 @@
         }
     }   
 </script>
+<!-- ck 에디터추가 -->
+<script type="text/javascript" src="<c:url value='/'/>resources/plugins/ckeditor/ckeditor.js"></script>
 <!-- wrap -->
 <div id="wrap">
 	<!-- header 시작 -->
@@ -135,7 +142,8 @@
 								<li class="clear">
 									<label for="nttCn" class="tit_lbl">내용</label>
 									<div class="app_content">
-									<textarea class="w100p" id="nttCn" name="nttCn"  cols="75" rows="20"  style="width:99%;" title="<spring:message code="cop.nttCn" />"><c:out value="${result.nttCn}" escapeXml="false" /></textarea> 
+									<!-- <textarea class="w100p" id="nttCn" name="nttCn"  cols="75" rows="20"  style="width:99%;" title="<spring:message code="cop.nttCn" />"><c:out value="${result.nttCn}" escapeXml="false" /></textarea> -->
+									<textarea class="ckeditor w100p" id="nttCn" name="nttCn"><c:out value="${result.nttCn}" escapeXml="false" /></textarea> 
 					          		<form:errors path="nttCn" />
 									</div>
 								</li>

@@ -15,7 +15,7 @@
 					<var-value>1200</var-value>
 				</var>
 			</field>			
-			<field property="nttCn" depends="required">
+			<field property="nttCn" depends="">
         		<arg0 key="cop.nttCn" />
 			</field> 
 			<field property="ntceBgnde" depends="required">

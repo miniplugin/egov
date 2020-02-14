@@ -4,6 +4,11 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200214
+### 게시판에 웹에디터 적용.
+- 기존 depends="required" 값제거 src/main/resources/egovframework/validator/com/cop/bbs/EgovNoticeRegist.xml 파일
+- 그 외 다른 제약조건 확인: src/main/resources/egovframework/spring/com/context-validator.xml 파일
+
 >작업일자(아래): 20200213
 ### 게시판 관리중 게시판 템플릿관리 CRUD 적용.
 - 게시판템플릿관리-> 템플릿관리(게시판템플릿|사이트템플릿)로 분리.
