@@ -1,11 +1,13 @@
 package egovframework.miniplugin.start;
 
+import java.util.List;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-
+import egovframework.let.cop.com.service.EgovTemplateManageService;
+import egovframework.let.cop.com.service.TemplateInfVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
@@ -41,7 +43,47 @@ public class MainController {
 	 */
 	@Resource(name = "EgovBBSManageService")
     private EgovBBSManageService bbsMngService;
+	/**
+	 * 사이트 템플릿
+	 */
+	@Resource(name = "EgovTemplateManageService")
+    private EgovTemplateManageService tmplatService;
 
+	/**
+	 * 메인 페이지에서 템플릿 화면으로 연계하는 기능을 제공한다.
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/home.do")
+	public String forwardPageWithTemplate(HttpServletRequest request, ModelMap model)
+	  throws Exception{
+		// 사이트 템플릿 지정 시작 LETTNTMPLATINFO > TMPLAT_ID[TMPLAT_SITE_DEFAULT]
+		String returnUrl = "/main/template/mainPage.do";//초기 템플릿
+		TemplateInfVO siteTmplatInfVO = new TemplateInfVO();
+		siteTmplatInfVO.setTmplatSeCode("TMPT02");
+		//siteTmplatInfVO.setTypeFlag("SITE");
+		Map<String, Object> sitemap = tmplatService.selectTemplateInfs(siteTmplatInfVO);
+		if(sitemap != null) {
+			List<TemplateInfVO> mapList = (List<TemplateInfVO>) sitemap.get("resultList");
+			//System.out.println(sitemap.get("resultList"));//디버그
+			for(TemplateInfVO templateInfVO : mapList) {
+				//System.out.println(templateInfVO.getTmplatId());
+				//System.out.println(templateInfVO.getTmplatSeCode());
+				//System.out.println(templateInfVO.getUseAt());
+				//System.out.println(templateInfVO.getTmplatCours());
+				if(templateInfVO.getTmplatSeCode().equals("TMPT02") && templateInfVO.getUseAt().equals("Y")) {
+					returnUrl = templateInfVO.getTmplatCours();
+				}
+			}
+	    }
+		System.out.println("템플릿 URL: " + returnUrl);
+		return "redirect:"+returnUrl; // main/template/mainPage.do || cmm/main/mainPage.do
+		// 사이트 템플릿 지정 끝
+	}
+	
 	/**
 	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
 	 *
@@ -89,9 +131,8 @@ public class MainController {
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 		map = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
 		model.addAttribute("galList", map.get("resultList"));
-
 		// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
-
+	
 		return "main/template_start/MainView";
 	}
 

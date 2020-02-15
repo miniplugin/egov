@@ -4,6 +4,42 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200215
+### 사이트관리(관리자) 에서  템플릿 관리를 이용해서 사이트 템플릿 관리 기능 추가.
+- index.jsp파일 수정
+---
+<script type="text/javaScript">document.location.href="<c:url value='/home.do'/>"</script>
+---
+- 메인 페이지에서 템플릿 화면으로 연계하는 컨트롤러 추가
+---
+@RequestMapping(value = "/home.do")
+	public String forwardPageWithTemplate(HttpServletRequest request, ModelMap model)
+	  throws Exception{
+		// 사이트 템플릿 지정 시작 LETTNTMPLATINFO > TMPLAT_ID[TMPLAT_SITE_DEFAULT]
+		String returnUrl = "/main/template/mainPage.do";//초기 템플릿
+		TemplateInfVO siteTmplatInfVO = new TemplateInfVO();
+		siteTmplatInfVO.setTmplatSeCode("TMPT02");
+		//siteTmplatInfVO.setTypeFlag("SITE");
+		Map<String, Object> sitemap = tmplatService.selectTemplateInfs(siteTmplatInfVO);
+		if(sitemap != null) {
+			List<TemplateInfVO> mapList = (List<TemplateInfVO>) sitemap.get("resultList");
+			//System.out.println(sitemap.get("resultList"));//디버그
+			for(TemplateInfVO templateInfVO : mapList) {
+				//System.out.println(templateInfVO.getTmplatId());
+				//System.out.println(templateInfVO.getTmplatSeCode());
+				//System.out.println(templateInfVO.getUseAt());
+				//System.out.println(templateInfVO.getTmplatCours());
+				if(templateInfVO.getTmplatSeCode().equals("TMPT02") && templateInfVO.getUseAt().equals("Y")) {
+					returnUrl = templateInfVO.getTmplatCours();
+				}
+			}
+	    }
+		System.out.println("템플릿 URL: " + returnUrl);
+		return "redirect:"+returnUrl; // main/template/mainPage.do || cmm/main/mainPage.do
+		// 사이트 템플릿 지정 끝
+	}
+---
+
 >작업일자(아래): 20200214
 ### 게시판에 웹에디터 적용.
 - 기존 depends="required" 값제거 src/main/resources/egovframework/validator/com/cop/bbs/EgovNoticeRegist.xml 파일

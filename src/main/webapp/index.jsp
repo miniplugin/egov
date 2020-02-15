@@ -15,5 +15,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
 <jsp:forward page="/cmm/main/mainPage.do"/>
+<jsp:forward page="/main/template/mainPage.do"/>
 --%>
-<script type="text/javaScript">document.location.href="<c:url value='/main/template/mainPage.do'/>"</script> 
+<script type="text/javaScript">document.location.href="<c:url value='/home.do'/>"</script> 

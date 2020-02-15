@@ -44,7 +44,7 @@
         } else if (obj.value == '') {
             document.getElementById('sometext').innerHTML = "";
         } else {
-            document.getElementById('sometext').innerHTML = "템플릿은 JSP만 가능합니다.";
+            document.getElementById('sometext').innerHTML = "사이트 템플릿은 do 액션만 가능합니다. ex) /main/template/mainPage.do";
         }       
     }
 
