@@ -42,11 +42,6 @@
             <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
             
-            <mvc:exclude-mapping path="/egovSampleList.do"/>
-            <mvc:exclude-mapping path="/addSample.do"/>
-            <mvc:exclude-mapping path="/updateSample.do"/>
-            <mvc:exclude-mapping path="/deleteSample.do"/>
-            
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
         <!-- 사용자 홈 template 페이지로 접속하려 한다면,
