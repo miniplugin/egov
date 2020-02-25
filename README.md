@@ -7,6 +7,7 @@
 >작업일자(아래): 20200225
 ### 기존 sht프로젝트 패키지명 egov..시작은 그대로 두고, 신규 패키지는 timespace..으로 시작.
 - egov-com-servlet.xml 연동점검1. 때문에 추가
+
 ```xml
 <mvc:interceptor>
     <mvc:mapping path="/cop/com/*.do"/>
