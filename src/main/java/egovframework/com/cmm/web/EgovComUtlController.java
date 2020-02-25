@@ -76,5 +76,13 @@ public class EgovComUtlController {
 	public String validate(){
 		return "cmm/validator";
 	}
+	
+	/**
+	 * validation rule dynamic java script Sample용
+	 */
+	@RequestMapping("/cmmn/validator.do")
+	public String validateSample(){
+		return "cmm/validator";
+	}
 
 }

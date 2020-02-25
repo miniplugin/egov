@@ -4,8 +4,8 @@
 <sqlMap namespace="User">
 
     <typeAlias  alias="egovMap"      type = "egovframework.rte.psl.dataaccess.util.EgovMap"/>
-    <typeAlias  alias="userSearchVO" type = "egovframework.let.uss.umt.service.UserDefaultVO"/>
-    <typeAlias  alias="userVO"       type = "egovframework.let.uss.umt.service.UserManageVO"/>
+    <typeAlias  alias="userSearchVO" type = "timespace.let.uss.umt.service.UserDefaultVO"/>
+    <typeAlias  alias="userVO"       type = "timespace.let.uss.umt.service.UserManageVO"/>
 
     <select id="userManageDAO.selectUserList_S" parameterClass="userSearchVO" resultClass="egovMap">
 SELECT 

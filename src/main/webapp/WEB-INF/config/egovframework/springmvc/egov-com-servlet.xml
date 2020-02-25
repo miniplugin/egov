@@ -8,7 +8,7 @@
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <!-- 패키지 내 Controller, Service, Repository 클래스의 auto detect를 위한 mvc 설정 -->
-    <context:component-scan base-package="egovframework">
+    <context:component-scan base-package="egovframework,timespace">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
@@ -41,6 +41,12 @@
             <mvc:mapping path="/uss/umt/mber/*.do"/>
             <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
+            
+            <mvc:exclude-mapping path="/egovSampleList.do"/>
+            <mvc:exclude-mapping path="/addSample.do"/>
+            <mvc:exclude-mapping path="/updateSample.do"/>
+            <mvc:exclude-mapping path="/deleteSample.do"/>
+            
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
         <!-- 사용자 홈 template 페이지로 접속하려 한다면,
@@ -48,7 +54,7 @@
 		 <mvc:mapping path="/main/template/**"/>
 		  <mvc:exclude-mapping path="/main/template/actionLogin.do"/>
 		  <mvc:exclude-mapping path="/main/template/userLoginUsr.do"/>
-		  <bean class="egovframework.miniplugin.com.AuthenticInterceptor" />
+		  <bean class="timespace.miniplugin.com.AuthenticInterceptor" />
 		</mvc:interceptor>
 		 -->
         <!-- admin 하위 페이지로 접속하려 한다면, -->
@@ -56,7 +62,7 @@
 		  <mvc:mapping path="/admin/**"/>
 		  <mvc:exclude-mapping path="/admin/actionLogin.do"/>
 		  <mvc:exclude-mapping path="/admin/adminLoginUsr.do"/>
-		  <bean class="egovframework.miniplugin.com.AuthenticInterceptor" />
+		  <bean class="timespace.miniplugin.com.AuthenticInterceptor" />
 		</mvc:interceptor>
     </mvc:interceptors>
 

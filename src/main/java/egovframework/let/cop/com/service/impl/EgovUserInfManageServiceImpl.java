@@ -6,7 +6,6 @@ import java.util.Map;
 
 import egovframework.let.cop.com.service.EgovUserInfManageService;
 import egovframework.let.cop.com.service.UserInfVO;
-
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 import javax.annotation.Resource;

@@ -8,7 +8,6 @@ import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.cop.com.service.BoardUseInf;
 import egovframework.let.cop.com.service.BoardUseInfVO;
 import egovframework.let.cop.com.service.EgovBBSUseInfoManageService;
-
 import egovframework.rte.fdl.cmmn.exception.EgovBizException;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -25,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
-//SHT-CUSTOMIZING//import egovframework.let.cop.clb.service.ClubUser;
-//SHT-CUSTOMIZING//import egovframework.let.cop.clb.service.EgovClubManageService;
-//SHT-CUSTOMIZING//import egovframework.let.cop.cmy.service.CommunityUser;
-//SHT-CUSTOMIZING//import egovframework.let.cop.cmy.service.EgovCommunityManageService;
+//SHT-CUSTOMIZING//import framework.let.cop.clb.service.ClubUser;
+//SHT-CUSTOMIZING//import framework.let.cop.clb.service.EgovClubManageService;
+//SHT-CUSTOMIZING//import framework.let.cop.cmy.service.CommunityUser;
+//SHT-CUSTOMIZING//import framework.let.cop.cmy.service.EgovCommunityManageService;
 //import egovframework.rte.fdl.cmmn.exception.EgovBizException;
 
 /**

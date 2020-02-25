@@ -12,7 +12,6 @@ import egovframework.let.cop.bbs.service.Board;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.let.utl.fcc.service.EgovDateUtil;
-
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
@@ -52,7 +51,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     /**
      * 게시물 한 건을 삭제 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#deleteBoardArticle(egovframework.let.cop.bbs.brd.service.Board)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#deleteBoardArticle(framework.let.cop.bbs.brd.service.Board)
      */
     public void deleteBoardArticle(Board board) throws Exception {
 	FileVO fvo = new FileVO();
@@ -71,7 +70,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     /**
      * 게시판에 게시물 또는 답변 게시물을 등록 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#insertBoardArticle(egovframework.let.cop.bbs.brd.service.Board)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#insertBoardArticle(framework.let.cop.bbs.brd.service.Board)
      */
     public void insertBoardArticle(Board board) throws Exception {
 	// SORT_ORDR는 부모글의 소트 오더와 같게, NTT_NO는 순서대로 부여
@@ -98,7 +97,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
      * 게시물 대하여 상세 내용을 조회 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticle(egovframework.let.cop.bbs.brd.service.BoardVO)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticle(framework.let.cop.bbs.brd.service.BoardVO)
      */
     public BoardVO selectBoardArticle(BoardVO boardVO) throws Exception {
 	if (boardVO.isPlusCount()) {
@@ -114,7 +113,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
      * 조건에 맞는 게시물 목록을 조회 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticles(egovframework.let.cop.bbs.brd.service.BoardVO)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#selectBoardArticles(framework.let.cop.bbs.brd.service.BoardVO)
      */
     public Map<String, Object> selectBoardArticles(BoardVO boardVO, String attrbFlag) throws Exception {
 	List<BoardVO> list = bbsMngDAO.selectBoardArticleList(boardVO);
@@ -154,7 +153,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     /**
      * 게시물 한 건의 내용을 수정 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#updateBoardArticle(egovframework.let.cop.bbs.brd.service.Board)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#updateBoardArticle(framework.let.cop.bbs.brd.service.Board)
      */
     public void updateBoardArticle(Board board) throws Exception {
 	bbsMngDAO.updateBoardArticle(board);
@@ -163,7 +162,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     /**
      * 방명록 내용을 삭제 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#deleteGuestList(egovframework.let.cop.bbs.brd.service.BoardVO)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#deleteGuestList(framework.let.cop.bbs.brd.service.BoardVO)
      */
     public void deleteGuestList(BoardVO boardVO) throws Exception {
 	bbsMngDAO.deleteGuestList(boardVO);
@@ -172,7 +171,7 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     /**
      * 방명록에 대한 목록을 조회 한다.
      *
-     * @see egovframework.let.cop.bbs.brd.service.EgovBBSManageService#selectGuestList(egovframework.let.cop.bbs.brd.service.BoardVO)
+     * @see framework.let.cop.bbs.brd.service.EgovBBSManageService#selectGuestList(framework.let.cop.bbs.brd.service.BoardVO)
      */
     public Map<String, Object> selectGuestList(BoardVO boardVO) throws Exception {
 	List<BoardVO> result = bbsMngDAO.selectGuestList(boardVO);

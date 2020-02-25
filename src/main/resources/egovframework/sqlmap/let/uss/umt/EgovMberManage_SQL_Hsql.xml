@@ -4,16 +4,16 @@
 <sqlMap namespace="Mber">
 
     <typeAlias  alias="egovMap"      type = "egovframework.rte.psl.dataaccess.util.EgovMap"/>
-    <typeAlias  alias="userSearchVO" type = "egovframework.let.uss.umt.service.UserDefaultVO"/>
-    <typeAlias  alias="mberVO"       type = "egovframework.let.uss.umt.service.MberManageVO"/>
+    <typeAlias  alias="userSearchVO" type = "timespace.let.uss.umt.service.UserDefaultVO"/>
+    <typeAlias  alias="mberVO"       type = "timespace.let.uss.umt.service.MberManageVO"/>
 
-    <resultMap id="stplatMap" class="egovframework.let.uss.umt.service.StplatVO">
+    <resultMap id="stplatMap" class="timespace.let.uss.umt.service.StplatVO">
         <result property="useStplatId"         column="USE_STPLAT_ID"          columnIndex="1"/>
         <result property="useStplatCn"         column="USE_STPLAT_CN"          columnIndex="2"/>
         <result property="infoProvdAgeCn"      column="INFO_PROVD_AGRE_CN"     columnIndex="3"/>
     </resultMap>
 	<!-- Hsql과 호환때문에 아래 resultMap 추가: KIK -->
-	<resultMap id="userList" class="egovframework.let.uss.umt.service.MberManageVO">
+	<resultMap id="userList" class="timespace.let.uss.umt.service.MberManageVO">
 			<result property="uniqId" column="uniqId" columnIndex="1"/>
 			<result property="userTy" column="userTy" columnIndex="2"/>
 			<result property="mberId" column="userId" columnIndex="3"/>

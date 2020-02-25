@@ -8,7 +8,6 @@ import java.util.Map;
 import egovframework.let.cop.com.service.BoardUseInf;
 import egovframework.let.cop.com.service.BoardUseInfVO;
 import egovframework.let.cop.com.service.EgovBBSUseInfoManageService;
-
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 import javax.annotation.Resource;
@@ -41,7 +40,7 @@ public class EgovBBSUseInfoManageServiceImpl extends EgovAbstractServiceImpl imp
     /**
      * 게시판 사용 정보를 삭제한다.
      * 
-     * @see egovframework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#deleteBBSUseInf(egovframework.let.cop.bbs.com.service.BoardUseInf)
+     * @see framework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#deleteBBSUseInf(framework.let.cop.bbs.com.service.BoardUseInf)
      */
     public void deleteBBSUseInf(BoardUseInf bdUseInf) throws Exception {
 	bbsUseDAO.deleteBBSUseInf(bdUseInf);
@@ -50,7 +49,7 @@ public class EgovBBSUseInfoManageServiceImpl extends EgovAbstractServiceImpl imp
     /**
      * 게시판 사용정보를 등록한다.
      * 
-     * @see egovframework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#insertBBSUseInf(egovframework.let.cop.bbs.com.service.BoardUseInf)
+     * @see framework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#insertBBSUseInf(framework.let.cop.bbs.com.service.BoardUseInf)
      */
     public void insertBBSUseInf(BoardUseInf bdUseInf) throws Exception {
 	bbsUseDAO.insertBBSUseInf(bdUseInf);
@@ -59,7 +58,7 @@ public class EgovBBSUseInfoManageServiceImpl extends EgovAbstractServiceImpl imp
     /**
      * 게시판 사용정보 목록을 조회한다.
      * 
-     * @see egovframework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#selectBBSUseInfs(egovframework.let.cop.bbs.com.service.BoardUseInfVO)
+     * @see framework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#selectBBSUseInfs(framework.let.cop.bbs.com.service.BoardUseInfVO)
      */
     public Map<String, Object> selectBBSUseInfs(BoardUseInfVO bdUseVO) throws Exception {
 
@@ -77,7 +76,7 @@ public class EgovBBSUseInfoManageServiceImpl extends EgovAbstractServiceImpl imp
     /**
      * 게시판 사용정보를 수정한다.
      * 
-     * @see egovframework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#updateBBSUseInf(egovframework.let.cop.bbs.com.service.BoardUseInf)
+     * @see framework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#updateBBSUseInf(framework.let.cop.bbs.com.service.BoardUseInf)
      */
     public void updateBBSUseInf(BoardUseInf bdUseInf) throws Exception {
 	bbsUseDAO.updateBBSUseInf(bdUseInf);
@@ -86,7 +85,7 @@ public class EgovBBSUseInfoManageServiceImpl extends EgovAbstractServiceImpl imp
     /**
      * 게시판 사용정보에 대한 상세정보를 조회한다.
      * 
-     * @see egovframework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#selectBBSUseInf(egovframework.let.cop.bbs.com.service.BoardUseInfVO)
+     * @see framework.let.cop.bbs.com.service.EgovBBSUseInfoManageService#selectBBSUseInf(framework.let.cop.bbs.com.service.BoardUseInfVO)
      */
     public BoardUseInfVO selectBBSUseInf(BoardUseInfVO bdUseVO) throws Exception {
 	return bbsUseDAO.selectBBSUseInf(bdUseVO);

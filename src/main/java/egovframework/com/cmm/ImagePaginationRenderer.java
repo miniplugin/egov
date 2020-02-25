@@ -40,12 +40,12 @@ public class ImagePaginationRenderer extends AbstractPaginationRenderer implemen
 	}
 	*/
 	public void initVariables(){
-		firstPageLabel    = "<a class=\"firstpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_firstpage.png\" alt=\"처음\" /></a>";
-        previousPageLabel = "<a class=\"prevpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_prevpage.png\"    alt=\"이전\" /></a>";
+		firstPageLabel    = "<a class=\"firstpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/template_start/img/btn_firstpage.png\" alt=\"처음\" /></a>";
+        previousPageLabel = "<a class=\"prevpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/template_start/img/btn_prevpage.png\"    alt=\"이전\" /></a>";
         currentPageLabel  = "<a href=\"javascript:;\"><span class=\"pagenum currentpage\">{0}</span></a>";
         otherPageLabel    = "<a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><span class=\"pagenum\">{2}</span></a>";
-        nextPageLabel     = "<a class=\"nextpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_nextpage.png\"    alt=\"다음\" /></a>";
-        lastPageLabel     = "<a class=\"lastpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/home/img/btn_lastpage.png\" alt=\"마지막\" /></a>";
+        nextPageLabel     = "<a class=\"nextpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/template_start/img/btn_nextpage.png\"    alt=\"다음\" /></a>";
+        lastPageLabel     = "<a class=\"lastpage  pbtn\" href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \"><img src=\"" + servletContext.getContextPath() +  "/resources/template_start/img/btn_lastpage.png\" alt=\"마지막\" /></a>";
 	}
 
 	

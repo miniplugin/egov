@@ -5,7 +5,7 @@
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <!-- component-scan 설정-->
-	<context:component-scan base-package="egovframework">
+	<context:component-scan base-package="egovframework,timespace">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -21,7 +21,8 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>classpath:/egovframework/message/com/message-common</value>
+            	<value>classpath:/egovframework/message/com/message-common</value>
+                <value>classpath:/egovframework/message/miniplugin/message-common</value>
                 <value>classpath:/egovframework/rte/fdl/idgnr/messages/idgnr</value>
                 <value>classpath:/egovframework/rte/fdl/property/messages/properties</value>
             </list>

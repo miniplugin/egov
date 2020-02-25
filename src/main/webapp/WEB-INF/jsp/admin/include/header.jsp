@@ -171,7 +171,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="/">
+              <a href="<c:url value='/'/>">
                 <i class="fa fa-files-o"></i> <span>사용자 홈</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>

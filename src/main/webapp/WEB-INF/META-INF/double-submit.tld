@@ -10,7 +10,7 @@
 
 	<tag>
 		<name>preventer</name>
-		<tag-class>egovframework.com.cmm.taglibs.DoubleSubmitTag</tag-class>
+		<tag-class>timespace.com.cmm.taglibs.DoubleSubmitTag</tag-class>
 		<attribute>
 			<name>tokenKey</name>
 			<rtexprvalue>false</rtexprvalue>
