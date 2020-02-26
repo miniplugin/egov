@@ -41,11 +41,6 @@
             <mvc:mapping path="/uss/umt/mber/*.do"/>
             <mvc:exclude-mapping path="/uat/uia/actionLogin.do"/>
             <mvc:exclude-mapping path="/uat/uia/egovLoginUsr.do"/>
-            <!-- 연동 SW 점검 1. 때문에 추가 -->
-            <mvc:exclude-mapping path="/egovSampleList.do"/>
-            <mvc:exclude-mapping path="/addSample.do"/>
-            <mvc:exclude-mapping path="/updateSample.do"/>
-            <mvc:exclude-mapping path="/deleteSample.do"/>
             
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>

@@ -55,7 +55,7 @@
 			    <%
 			       }
 			    %>
-			    <li><a href="<c:url value='/cmm/main/mainPage.do'/>" target="_blank">예전홈 확인</a></li>
+			    <!-- <li><a href="<c:url value='/cmm/main/mainPage.do'/>" target="_blank">예전홈 확인</a></li> -->
 			</ul>
 			<!-- topmenu start -->
 			<form name="selectOne" action="#LINK">

@@ -6,7 +6,7 @@
 
     <!-- 홈페이지의 주요기능인 협업(게시판, 일정관리)기능 작동과정에서 Exception 발생시 후처리를 위한 AOP설정  -->
 	<aop:config>
-		<aop:pointcut id="serviceMethod" expression="execution(* egovframework.let..impl.*Impl.*(..)) or execution(* egovframework.com..impl.*Impl.*(..)) or execution(* timespace.let..impl.*Impl.*(..)) or execution(* timespace.com..impl.*Impl.*(..))" />
+		<aop:pointcut id="serviceMethod" expression="execution(* egovframework.let..impl.*Impl.*(..)) or execution(* egovframework.com..impl.*Impl.*(..)) or execution(* timespace.let..impl.*Impl.*(..)) or execution(* timespace.com..impl.*Impl.*(..)) or execution(* timespace.miniplugin..impl.*Impl.*(..))" />
 
 		<aop:aspect ref="exceptionTransfer">
 			<aop:after-throwing throwing="exception" pointcut-ref="serviceMethod" method="transfer" />
@@ -61,4 +61,19 @@
     <bean id="egovHandler" class="egovframework.com.cmm.EgovComExcepHndlr" />
     <bean id="otherHandler" class="egovframework.com.cmm.EgovComOthersExcepHndlr" />	
 	
+	<!-- AOP Aspect로깅 처리 기능 추가: KIK -->
+	<bean id="loggingAspect" class="timespace.miniplugin.com.LoggingAspect"/>
+ 	<aop:config>
+	 	<aop:pointcut id="getLogging" expression="execution(* egovframework.let..impl.*Impl.*(..)) or execution(* egovframework.com..impl.*Impl.*(..)) or execution(* timespace.let..impl.*Impl.*(..)) or execution(* timespace.com..impl.*Impl.*(..)) or execution(* timespace.miniplugin..impl.*Impl.*(..))" />
+ 		<aop:aspect ref="loggingAspect">
+ 			<aop:before method="logBefore" pointcut-ref="getLogging"/>
+ 			<aop:after method="logAfter" pointcut-ref="getLogging"/>
+ 			<!-- 
+ 			<aop:before method="logBeforeUpdate" pointcut-ref="updateLogging"/>
+ 			<aop:after-returning method="logAfterReturning" pointcut-ref="getLogging"/>
+ 			<aop:after-throwing method="logAfterThrowing" pointcut-ref="getLogging"/>
+ 			<aop:around method="logAround" pointcut-ref="saveLogging"/>
+ 			 -->
+ 		</aop:aspect>
+ 	</aop:config>
 </beans>

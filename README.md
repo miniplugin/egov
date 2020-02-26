@@ -4,6 +4,27 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200226
+### 기존 sht프로젝트 로깅기능은 그대로 두고, context-aspect.xml파일에 실시간 실행클래스와 매서드도 표시 되도록 추가.
+```xml
+<!-- AOP Aspect로깅 처리 기능 추가: KIK -->
+	<bean id="loggingAspect" class="timespace.miniplugin.com.LoggingAspect"/>
+ 	<aop:config>
+	 	<aop:pointcut id="getLogging" expression="execution(* egovframework.let..impl.*Impl.*(..)) or execution(* egovframework.com..impl.*Impl.*(..)) or execution(* timespace.let..impl.*Impl.*(..)) or execution(* timespace.com..impl.*Impl.*(..)) or execution(* timespace.miniplugin..impl.*Impl.*(..))" />
+ 		<aop:aspect ref="loggingAspect">
+ 			<aop:before method="logBefore" pointcut-ref="getLogging"/>
+ 			<aop:after method="logAfter" pointcut-ref="getLogging"/>
+ 			<!-- 
+ 			<aop:before method="logBeforeUpdate" pointcut-ref="updateLogging"/>
+ 			<aop:after-returning method="logAfterReturning" pointcut-ref="getLogging"/>
+ 			<aop:after-throwing method="logAfterThrowing" pointcut-ref="getLogging"/>
+ 			<aop:around method="logAround" pointcut-ref="saveLogging"/>
+ 			 -->
+ 		</aop:aspect>
+ 	</aop:config>
+```
+- timespace.miniplugin.com 패키지에 AOP로 구현된 LoggingAspect.java 클래스 추가.  
+
 >작업일자(아래): 20200225
 ### 기존 sht프로젝트 패키지명 egov..시작은 그대로 두고, 신규 패키지는 timespace..으로 시작.
 - egov-com-servlet.xml 연동점검1. 때문에 추가
