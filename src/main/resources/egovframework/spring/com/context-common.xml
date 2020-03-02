@@ -23,6 +23,8 @@
             <list>
             	<value>classpath:/egovframework/message/com/message-common</value>
                 <value>classpath:/egovframework/message/miniplugin/message-common</value>
+                <value>classpath:/egovframework/message/miniplugin/message-common-add</value>
+                <value>classpath:/egovframework/message/miniplugin/bnr/message</value>
                 <value>classpath:/egovframework/rte/fdl/idgnr/messages/idgnr</value>
                 <value>classpath:/egovframework/rte/fdl/property/messages/properties</value>
             </list>

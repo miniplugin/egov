@@ -191,6 +191,9 @@
               <ul class="treeview-menu">
                 <li <c:if test="${menuNo=='54'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('54','admin/common/selectBBSUseInfs.do')"><i class="fa fa-circle-o"></i> 게시판사용관리</a></li>
               </ul>
+              <ul class="treeview-menu">
+                <li <c:if test="${menuNo=='55'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('55','admin/bnr/selectBannerList.do')"><i class="fa fa-circle-o"></i> 배너관리</a></li>
+              </ul>
             </li>
             <!-- 
             <li class="treeview">

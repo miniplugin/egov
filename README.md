@@ -4,6 +4,15 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200302
+### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용)을 추가 하기위해, ibatis와 mybatis 동시지원처리.
+- ibatis와 mybatis 동시지원 핵심1. src/main/resources/egovframework/spring/com/context-mapper.xml 추가. 
+- ibatis와 mybatis 동시지원 핵심2. src/main/resources/egovframework/mapper 폴더 추가.
+- 관리자 배너관리기능 작업중.
+### [ScreenShot 아래 1)번 부터 ~ 6)번 까지 실행했음.]<br>
+![ex_screenshot](./git_img/20200302.jpg)
+- 다음작업예정. 배너관리기능 마무리.
+
 >작업일자(아래): 20200226
 ### 기존 sht프로젝트 로깅기능은 그대로 두고, context-aspect.xml파일에 실시간 실행클래스와 매서드도 표시 되도록 추가.
 ```xml
