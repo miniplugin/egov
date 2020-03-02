@@ -6,9 +6,11 @@
 ***
 >작업일자(아래): 20200302
 ### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용)을 추가 하기위해, ibatis와 mybatis 동시지원처리.
+- 동시지원 작업전 기술정보: https://dydals5678.tistory.com/84
 - ibatis와 mybatis 동시지원 핵심1. src/main/resources/egovframework/spring/com/context-mapper.xml 추가. 
 - ibatis와 mybatis 동시지원 핵심2. src/main/resources/egovframework/mapper 폴더 추가.
 - 관리자 배너관리기능 작업중.
+- 배너기능 작업전 기술정보: https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:com:v2:uss:%EB%B0%B0%EB%84%88%EA%B4%80%EB%A6%AC 
 ### [ScreenShot 아래 1)번 부터 ~ 6)번 까지 실행했음.]<br>
 ![ex_screenshot](./git_img/20200302.jpg)
 - 다음작업예정. 배너관리기능 마무리.
