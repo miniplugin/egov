@@ -64,6 +64,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public int insert(String queryId, Object parameterObject) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		return getSqlSession().insert(queryId, parameterObject);
 	}
 
@@ -91,6 +92,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public int update(String queryId, Object parameterObject) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		return getSqlSession().update(queryId, parameterObject);
 	}
 
@@ -118,6 +120,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public int delete(String queryId, Object parameterObject) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		return getSqlSession().delete(queryId, parameterObject);
 	}
 
@@ -159,6 +162,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public <T> T selectOne(String queryId, Object parameterObject) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		return getSqlSession().selectOne(queryId, parameterObject);
 	}
 
@@ -248,6 +252,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public <E> List<E> selectList(String queryId, Object parameterObject) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		return getSqlSession().selectList(queryId, parameterObject);
 	}
 
@@ -280,6 +285,7 @@ public abstract class EgovComAbstractDAO extends EgovAbstractMapper{
 	@Override
 	public List<?> listWithPaging(String queryId, Object parameterObject, int pageIndex, int pageSize) {
 		LOGGER.debug("queryId = "+queryId);
+		LOGGER.debug("parameterObject = "+parameterObject);
 		int skipResults = pageIndex * pageSize;
 		//int maxResults = (pageIndex * pageSize) + pageSize;
 

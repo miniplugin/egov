@@ -150,7 +150,7 @@
             SELECT B.FILE_STRE_COURS AS FILE_STRE_COURS,
                    B.STRE_FILE_NM AS STRE_FILE_NM
               FROM COMTNBANNER A,
-                   COMTNFILEDETAIL B
+                   LETTNFILEDETAIL B
              WHERE 1 = 1
                AND A.BANNER_ID = #{bannerId}
                AND A.BANNER_IMAGE_FILE = B.ATCH_FILE_ID  

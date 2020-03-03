@@ -83,7 +83,7 @@ public class EgovBannerController {
     @RequestMapping("/admin/bnr/selectBannerListView.do")
     public String selectBannerListView() throws Exception {
 
-        return "admin/bnr/EgovBannerList";
+        return "admin/bnr/BannerList";
     }
 
 	/**
@@ -117,7 +117,7 @@ public class EgovBannerController {
 
         model.addAttribute("message", egovMessageSource.getMessage("success.common.select"));
 
-		return "admin/bnr/EgovBannerList";
+		return "admin/bnr/BannerList";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class EgovBannerController {
 
     	model.addAttribute("banner", egovBannerService.selectBanner(bannerVO));
     	model.addAttribute("message", egovMessageSource.getMessage("success.common.select"));
-    	return "admin/bnr/EgovBannerUpdt";
+    	return "admin/bnr/BannerUpdt";
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class EgovBannerController {
 			                        ModelMap model) throws Exception {
 
     	model.addAttribute("banner", bannerVO);
-    	return "admin/bnr/EgovBannerRegist";
+    	return "admin/bnr/BannerRegist";
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class EgovBannerController {
 
     	if (bindingResult.hasErrors()) {
     		model.addAttribute("bannerVO", bannerVO);
-			return "admin/bnr/EgovBannerRegist";
+			return "admin/bnr/BannerRegist";
 		} else {
 	    	List<FileVO> result = null;
 
@@ -204,7 +204,7 @@ public class EgovBannerController {
 	    	model.addAttribute("message", egovMessageSource.getMessage("success.common.insert"));
 	    	model.addAttribute("banner", egovBannerService.insertBanner(banner, bannerVO));
 
-//	    	return "admin/bnr/EgovBannerUpdt";
+//	    	return "admin/bnr/BannerUpdt";
 			return "forward:/admin/bnr/selectBannerList.do";
 
 		}
@@ -226,7 +226,7 @@ public class EgovBannerController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("bannerVO", banner);
-			return "admin/bnr/EgovBannerUpdt";
+			return "admin/bnr/BannerUpdt";
 		} else {
 
 			List<FileVO> result = null;

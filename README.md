@@ -4,8 +4,19 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200303
+### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용) 관리자단 추가OK.
+- 관리자 배너관리기능 작업 결과.
+![ex_screenshot](./git_img/20200303_1.jpg)
+- 배너 첨부파일 핵심1. egov개발환경3.9로 추가한 기능은 COMTNFILEDETAIL 테이블을 사용하지만,
+- CMS와 합칠때, 기존 LETTNFILEDETAIL 테이블을 이용하도록 xml쿼리 변경.
+- 참고: 스프링 웹앱이 실행되는 순서 기술정보: https://hamait.tistory.com/322
+![ex_screenshot](./git_img/20200303.jpg)
+- 다음작업예정. 배너 사용자단 출력기능 추가.
+
 >작업일자(아래): 20200302
 ### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용)을 추가 하기위해, ibatis와 mybatis 동시지원처리.
+- egov개발환경 3.9버전사용(실행환경은 v3.8) 
 - 동시지원 작업전 기술정보: https://dydals5678.tistory.com/84
 - ibatis와 mybatis 동시지원 핵심1. src/main/resources/egovframework/spring/com/context-mapper.xml 추가. 
 - ibatis와 mybatis 동시지원 핵심2. src/main/resources/egovframework/mapper 폴더 추가.

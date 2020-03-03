@@ -6,6 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
+        	<!-- timespace 로깅확인 추가 -->
+        <Logger name="timespace" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
     		<!-- log SQL INFO 에서 DEBUG 변경: KIK -->
         <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />

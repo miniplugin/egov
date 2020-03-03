@@ -12,7 +12,7 @@
 		
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:/egovframework/mapper/com/**/*_Hsql.xml</value><!-- ${Globals.DbType} -->
+				<value>classpath:/egovframework/mapper/com/**/*_${Globals.DbType}.xml</value>
 			</list>
 		</property>
 	</bean>

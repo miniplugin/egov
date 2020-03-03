@@ -26,22 +26,22 @@
     <jdbc:embedded-database id="dataSource-hsql" type="HSQL">
 		<jdbc:script location= "classpath:/db/shtdb.sql"/>
 	</jdbc:embedded-database>
-	<!-- 테스트 실행용 DB매니저 실행: 실제 사용시 <value>- -부분의 공백을 제거해 주세요 
+	<!-- 테스트 실행용 DB매니저 실행: 실제 사용시 <value>- -부분의 공백을 제거해 주세요 -->
 	<bean depends-on="dataSource-hsql" class="org.springframework.beans.factory.config.MethodInvokingBean">
 		<property name="targetClass" value="org.hsqldb.util.DatabaseManagerSwing" />
 		<property name="targetMethod" value="main" />
 		<property name="arguments">
 		 <list>
-		  <value>- -url</value>
+		  <value>--url</value>
 		  <value>jdbc:hsqldb:mem:dataSource-hsql</value>
-		  <value>- -user</value>
+		  <value>--user</value>
 		  <value>sa</value>
-		  <value>- -password</value>
+		  <value>--password</value>
 		  <value></value>
 		 </list>
 		</property>
 	</bean>
-	-->
+	
  	<!-- <bean id="dataSource-hsql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
 		<property name="url" value="jdbc:log4jdbc:hsqldb:hsql://localhost/sampledb"/>
