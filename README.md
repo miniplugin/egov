@@ -4,6 +4,26 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200304
+### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용) 사용자단 출력기능 추가OK.
+- 배너 사용자단 출력기능 작업 결과.
+![ex_screenshot](./git_img/20200304.jpg)
+- 슬라이드 자바스크립트에서 링크부분 핵심.
+```javascript
+...
+$(".viewImgList li.imglist1").css({'z-index' : '10' });
+$(".viewImgList li.imglist2").css({'z-index' : '10' });
+$(".viewImgList li.imglist0").css({'z-index' : '50' });
+...
+```
+- 모바일용 배너 핵심코드(아래).
+```html
+...
+<script src="<c:url value='/'/>resources/template_start/js/swiper.min.js"></script>
+<script>var swiper = new Swiper('.swiper-container');</script>
+...
+```
+
 >작업일자(아래): 20200303
 ### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용) 관리자단 추가OK.
 - 관리자 배너관리기능 작업 결과.

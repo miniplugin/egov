@@ -571,4 +571,13 @@ h1.loginTit a img {width:100%;}
 }
 /* Below add KIK */
 table img{max-width:100% !important;}
+.roll_content table {margin:0 auto;}
+.roll_content table img{width:100%;}
+.viewImgList {overflow:hidden;}
+.viewImgList table{width:100%;}
+.viewImgList li .roll_content .roll_txtline {
+	top: 460px;
+    background-color: black;
+    opacity: 0.5;
+    padding-top: 20px;}
 .link,.link *{cursor:pointer;display:inline-block;}

@@ -9,6 +9,8 @@ import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.let.cop.com.service.EgovTemplateManageService;
 import egovframework.let.cop.com.service.TemplateInfVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+import timespace.com.uss.ion.bnr.service.BannerVO;
+import timespace.com.uss.ion.bnr.service.EgovBannerService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +50,9 @@ public class MainController {
 	 */
 	@Resource(name = "EgovTemplateManageService")
     private EgovTemplateManageService tmplatService;
+	
+	@Resource(name = "egovBannerService")
+    private EgovBannerService egovBannerService;
 
 	/**
 	 * 메인 페이지에서 템플릿 화면으로 연계하는 기능을 제공한다.
@@ -132,6 +137,20 @@ public class MainController {
 		map = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
 		model.addAttribute("galList", map.get("resultList"));
 		// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
+		
+		// 메인 배너 컨텐츠 조회 시작 ---------------------------------
+		BannerVO bannerVO = new BannerVO();
+		bannerVO.setPageUnit(3);
+		PaginationInfo paginationInfo_Banner = new PaginationInfo();
+		paginationInfo_Banner.setCurrentPageNo(bannerVO.getPageIndex());
+		paginationInfo_Banner.setRecordCountPerPage(bannerVO.getPageUnit());
+		paginationInfo_Banner.setPageSize(bannerVO.getPageSize());
+		bannerVO.setFirstIndex(paginationInfo_Banner.getFirstRecordIndex());
+		bannerVO.setLastIndex(paginationInfo_Banner.getLastRecordIndex());
+		bannerVO.setRecordCountPerPage(paginationInfo_Banner.getRecordCountPerPage());
+		bannerVO.setBannerList(egovBannerService.selectBannerList(bannerVO));
+		model.addAttribute("bannerList", bannerVO.getBannerList());
+		// 메인 배너 컨텐츠 조회 끝 ---------------------------------
 	
 		return "main/template_start/MainView";
 	}

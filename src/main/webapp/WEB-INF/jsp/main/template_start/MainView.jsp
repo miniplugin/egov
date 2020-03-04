@@ -29,8 +29,22 @@
 	<!-- container 시작 -->
 	<div id="container">
     	<div class="main_rolling_pc">
-            <div class="visualRoll">
+    		<div class="visualRoll">
                 <ul class="viewImgList">
+    			<c:forEach var="banner" items="${bannerList}" varStatus="status">
+                    <li class="imglist<c:out value="${status.index}" />">
+                    <a href="<c:out value='${banner.linkUrl}'/>">
+                        <div class="roll_content">
+							<c:import url="/cmm/fms/selectImageFileInfs.do" charEncoding="utf-8">
+				                        <c:param name="atchFileId" value="${banner.bannerImageFile}" />
+				            </c:import>
+                            <p class="roll_txtline"><c:out value='${banner.bannerDc}'/></p>
+                        </div>
+                    </a>
+                    </li>
+    			</c:forEach>
+		    	<%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+				<c:if test="${fn:length(bannerList) == 0}">
                     <li class="imglist0">
                         <div class="roll_content">
                             <a href="javascript:;">
@@ -52,24 +66,43 @@
                             <p class="roll_txtline">OOOO OOOOOOOOO OOOOOOOOO OOOOO</p>
                         </div>
                     </li>
-                </ul>
-
+				</c:if>
+				</ul>
+				
                 <div class="rollbtnArea">
                     <ul class="rollingbtn">
+                    <c:forEach var="banner" items="${bannerList}" varStatus="status">
+                    	<li class="seq butt<c:out value="${status.index}" />"><a href="#butt"><img src="<c:url value='/'/>resources/template_start/img/btn_rollbutt_off.png" alt="<c:out value="${status.index}" />번" /></a></li>
+                    </c:forEach>
+                    <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+					<c:if test="${fn:length(bannerList) == 0}">
                         <li class="seq butt0"><a href="#butt"><img src="<c:url value='/'/>resources/template_start/img/btn_rollbutt_on.png" alt="1번" /></a></li>
                         <li class="seq butt1"><a href="#butt"><img src="<c:url value='/'/>resources/template_start/img/btn_rollbutt_off.png" alt="2번" /></a></li>
                         <li class="seq butt2"><a href="#butt"><img src="<c:url value='/'/>resources/template_start/img/btn_rollbutt_off.png" alt="3번" /></a></li>
-                        <li class="rollstop"><a href="#" class="stop"><img src="<c:url value='/'/>resources/template_start/img/btn_roll_stop.png" alt="멈춤" /></a></li>
+                    </c:if>
+                    	<li class="rollstop"><a href="#" class="stop"><img src="<c:url value='/'/>resources/template_start/img/btn_roll_stop.png" alt="멈춤" /></a></li>
                         <li class="rollplay"><a href="#" class="play"><img src="<c:url value='/'/>resources/template_start/img/btn_roll_play.png" alt="재생" /></a></li>
                     </ul>
                 </div><!-- //rollbtnArea -->
 
             </div><!-- //visualRoll -->
+        
         </div><!-- //main_rolling_pc -->
         
         <div class="main_rolling_mobile">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
+                <c:forEach var="banner" items="${bannerList}" varStatus="status">
+                	<div class="swiper-slide">
+                        <a href="<c:out value='${banner.linkUrl}'/>">
+                        <c:import url="/cmm/fms/selectImageFileInfs.do" charEncoding="utf-8">
+				                        <c:param name="atchFileId" value="${banner.bannerImageFile}" />
+				         </c:import>
+                        </a>
+                    </div>
+    			</c:forEach>
+                <%-- 데이터를 없을때 화면에 메세지를 출력해준다 --%>
+				<c:if test="${fn:length(bannerList) == 0}">
                     <div class="swiper-slide">
                         <a href="javascript:;"><img src="<c:url value='/'/>resources/template_start/img/mainslide_mob01.jpg" alt="OOOO OOOOO 믿을 수 있는 스프링정보, 스프링... OOOO OOOOO?" /></a>
                     </div>
@@ -79,8 +112,11 @@
                     <div class="swiper-slide">
                         <a href="javascript:;"><img src="<c:url value='/'/>resources/template_start/img/mainslide_mob03.jpg" alt="OOOO OOOOO 믿을 수 있는 스프링정보, 스프링... OOOO OOOOO?" /></a>
                     </div>
+                </c:if>
                 </div>						
                 <div class="swiper-pagination"></div>
+                <script src="<c:url value='/'/>resources/template_start/js/swiper.min.js"></script>
+                <script>var swiper = new Swiper('.swiper-container');</script>
                 <!-- <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div> -->
                 
