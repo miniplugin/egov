@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template_start/css/swiper.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template_start/css/common.css">
 <script src="${pageContext.request.contextPath}/resources/template_start/js/jquery-1.11.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/template_start/js/rollmain.js"></script>
 <script src="${pageContext.request.contextPath}/resources/template_start/js/jquery.easing.js"></script>	
 <script src="${pageContext.request.contextPath}/resources/template_start/js/common.js"></script>  
 <script src="${pageContext.request.contextPath}/resources/template_start/js/jquery.smooth-scroll.min.js"></script> 

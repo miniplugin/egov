@@ -15,6 +15,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
 //KIK
+//메인콘텐츠 가로크기 반응형처리 Start
+var targets = $('#leftmenu').width()+30;
+if($(window).width() < 800) targets = 30;
+$('#content').css({
+    width: ($(window).width() - targets )+"px"
+});
+//메인콘텐츠 가로크기 반응형처리 End
 $( document ).ready(function() {
     $(window).resize();
     //모바일 서브메뉴 띄움 Start 
@@ -36,7 +43,7 @@ $( document ).ready(function() {
      $('#content').css({
          width: ($(window).width() - targets )+"px"
      });
-   //메인콘텐츠 가로크기 반응형처리 End
+     //메인콘텐츠 가로크기 반응형처리 End
      //모바일 서브메뉴 띄움 Start
      if ( parseInt($('header').css('width')) <= 800 ){
     	 $('.openAll').click(function(event){event.preventDefault();});

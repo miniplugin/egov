@@ -24,6 +24,7 @@
 <div id="wrap">
 	<!-- header 시작 -->
 	<c:import url="/EgovPageLink.do?link=main/template_start/inc/header" />
+	<script src="${pageContext.request.contextPath}/resources/template_start/js/rollmain.js"></script>
 	<!-- header 끝 -->
 	
 	<!-- container 시작 -->
