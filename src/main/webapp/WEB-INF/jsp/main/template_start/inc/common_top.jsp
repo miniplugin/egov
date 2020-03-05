@@ -23,13 +23,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/swiper.min.css">
-<link rel="stylesheet" href="<c:url value='/'/>resources/template_start/css/common.css">
-<script src="<c:url value='/'/>resources/template_start/js/jquery-1.11.3.min.js"></script>
-<script src="<c:url value='/'/>resources/template_start/js/rollmain.js"></script>
-<script src="<c:url value='/'/>resources/template_start/js/jquery.easing.js"></script>	
-<script src="<c:url value='/'/>resources/template_start/js/common.js"></script>  
-<script src="<c:url value='/'/>resources/template_start/js/jquery.smooth-scroll.min.js"></script> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template_start/css/swiper.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template_start/css/common.css">
+<script src="${pageContext.request.contextPath}/resources/template_start/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/template_start/js/rollmain.js"></script>
+<script src="${pageContext.request.contextPath}/resources/template_start/js/jquery.easing.js"></script>	
+<script src="${pageContext.request.contextPath}/resources/template_start/js/common.js"></script>  
+<script src="${pageContext.request.contextPath}/resources/template_start/js/jquery.smooth-scroll.min.js"></script> 
 <!--[if lte IE 9]>
     <script src="<c:url value='/'/>resources/template_start/js/html5shiv.js"></script>
 	<script src="<c:url value='/'/>resources/template_start/js/placeholders.min.js"></script>
