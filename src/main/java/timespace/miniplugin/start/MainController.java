@@ -140,7 +140,7 @@ public class MainController {
 		
 		// 메인 배너 컨텐츠 조회 시작 ---------------------------------
 		BannerVO bannerVO = new BannerVO();
-		bannerVO.setPageUnit(3);
+		//bannerVO.setPageUnit(3);//기본값 10
 		PaginationInfo paginationInfo_Banner = new PaginationInfo();
 		paginationInfo_Banner.setCurrentPageNo(bannerVO.getPageIndex());
 		paginationInfo_Banner.setRecordCountPerPage(bannerVO.getPageUnit());

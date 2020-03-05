@@ -180,6 +180,14 @@ footer .foot_area .snslink li + li + li a {background-image:url(../img/ico_insta
 .viewImgList li.imglist0 {position:relative; z-index:50; background:url('../img/mainslide01.jpg') no-repeat center;}
 .viewImgList li.imglist1 {position:absolute; width:100%; left:0; top:0; z-index:10; background:url('../img/mainslide02.jpg') no-repeat center;}
 .viewImgList li.imglist2 {position:absolute; width:100%; left:0; top:0; z-index:10; background:url('../img/mainslide03.jpg') no-repeat center;}
+.viewImgList li.imglist3 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist4 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist5 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist6 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist7 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist8 {position:absolute; width:100%; left:0; top:0; z-index:10;}
+.viewImgList li.imglist9 {position:absolute; width:100%; left:0; top:0; z-index:10;}
 .viewImgList li {background-size:cover !important;}
 .viewImgList li .roll_content {position:relative;}
 .viewImgList li .roll_content .roll_txtline {position:absolute; left:0; bottom:60px; width:100%; line-height:1; text-align:center; font-size:22px; color:#fff; letter-spacing:2px;}
@@ -579,5 +587,5 @@ table img{max-width:100% !important;}
 	top: 460px;
     background-color: black;
     opacity: 0.5;
-    padding-top: 20px;}
+    padding-top: 10px;}
 .link,.link *{cursor:pointer;display:inline-block;}
