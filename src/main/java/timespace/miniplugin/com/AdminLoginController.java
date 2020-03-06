@@ -74,6 +74,13 @@ public class AdminLoginController {
 	@RequestMapping(value = "/admin/actionLogin.do")
 	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model) throws Exception {
 
+		/* 세선 내용 확인 테스트
+		//세션을 가져온다. (가져올 세션이 없다면 생성한다.)
+		HttpSession httpSession = request.getSession(true);
+		// "LoginVO"로 바인딩된 객체를 돌려준다. ("LoginVO"로 바인딩된 객체가 없다면 null)
+		LoginVO loginVOsession = (LoginVO) httpSession.getAttribute("LoginVO");
+		if(loginVOsession != null) {loginVO=loginVOsession;System.out.println(loginVOsession.getId());}
+		*/
 		// 1. 일반 로그인 처리
 		LoginVO resultVO = loginService.actionLogin(loginVO);
 

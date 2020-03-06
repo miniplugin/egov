@@ -67,27 +67,6 @@ public class AdminMainController {
 	  throws Exception{
 
 		// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
-		BoardVO boardVO = new BoardVO();
-		boardVO.setPageUnit(5);
-		boardVO.setPageSize(10);
-		boardVO.setBbsId("BBSMSTR_AAAAAAAAAAAA");
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
-		paginationInfo.setPageSize(boardVO.getPageSize());
-
-		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-		Map<String, Object> map = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
-		model.addAttribute("notiList", map.get("resultList"));
-
-		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
-		map = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
-		model.addAttribute("galList", map.get("resultList"));
 
 		// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
 

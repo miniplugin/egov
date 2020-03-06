@@ -28,9 +28,12 @@
 		<result property="password" column="password" columnIndex="1"/>
 	</resultMap>
 	-->
+	<!-- 아래 로그인 구문 hsql에서 에러 나서 제외 
+	<isEqual property="userSe" compareValue="USR">
+	</isEqual>
+	-->
 	<!-- 일반 로그인 -->
 	<select id="loginDAO.actionLogin" resultMap="login">
-		<isEqual property="userSe" compareValue="USR">
 			<![CDATA[
             SELECT EMPLYR_ID AS id
                  , USER_NM AS name
@@ -45,7 +48,6 @@
                AND PASSWORD = #password#
                AND EMPLYR_STTUS_CODE = 'P'
 			]]>
-		</isEqual>
 	</select>
 	
 	<!-- 인증서 로그인

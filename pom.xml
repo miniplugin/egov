@@ -80,6 +80,11 @@
 			<artifactId>egovframework.rte.fdl.string</artifactId>
 			<version>${egovframework.rte.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>egovframework.rte</groupId>
+			<artifactId>egovframework.rte.fdl.security</artifactId>
+			<version>${egovframework.rte.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

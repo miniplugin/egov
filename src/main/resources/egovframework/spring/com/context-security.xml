@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:egov-security="http://www.egovframe.go.kr/schema/egov-security"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.egovframe.go.kr/schema/egov-security http://www.egovframe.go.kr/schema/egov-security/egov-security-3.7.xsd">
+
+    <security:http pattern="/css/**" security="none"/>
+	<security:http pattern="/html/**" security="none"/>
+    <security:http pattern="/images/**" security="none"/>
+ 	<security:http pattern="/js/**" security="none"/>
+ 	<security:http pattern="/resource/**" security="none"/>
+ 	<security:http pattern="\A/WEB-INF/jsp/.*\Z" request-matcher="regex" security="none"/>
+ 	
+    <egov-security:config id="securityConfig"
+        loginUrl="/main/template/actionLogin.do"
+        logoutSuccessUrl="/main/template/actionMain.do"
+        loginFailureUrl="/main/template/actionLogin.do?login_error=1"
+        accessDeniedUrl="/main/template/actionLogin.do?login_error=1"		
+		
+        dataSource="egov.dataSource"
+        			
+        jdbcUsersByUsernameQuery="SELECT EMPLYR_ID AS USER_ID, PASSWORD, 1 AS ENABLED, USER_NM,'USR' AS USER_SE,EMAIL_ADRES AS USER_EMAIL, '-' AS ORGNZT_ID, ESNTL_ID, '-' AS ORGNZT_NM FROM LETTNEMPLYRINFO WHERE EMPLYR_ID = ?"
+		jdbcAuthoritiesByUsernameQuery="SELECT a.EMPLYR_ID USER_ID, b.GROUP_NM AUTHORITY FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.ORGNZT_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
+        							
+        jdbcMapClass="timespace.let.uat.uia.service.impl.EgovSessionMapping"
+
+        requestMatcherType="regex"
+        
+        hash="plaintext"
+        hashBase64="false"
+		
+		concurrentMaxSessons="1"
+		concurrentExpiredUrl="/main/template/actionMain.do"
+
+		defaultTargetUrl="/main/template/actionMain.do"
+		
+        
+    />
+
+    <egov-security:secured-object-config id="securedObjectConfig"
+	roleHierarchyString="
+			ROLE_ADMIN > ROLE_USER
+			ROLE_USER > ROLE_RESTRICTED
+			ROLE_RESTRICTED > IS_AUTHENTICATED_FULLY
+			IS_AUTHENTICATED_FULLY >	IS_AUTHENTICATED_REMEMBERED
+			IS_AUTHENTICATED_REMEMBERED > IS_AUTHENTICATED_ANONYMOUSLY"
+	sqlRolesAndUrl="
+			SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
+       		FROM AUTHORROLE 
+       		WHERE 1=1"
+	/>
+
+	<egov-security:initializer id="initializer" supportPointcut="false" supportMethod="false" />
+
+    <!-- URL에 세미콜론(semicolon)허용 여부(기본값/false) -->
+	<bean id="egovStrictHttpFirewall" class="org.springframework.security.web.firewall.StrictHttpFirewall">
+		<property name="allowSemicolon" value="true"/>
+	</bean>
+	<security:http-firewall ref="egovStrictHttpFirewall"/>
+		
+</beans>

@@ -71,6 +71,7 @@ public class LoginController {
 	 * @return result - 로그인결과(세션정보)
 	 * @exception Exception
 	 */
+	/*
 	@RequestMapping(value = "/main/template/actionLogin.do")
 	public String actionLogin(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, ModelMap model) throws Exception {
 
@@ -90,7 +91,7 @@ public class LoginController {
 		}
 
 	}
-
+	*/
 	/**
 	 * 로그인 후 메인화면으로 들어간다. 
 	 * @param

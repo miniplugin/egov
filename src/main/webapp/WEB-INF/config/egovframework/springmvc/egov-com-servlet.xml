@@ -14,7 +14,7 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 
-    <!-- 서블릿컨네이너상의 exception에 대한 오류 페이지를 연결하는 mvc 설정-->
+    <!-- 서블릿컨네이너상의 exception에 대한 오류 페이지를 연결하는 mvc 설정 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmm/error/egovError"/>
         <property name="exceptionMappings">
@@ -26,13 +26,13 @@
             </props>
         </property>
     </bean>
-
+	
     <!-- 화면처리용 JSP 파일명의  prefix, suffix 처리에 대한 mvc 설정  -->
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
-    <!-- 로그인 체크가 필요한 URL과 로그인 여부를 체크해준다 -->
+    <!-- 일반 로그인 체크가 필요한 URL과 로그인 여부를 체크해준다 스프링 시큐리티 사용시 필요 없음. -->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/cop/com/*.do"/>
@@ -44,15 +44,7 @@
             
 		    <bean class="egovframework.com.cmm.interceptor.AuthenticInterceptor" />
         </mvc:interceptor>
-        <!-- 사용자 홈 template 페이지로 접속하려 한다면,
-		 <mvc:interceptor>
-		 <mvc:mapping path="/main/template/**"/>
-		  <mvc:exclude-mapping path="/main/template/actionLogin.do"/>
-		  <mvc:exclude-mapping path="/main/template/userLoginUsr.do"/>
-		  <bean class="timespace.miniplugin.com.AuthenticInterceptor" />
-		</mvc:interceptor>
-		 -->
-        <!-- admin 하위 페이지로 접속하려 한다면, -->
+
 		 <mvc:interceptor>
 		  <mvc:mapping path="/admin/**"/>
 		  <mvc:exclude-mapping path="/admin/actionLogin.do"/>
@@ -60,7 +52,8 @@
 		  <bean class="timespace.miniplugin.com.AuthenticInterceptor" />
 		</mvc:interceptor>
     </mvc:interceptors>
-
+	
+	
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
     

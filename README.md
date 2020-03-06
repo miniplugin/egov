@@ -4,6 +4,133 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200306
+### 기존 cms프로젝트에서 사용자단 로그인시 스프링 시큐리티로 인증과 권한을 사용하게 추가OK.
+- 관리자단은 기존 세션로그인(DB)만 사용. 아래 작업1~5까지 실행.
+- 작업 핵심1: pom.xml에 의존성 모듈 추가.
+```xml
+...
+<dependency>
+	<groupId>egovframework.rte</groupId>
+	<artifactId>egovframework.rte.fdl.security</artifactId>
+	<version>${egovframework.rte.version}</version>
+</dependency>
+...
+```
+- 작업 핵심2: LoginControllerSeccurity.java 클래스 추가(사용자단 전용).
+- 작업 핵심3: timespace.let.uat.uia.service.impl 패키지와 EgovSessionMapping 클래스 추가.
+```java
+public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
+
+	/**
+	 * 사용자정보를 테이블에서 조회하여 EgovUsersByUsernameMapping 에 매핑한다.
+	 * @param ds DataSource
+	 * @param usersByUsernameQuery String
+	 */
+	public EgovSessionMapping(DataSource ds, String usersByUsernameQuery) {
+        super(ds, usersByUsernameQuery);
+    }
+
+	/**
+	 * mapRow Override
+	 * @param rs ResultSet 결과
+	 * @param rownum row num
+	 * @return Object EgovUserDetails
+	 * @exception SQLException
+	 */
+	@Override
+	protected EgovUserDetails mapRow(ResultSet rs, int rownum) throws SQLException {
+    	logger.debug("## EgovUsersByUsernameMapping mapRow ##");
+
+        String strUserId    = rs.getString("user_id");
+        String strPassWord  = rs.getString("password");
+        boolean strEnabled  = rs.getBoolean("enabled");
+
+        String strUserNm    = rs.getString("user_nm");
+        String strUserSe    = rs.getString("user_se");
+        String strUserEmail = rs.getString("user_email");
+        String strOrgnztId  = rs.getString("orgnzt_id");
+        String strUniqId    = rs.getString("esntl_id");
+        /**2010.06.30 *이용   *조직명 추가  */
+        String strOrgnztNm    = rs.getString("orgnzt_nm");
+
+
+
+        // 세션 항목 설정
+        LoginVO loginVO = new LoginVO();
+        loginVO.setId(strUserId);
+        loginVO.setPassword(strPassWord);
+        loginVO.setName(strUserNm);
+        loginVO.setUserSe(strUserSe);
+        loginVO.setEmail(strUserEmail);
+        loginVO.setOrgnztId(strOrgnztId);
+        loginVO.setUniqId(strUniqId);
+        /**2010.06.30 *이용   *조직명 추가  */
+        loginVO.setOrgnztNm(strOrgnztNm);
+
+        return new EgovUserDetails(strUserId, strPassWord, strEnabled, loginVO);
+    }
+}  
+```
+- 작업 핵심4: web.xml에 필터추가.
+```xml
+...
+<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+</listener>
+...
+```
+- 작업 핵심5: context-security.xml에 파일 생성 추가.(위에서 생성한 EgovSessionMapping 클래스와 쿼리 변수 매핑됩니다. -jdbcUsersByUsernameQuery
+```xml
+...
+<egov-security:config id="securityConfig"
+        loginUrl="/main/template/actionLogin.do"
+        logoutSuccessUrl="/main/template/actionMain.do"
+        loginFailureUrl="/main/template/actionLogin.do?login_error=1"
+        accessDeniedUrl="/main/template/actionLogin.do?login_error=1"		
+		
+    dataSource="egov.dataSource"
+    			
+    jdbcUsersByUsernameQuery="SELECT EMPLYR_ID AS USER_ID, PASSWORD, 1 AS ENABLED, USER_NM,'USR' AS USER_SE,EMAIL_ADRES AS USER_EMAIL, '-' AS ORGNZT_ID, ESNTL_ID, '-' AS ORGNZT_NM FROM LETTNEMPLYRINFO WHERE EMPLYR_ID = ?"
+	jdbcAuthoritiesByUsernameQuery="SELECT a.EMPLYR_ID USER_ID, b.GROUP_NM AUTHORITY FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.ORGNZT_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
+    							
+    jdbcMapClass="timespace.let.uat.uia.service.impl.EgovSessionMapping"
+
+    requestMatcherType="regex"
+    
+    hash="plaintext"
+    hashBase64="false"
+	
+	concurrentMaxSessons="1"
+	concurrentExpiredUrl="/main/template/actionMain.do"
+
+	defaultTargetUrl="/main/template/actionMain.do"
+	
+    
+/>
+
+<egov-security:secured-object-config id="securedObjectConfig"
+roleHierarchyString="
+		ROLE_ADMIN > ROLE_USER
+		ROLE_USER > ROLE_RESTRICTED
+		ROLE_RESTRICTED > IS_AUTHENTICATED_FULLY
+		IS_AUTHENTICATED_FULLY >	IS_AUTHENTICATED_REMEMBERED
+		IS_AUTHENTICATED_REMEMBERED > IS_AUTHENTICATED_ANONYMOUSLY"
+sqlRolesAndUrl="
+		SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
+   		FROM AUTHORROLE 
+   		WHERE 1=1"
+/>
+...
+```
 >작업일자(아래): 20200304
 ### 기존 cms프로젝트(ibatis용)에서 배너관리기능(mybatis용) 사용자단 출력기능 추가OK.
 - 배너 사용자단 출력기능 작업 결과.
