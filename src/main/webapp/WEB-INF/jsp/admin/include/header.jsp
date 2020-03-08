@@ -187,6 +187,9 @@
                 <li <c:if test="${menuNo=='11'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('11','admin/member/MberManage.do')"><i class="fa fa-circle-o"></i> 관리자관리</a></li>
               </ul>
               <ul class="treeview-menu">
+                <li <c:if test="${menuNo=='13'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('13','admin/authorrole/selectAuthorRoleList.do')"><i class="fa fa-circle-o"></i> 권한관리</a></li>
+              </ul>
+              <ul class="treeview-menu">
                 <li <c:if test="${menuNo=='52'}">class="active"</c:if>><a href="javascript:fn_main_headPageAction('52','admin/common/selectTemplateInfs.do')"><i class="fa fa-circle-o"></i> 템플릿관리</a></li>
               </ul>
               <ul class="treeview-menu">

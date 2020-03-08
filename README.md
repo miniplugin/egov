@@ -4,6 +4,19 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200308
+### 스프링 시큐리티로 인증과 권한을 관리자에서 지정할 수 있게 추가 작업중...
+- 관리자단은 권한관리 메뉴추가(MyBatis사용).
+- 작업 특이사항1:작업중 아래와 같이 콘솔에 아무런 에러로그가 나타나지 않고,화면에 400 에러메세지가 나올때.
+- 에러메세지: The request sent by the client was syntactically incorrect.
+- log4j2.xml 상에서 org.springframework logger의 level을 "DEBUG"로 변경해서 찾아내었음.
+- 기능추가시 적업순서는 아래와 같습니다.1) ~ 4)작업.
+- 1).신규 테이블 쿼리생성(AUTHORROLE), 2).비지니스 쿼리 MyBatis용 매퍼생성, 3).비지니스 로직 클래스생성, 4).View단 생성.
+![ex_screenshot](./git_img/20200308.jpg)
+- 비지니스 MyBatis쿼리에서 사용할 수 있는 리턴타입 기술참조(아래)
+- https://hychul.github.io/development/2019/05/23/mybatis-resulttype-list/ 
+- 앞으로 작업예정: 위 작업에 이어서 입력/수정/삭제 처리 추가예정.
+
 >작업일자(아래): 20200306
 ### 기존 cms프로젝트에서 사용자단 로그인시 스프링 시큐리티로 인증과 권한을 사용하게 추가OK.
 - 관리자단은 기존 세션로그인(DB)만 사용. 아래 작업1~5까지 실행.

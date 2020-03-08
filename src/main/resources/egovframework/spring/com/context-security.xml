@@ -49,7 +49,7 @@
 	sqlRolesAndUrl="
 			SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
        		FROM AUTHORROLE 
-       		WHERE 1=1"
+       		WHERE USE_AT='Y' ORDER BY SORT_ORDR ASC"
 	/>
 
 	<egov-security:initializer id="initializer" supportPointcut="false" supportMethod="false" />

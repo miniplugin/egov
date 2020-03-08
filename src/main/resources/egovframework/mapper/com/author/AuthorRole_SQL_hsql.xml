@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Wed May 11 15:51:02 KST 2016-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="authorRoleDAO">
+
+    <resultMap id="authorRole" type="timespace.miniplugin.authorrole.AuthorRoleVO">
+        <result property="authorRoleId" column="AUTHORROLE_ID"/>
+        <result property="rolePttrn" column="ROLE_PTTRN"/>
+        <result property="authorCode" column="AUTHOR_CODE"/>
+        <result property="authorRoleDc" column="AUTHORROLE_DC"/>
+        <result property="sortOrder" column="SORT_ORDR"/>
+        <result property="useAt" column="USE_AT"/>
+    </resultMap>
+
+    <select id="selectAuthorRoleList" parameterType="timespace.miniplugin.authorrole.AuthorRoleVO" resultMap="authorRole">
+            SELECT AUTHORROLE_ID,            
+                   ROLE_PTTRN,             
+                   AUTHOR_CODE,       
+                   AUTHORROLE_DC,  
+                   SORT_ORDR, 
+                   USE_AT     
+              FROM AUTHORROLE   
+             WHERE 1=1
+            <if test="searchCondition == 1">AND
+                AUTHOR_CODE LIKE CONCAT('%' , #{searchKeyword}, '%')
+            </if>
+            ORDER BY SORT_ORDR ASC
+            LIMIT #{recordCountPerPage} OFFSET #{firstIndex}  
+    </select>
+
+    <select id="selectAuthorRoleListTotCnt" parameterType="timespace.miniplugin.authorrole.AuthorRoleVO" resultType="int">
+
+            SELECT COUNT(*) totcnt
+            FROM AUTHORROLE
+            WHERE 1=1
+            <if test="searchCondition == 1">AND
+                AUTHOR_CODE LIKE CONCAT('%' , #{searchKeyword}, '%')
+            </if>
+    </select>
+    
+    <select id="selectMaxAuthorRoleId" resultType="long">
+			SELECT IFNULL(MAX(AUTHORROLE_ID),0)+1 AS AUTHORROLE_ID  FROM AUTHORROLE
+ 	</select>
+    
+    <select id="selectAuthorRole" resultMap="authorRole">
+        
+            SELECT AUTHORROLE_ID,            
+                   ROLE_PTTRN,             
+                   AUTHOR_CODE,       
+                   AUTHORROLE_DC,  
+                   SORT_ORDR, 
+                   USE_AT      
+              FROM AUTHORROLE
+             WHERE AUTHORROLE_ID = #{authorRoleId}    
+        
+    </select>
+
+    <insert id="insertAuthorRole" parameterType="timespace.miniplugin.authorrole.AuthorRole">
+        
+            INSERT INTO AUTHORROLE
+                   (AUTHORROLE_ID,            
+                   ROLE_PTTRN,             
+                   AUTHOR_CODE,       
+                   AUTHORROLE_DC,  
+                   SORT_ORDR, 
+                   USE_AT)
+            VALUES (#{authorRoleId},
+                    #{rolePttrn}, 
+                    #{authorCode},
+                    #{authorRoleDc},
+                    #{sortOrder},
+                    #{useAt})   
+        
+    </insert>     
+
+    <update id="updateAuthorRole" parameterType="timespace.miniplugin.authorrole.AuthorRole">
+            
+            UPDATE AUTHORROLE
+               SET ROLE_PTTRN = #{rolePttrn},
+                   AUTHOR_CODE = #{authorCode},
+                   AUTHORROLE_DC = #{authorRoleDc},
+                   SORT_ORDR = #{sortOrdr},
+                   USE_AT = #{useAt}  
+             WHERE AUTHORROLE_ID = #{authorRoleId}
+    </update>    
+    
+    <delete id="deleteAuthorRole" parameterType="timespace.miniplugin.authorrole.AuthorRole">
+        
+            DELETE FROM AUTHORROLE
+             WHERE AUTHORROLE_ID = #{authorRoleId}    
+        
+    </delete>  
+
+</mapper>
