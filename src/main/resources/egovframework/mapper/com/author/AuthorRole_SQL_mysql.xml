@@ -79,7 +79,7 @@
                SET ROLE_PTTRN = #{rolePttrn},
                    AUTHOR_CODE = #{authorCode},
                    AUTHORROLE_DC = #{authorRoleDc},
-                   SORT_ORDR = #{sortOrdr},
+                   SORT_ORDR = #{sortOrder},
                    USE_AT = #{useAt}  
              WHERE AUTHORROLE_ID = #{authorRoleId}
     </update>    

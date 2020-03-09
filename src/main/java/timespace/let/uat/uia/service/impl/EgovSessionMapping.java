@@ -50,7 +50,7 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
 	 */
 	@Override
 	protected EgovUserDetails mapRow(ResultSet rs, int rownum) throws SQLException {
-    	logger.debug("## EgovUsersByUsernameMapping mapRow ##");
+    	logger.info("## EgovUsersByUsernameMapping mapRow ##");
 
         String strUserId    = rs.getString("user_id");
         String strPassWord  = rs.getString("password");

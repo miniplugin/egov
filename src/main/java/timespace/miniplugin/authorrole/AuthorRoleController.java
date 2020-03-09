@@ -13,7 +13,6 @@
 package timespace.miniplugin.authorrole;
 
 import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
+import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.EgovCmmUseService;
+import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import timespace.miniplugin.authorrole.AuthorRole;
 import timespace.miniplugin.authorrole.AuthorRoleVO;
@@ -38,10 +41,14 @@ public class AuthorRoleController {
 
     @Resource(name = "authorRoleService")
     private AuthorRoleService authorRoleService;
+    
+    /** cmmUseService */
+	@Resource(name = "EgovCmmUseService")
+	private EgovCmmUseService cmmUseService;
 
     @Autowired
 	private DefaultBeanValidator beanValidator;
-
+	
     /**
 	 * 권한 목록화면 이동
 	 * @return String
@@ -63,6 +70,15 @@ public class AuthorRoleController {
 	public String selectAuthorRoleList(@ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
                              		ModelMap model) throws Exception{
 
+    	LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+    	System.out.println("사용자 권한 " + loginVO.getUserSe());
+    	// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
+    	
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorRoleVO.getPageIndex());
@@ -96,10 +112,22 @@ public class AuthorRoleController {
 			                   @ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
 			                   ModelMap model) throws Exception {
 
+    	// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
     	authorRoleVO.setAuthorRoleId(authorRoleId);
 
     	model.addAttribute("authorRole", authorRoleService.selectAuthorRole(authorRoleVO));
     	model.addAttribute("message", egovMessageSource.getMessage("success.common.select"));
+    	
+    	//그룹정보를 조회 - GROUP_ID정보
+		ComDefaultCodeVO vo = new ComDefaultCodeVO();
+		vo.setTableNm("LETTNORGNZTINFO");
+		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
+
     	return "admin/authorrole/AuthorRoleUpdt";
 	}
 
@@ -112,7 +140,17 @@ public class AuthorRoleController {
 	public String insertViewAuthorRole(@ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
 			                        ModelMap model) throws Exception {
 
+    	// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
     	model.addAttribute("authorRole", authorRoleVO);
+    	//그룹정보를 조회 - GROUP_ID정보
+		ComDefaultCodeVO vo = new ComDefaultCodeVO();
+		vo.setTableNm("LETTNORGNZTINFO");
+		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
     	return "admin/authorrole/AuthorRoleRegist";
 	}
 
@@ -128,7 +166,13 @@ public class AuthorRoleController {
 			                    SessionStatus status,
 			                    ModelMap model) throws Exception {
 
-    	beanValidator.validate(authorRole, bindingResult); //validation 수행
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
+		beanValidator.validate(authorRole, bindingResult); //validation 수행
 
     	if (bindingResult.hasErrors()) {
     		model.addAttribute("authorRoleVO", authorRoleVO);
@@ -152,6 +196,12 @@ public class AuthorRoleController {
 			                    BindingResult bindingResult,
                                 SessionStatus status,
                                 ModelMap model) throws Exception {
+    	// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
     	beanValidator.validate(authorRole, bindingResult); //validation 수행
 
 		if (bindingResult.hasErrors()) {
@@ -175,6 +225,12 @@ public class AuthorRoleController {
 			                    SessionStatus status,
 			                    ModelMap model) throws Exception {
 
+    	// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    	if(!isAuthenticated) {
+    		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	return "admin/LoginUsr";
+    	}
     	authorRole.setAuthorRoleId(authorRoleId);
     	authorRoleService.deleteAuthorRole(authorRole);
     	status.setComplete();

@@ -42,6 +42,12 @@
   .main-footer{text-align:center; margin:0 auto;}
   table img{max-width:100% !important;}
   #myModal img{width:100% !important;}  
+  .pagination {padding:40px 0 0; text-align:center;}
+  .pagination a {display:inline-block; }
+  .pagination a.pbtn {display:inline-block; padding:7px; text-align:center; vertical-align:middle; font-size:0;}
+  .pagination a .pagenum {display:inline-block; width:25px; height:25px; line-height:25px; text-align:center; vertical-align:middle;}
+  .pagination a .currentpage {border-radius:3px; background:#384d75; color:#fff;}
+  .pagination a:hover .pagenum {border-radius:3px; background:#ddd;}
   </style>
   </head>
       <!-- jQuery 2.1.4 -->

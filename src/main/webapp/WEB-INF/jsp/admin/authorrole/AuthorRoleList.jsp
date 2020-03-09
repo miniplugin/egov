@@ -18,76 +18,6 @@
 <c:import url="/EgovPageLink.do?link=admin/include/header" />
 
 <script type="text/javaScript" language="javascript" defer="defer">
-
-function fncCheckAll() {
-    var checkField = document.listForm.delYn;
-    if(document.listForm.checkAll.checked) {
-        if(checkField) {
-            if(checkField.length > 1) {
-                for(var i=0; i < checkField.length; i++) {
-                    checkField[i].checked = true;
-                }
-            } else {
-                checkField.checked = true;
-            }
-        }
-    } else {
-        if(checkField) {
-            if(checkField.length > 1) {
-                for(var j=0; j < checkField.length; j++) {
-                    checkField[j].checked = false;
-                }
-            } else {
-                checkField.checked = false;
-            }
-        }
-    }
-}
-
-function fncManageChecked() {
-
-    var checkField = document.listForm.delYn;
-    var checkId = document.listForm.checkId;
-    var returnValue = "";
-    var returnBoolean = false;
-    var checkCount = 0;
-
-    if(checkField) {
-        if(checkField.length > 1) {
-            for(var i=0; i<checkField.length; i++) {
-                if(checkField[i].checked) {
-                	checkCount++;
-                    checkField[i].value = checkId[i].value;
-                    if(returnValue == "")
-                        returnValue = checkField[i].value;
-                    else
-                        returnValue = returnValue + ";" + checkField[i].value;
-                }
-            }
-            if(checkCount > 0)
-                returnBoolean = true;
-            else {
-                alert("선택된  권한이 없습니다.");/*  */
-                returnBoolean = false;
-            }
-        } else {
-            if(document.listForm.delYn.checked == false) {
-                alert("선택된  권한이 없습니다.");/*  */
-                returnBoolean = false;
-            }
-            else {
-                returnValue = checkId.value;
-                returnBoolean = true;
-            }
-        }
-    } else {
-    	alert("조회된 결과가 없습니다.");/*  */
-    }
-
-    document.listForm.authorRoleIds.value = returnValue;
-    return returnBoolean;
-}
-
 function fncSelectAuthorRoleList(pageNo){
     document.listForm.searchCondition.value = "1";
     document.listForm.pageIndex.value = pageNo;
@@ -107,15 +37,6 @@ function fncAddAuthorRoleInsert() {
 	}
     document.listForm.action = "<c:url value='/admin/authorrole/addViewAuthorRole.do'/>";
     document.listForm.submit();
-}
-
-function fncAuthorRoleListDelete() {
-	if(fncManageChecked()) {
-        if(confirm("삭제하시겠습니까?")) {/*  */
-            document.listForm.action = "<c:url value='/admin/authorrole/removeAuthorRoleList.do'/>";
-            document.listForm.submit();
-        }
-    }
 }
 
 function linkPage(pageNo){
@@ -193,6 +114,7 @@ function press() {
 					<td class="left"><c:out value="${authorRole.authorCode}"/></td><!-- 권한 코드 -->
 					<td><c:out value="${authorRole.authorRoleDc}"/></td><!-- 권한 설명 -->
 					<td><c:out value="${authorRole.useAt}"/></td><!-- 사용 여부 -->
+					<td><c:out value="${authorRole.sortOrder}"/></td><!-- 적용 순서 -->
 				</tr>
 				</c:forEach>
 				</table>
