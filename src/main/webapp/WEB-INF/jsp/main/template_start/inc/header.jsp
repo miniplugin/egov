@@ -42,6 +42,7 @@
 			       if(loginVO == null){ 
 			    %>
 			    	<li><a href="<c:url value='/main/template/userLoginUsr.do'/>">로그인</a></li>
+			    	<li><a href="javascript:fn_main_headPageAction('00','admin/adminLoginUsr.do')">사이트관리</a></li>
 			    <% }else { %>
 			    	<c:set var="loginName" value="<%= loginVO.getName()%>"/>
 			    	<li><span style="color:#fff"><c:out value="${loginName}"/>님 환영합니다</span></li>

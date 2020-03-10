@@ -139,6 +139,8 @@
                   </li>
                 </ul>
               </li>
+              <% }else { %>
+              <li><a href="javascript:fn_main_headPageAction('00','admin/adminLoginUsr.do')">관리자로그인</a></li>
               <% } %>
             </ul>
           </div>

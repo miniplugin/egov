@@ -6,6 +6,7 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.egovframe.go.kr/schema/egov-security http://www.egovframe.go.kr/schema/egov-security/egov-security-3.7.xsd">
 
+    <!-- 확장자를 이용해 패턴을 걸때 /**/*.do 와 같이 Ant Pattern 규칙적용 -->
     <security:http pattern="/css/**" security="none"/>
 	<security:http pattern="/html/**" security="none"/>
     <security:http pattern="/images/**" security="none"/>
@@ -15,7 +16,7 @@
  	
     <egov-security:config id="securityConfig"
         loginUrl="/main/template/actionLogin.do"
-        logoutSuccessUrl="/main/template/actionMain.do"
+        logoutSuccessUrl="/main/template/mainPage.do"
         loginFailureUrl="/main/template/actionLogin.do?login_error=1"
         accessDeniedUrl="/main/template/actionLogin.do?login_error=1"		
 		
@@ -34,7 +35,12 @@
 		concurrentMaxSessons="1"
 		concurrentExpiredUrl="/main/template/actionMain.do"
 
-		defaultTargetUrl="/main/template/actionMain.do"
+		defaultTargetUrl="/main/template/mainPage.do"
+		
+		sniff="false"
+    	xframeOptions="SAMEORIGIN"
+	    xssProtection="false"
+	    csrf="false"
         
     />
 
@@ -45,7 +51,7 @@
 	sqlRolesAndUrl="
 			SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
        		FROM AUTHORROLE 
-       		WHERE USE_AT='Y' ORDER BY SORT_ORDR ASC"
+       		WHERE USE_AT='Y' ORDER BY SORT_ORDR DESC"
 	/>
 
 	<egov-security:initializer id="initializer" supportPointcut="false" supportMethod="false" />

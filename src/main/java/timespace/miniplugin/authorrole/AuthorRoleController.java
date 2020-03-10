@@ -12,6 +12,9 @@
 
 package timespace.miniplugin.authorrole;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,13 +72,14 @@ public class AuthorRoleController {
 	public String selectAuthorRoleList(@ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
                              		ModelMap model) throws Exception{
 
-    	// 미인증 사용자에 대한 보안처리
+    	// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
-    	
+    	*/
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorRoleVO.getPageIndex());
@@ -109,12 +113,14 @@ public class AuthorRoleController {
 			                   @ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
 			                   ModelMap model) throws Exception {
 
-    	// 미인증 사용자에 대한 보안처리
+    	// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
+    	*/
     	authorRoleVO.setAuthorRoleId(authorRoleId);
 
     	model.addAttribute("authorRole", authorRoleService.selectAuthorRole(authorRoleVO));
@@ -137,12 +143,14 @@ public class AuthorRoleController {
 	public String insertViewAuthorRole(@ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
 			                        ModelMap model) throws Exception {
 
-    	// 미인증 사용자에 대한 보안처리
+    	// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
+    	*/
     	model.addAttribute("authorRole", authorRoleVO);
     	//그룹정보를 조회 - GROUP_ID정보
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -163,12 +171,14 @@ public class AuthorRoleController {
 			                    SessionStatus status,
 			                    ModelMap model) throws Exception {
 
-		// 미인증 사용자에 대한 보안처리
+		// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
+    	*/
 		beanValidator.validate(authorRole, bindingResult); //validation 수행
 
     	if (bindingResult.hasErrors()) {
@@ -193,12 +203,14 @@ public class AuthorRoleController {
 			                    BindingResult bindingResult,
                                 SessionStatus status,
                                 ModelMap model) throws Exception {
-    	// 미인증 사용자에 대한 보안처리
+    	// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
+    	*/
     	beanValidator.validate(authorRole, bindingResult); //validation 수행
 
 		if (bindingResult.hasErrors()) {
@@ -222,12 +234,14 @@ public class AuthorRoleController {
 			                    SessionStatus status,
 			                    ModelMap model) throws Exception {
 
-    	// 미인증 사용자에 대한 보안처리
+    	// 미인증 사용자에 대한 보안처리 스프링 시큐리티로 간소화로 처리 
+    	/* 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "admin/LoginUsr";
     	}
+    	*/
     	authorRole.setAuthorRoleId(authorRoleId);
     	authorRoleService.deleteAuthorRole(authorRole);
     	status.setComplete();

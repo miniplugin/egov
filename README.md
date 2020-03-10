@@ -4,15 +4,50 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200311
+### 스프링 시큐리티로 인증과 권한 테스트 작업OK.
+- (주.관리자단 로그인만 스프링시큐리티 적용되었음.) AdminLoginController.java 클래스 수정.
+- 작업핵심: context-security.xml파일에서 url패턴과 권한 쿼리 순서가 ASC에서 DESC로 변경(아래).
+```xml
+<egov-security:secured-object-config id="securedObjectConfig"
+	roleHierarchyString="
+			ROLE_ADMIN > ROLE_USER
+			ROLE_USER > ROLE_ANONYMOUS"
+	sqlRolesAndUrl="
+			SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
+       		FROM AUTHORROLE 
+       		WHERE USE_AT='Y' ORDER BY SORT_ORDR DESC"
+/>
+```
+- 특이사항: 전자정부기반 스프링 스큐리티로 적용한 이후 입력창에서 에러 발생 처리OK-아래 보안해제 코드 추가.
+```xml
+	sniff="false"
+    xframeOptions="SAMEORIGIN"
+	xssProtection="false"
+	csrf="false"
+```
+ 
+- 로그아웃 세션 처리 추가 코드(아래)
+```java
+/*
+RequestContextHolder.getRequestAttributes().removeAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
+SecurityContextHolder.clearContext();//스프링 시큐리티 로그아웃 처리 추가
+*/
+HttpSession session = request.getSession(false);
+if (session != null) {
+	session.invalidate();
+}
+```
+
 >작업일자(아래): 20200310
 ### 스프링 시큐리티로 인증과 권한 테스트 작업.
-- (주.사용자단 로그인만 스프링시큐리티 적용되었음.) LoginControllerSeccurity.java 클래스.
+- (주.사용자단 스프링시큐리티 적용되었음.) LoginControllerSeccurity.java 클래스 추가.
 - 권한 계층은 ROLE_ADMIN > ROLE_USER > ROLE_ANONYMOUS 3가지로 지정 후 테스트OK.
-- ROLE_USER 로 로그인 했을때, ROLE_USER, ROLE_ANONYMOUS 2가지가 활성화 됨 확인OK.(아래)
+- ROLE_USER 로 로그인 했을때, ROLE_USER, ROLE_ANONYMOUS 2가지가 활성화 됨 확인OK(아래).
 ![ex_screenshot](./git_img/20200310.jpg)
-- timespace.let.uat.uia.service.impl 패키지의 EgovSessionMapping 클래스 실행 확인 OK.(아래)
+- timespace.let.uat.uia.service.impl 패키지의 EgovSessionMapping 클래스 실행 확인 OK(아래).
 ![ex_screenshot](./git_img/20200310_1.jpg)
-- 설정하다가 현재 작업한 CMS에서 시큐니티관련 필요없는 파일 정리(아래)
+- 설정하다가 현재 작업한 CMS에서 시큐니티관련 필요없는 파일 정리(아래).
 - context-egovuserdetailshelper.xml 초기엔 필요한 것인줄 알았으나, 삭제해도 스프링 시큐리티 정상 작동.
 - egovframework.com.sec.ram.service 패키지 필요한 것인줄 알았으나, 삭제해도 스프링 시큐리티 정상 작동.
 - EgovUserDetailsHelper.java클래스 파일 원본.
@@ -167,7 +202,7 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
 ...
 <egov-security:config id="securityConfig"
         loginUrl="/main/template/actionLogin.do"
-        logoutSuccessUrl="/main/template/actionMain.do"
+        logoutSuccessUrl="/main/template/mainPage.do"
         loginFailureUrl="/main/template/actionLogin.do?login_error=1"
         accessDeniedUrl="/main/template/actionLogin.do?login_error=1"		
 		
@@ -186,22 +221,19 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
 	concurrentMaxSessons="1"
 	concurrentExpiredUrl="/main/template/actionMain.do"
 
-	defaultTargetUrl="/main/template/actionMain.do"
+	defaultTargetUrl="/main/template/mainPage.do"
 	
     
 />
 
 <egov-security:secured-object-config id="securedObjectConfig"
-roleHierarchyString="
-		ROLE_ADMIN > ROLE_USER
-		ROLE_USER > ROLE_RESTRICTED
-		ROLE_RESTRICTED > IS_AUTHENTICATED_FULLY
-		IS_AUTHENTICATED_FULLY >	IS_AUTHENTICATED_REMEMBERED
-		IS_AUTHENTICATED_REMEMBERED > IS_AUTHENTICATED_ANONYMOUSLY"
-sqlRolesAndUrl="
-		SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
-   		FROM AUTHORROLE 
-   		WHERE 1=1"
+	roleHierarchyString="
+			ROLE_ADMIN > ROLE_USER
+			ROLE_USER > ROLE_ANONYMOUS"
+	sqlRolesAndUrl="
+			SELECT ROLE_PTTRN url, AUTHOR_CODE authority 
+       		FROM AUTHORROLE 
+       		WHERE USE_AT='Y' ORDER BY SORT_ORDR DESC"
 />
 ...
 ```

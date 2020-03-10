@@ -10,7 +10,9 @@ import egovframework.rte.fdl.property.EgovPropertyService;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -119,10 +121,16 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/main/template/actionLogout.do")
 	public String actionLogout(HttpServletRequest request, ModelMap model) throws Exception {
-
+		/*
 		RequestContextHolder.getRequestAttributes().removeAttribute("LoginVO", RequestAttributes.SCOPE_SESSION);
-
-		return "redirect:/main/template/actionMain.do"; // cmm/main/mainPage.do
+		SecurityContextHolder.clearContext();//스프링 시큐리티 로그아웃 처리 추가
+		*/
+		HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+		//return "redirect:/main/template/actionMain.do"; // cmm/main/mainPage.do
+        return "redirect:/main/template/mainPage.do";
 	}
 
 }
