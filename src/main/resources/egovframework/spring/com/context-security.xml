@@ -21,8 +21,8 @@
 		
         dataSource="egov.dataSource"
         			
-        jdbcUsersByUsernameQuery="SELECT a.EMPLYR_ID AS USER_ID, a.PASSWORD, 1 AS ENABLED, a.USER_NM, b.GROUP_NM AS USER_SE, a.EMAIL_ADRES AS USER_EMAIL, '-' AS ORGNZT_ID, a.ESNTL_ID, '-' AS ORGNZT_NM FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.ORGNZT_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
-		jdbcAuthoritiesByUsernameQuery="SELECT a.EMPLYR_ID USER_ID, b.GROUP_NM AUTHORITY FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.ORGNZT_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
+        jdbcUsersByUsernameQuery="SELECT a.EMPLYR_ID AS USER_ID, a.PASSWORD, 1 AS ENABLED, a.USER_NM, 'USR' AS USER_SE, a.EMAIL_ADRES AS USER_EMAIL, '-' AS ORGNZT_ID, a.ESNTL_ID, '-' AS ORGNZT_NM FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.GROUP_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
+		jdbcAuthoritiesByUsernameQuery="SELECT a.EMPLYR_ID USER_ID, b.GROUP_NM AUTHORITY FROM LETTNEMPLYRINFO a, LETTNAUTHORGROUPINFO b WHERE a.GROUP_ID = b.GROUP_ID AND a.EMPLYR_ID = ?"
         							
         jdbcMapClass="timespace.let.uat.uia.service.impl.EgovSessionMapping"
 
@@ -35,7 +35,6 @@
 		concurrentExpiredUrl="/main/template/actionMain.do"
 
 		defaultTargetUrl="/main/template/actionMain.do"
-		
         
     />
 

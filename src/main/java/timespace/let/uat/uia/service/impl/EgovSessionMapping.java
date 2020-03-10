@@ -38,7 +38,7 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
 	 * @param usersByUsernameQuery String
 	 */
 	public EgovSessionMapping(DataSource ds, String usersByUsernameQuery) {
-        super(ds, usersByUsernameQuery);
+		super(ds, usersByUsernameQuery);
     }
 
 	/**
@@ -50,8 +50,8 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
 	 */
 	@Override
 	protected EgovUserDetails mapRow(ResultSet rs, int rownum) throws SQLException {
-    	logger.info("## EgovUsersByUsernameMapping mapRow ##");
-
+    	//logger.debug("## EgovUsersByUsernameMapping mapRow ##");
+    	
         String strUserId    = rs.getString("user_id");
         String strPassWord  = rs.getString("password");
         boolean strEnabled  = rs.getBoolean("enabled");
@@ -63,7 +63,7 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
         String strUniqId    = rs.getString("esntl_id");
         /**2010.06.30 *이용   *조직명 추가  */
         String strOrgnztNm    = rs.getString("orgnzt_nm");
-
+        //System.out.println("EgovUserDetails mapRow" + strUserSe);
 
 
         // 세션 항목 설정

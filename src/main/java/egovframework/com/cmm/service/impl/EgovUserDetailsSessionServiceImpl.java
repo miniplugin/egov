@@ -41,7 +41,7 @@ public class EgovUserDetailsSessionServiceImpl extends EgovAbstractServiceImpl i
 
 		// 권한 설정을 리턴한다.
 		List<String> listAuth = new ArrayList<String>();
-
+		//System.out.println("EgovUserDetailsSessionServiceImpl 실행");
 		return listAuth;
 	}
 

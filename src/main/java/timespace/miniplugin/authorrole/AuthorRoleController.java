@@ -25,7 +25,6 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.EgovMessageSource;
-import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -70,8 +69,6 @@ public class AuthorRoleController {
 	public String selectAuthorRoleList(@ModelAttribute("authorRoleVO") AuthorRoleVO authorRoleVO,
                              		ModelMap model) throws Exception{
 
-    	LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-    	System.out.println("사용자 권한 " + loginVO.getUserSe());
     	// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {

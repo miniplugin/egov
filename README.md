@@ -4,6 +4,62 @@
 표준프레임워크 내에서 사용된 외부 오픈소스의 경우 원 오픈소스의 라이선스 정책을 유지합니다.
 [라이센스 보기](https://www.egovframe.go.kr/EgovLicense.jsp)
 ***
+>작업일자(아래): 20200310
+### 스프링 시큐리티로 인증과 권한 테스트 작업.
+- (주.사용자단 로그인만 스프링시큐리티 적용되었음.) LoginControllerSeccurity.java 클래스.
+- 권한 계층은 ROLE_ADMIN > ROLE_USER > ROLE_ANONYMOUS 3가지로 지정 후 테스트OK.
+- timespace.let.uat.uia.service.impl 패키지의 EgovSessionMapping 클래스 실행 확인 필요.
+- ROLE_USER 로 로그인 했을때, ROLE_USER, ROLE_ANONYMOUS 2가지가 활성화 됨 확인.(아래)
+![ex_screenshot](./git_img/20200310.jpg)
+![ex_screenshot](./git_img/20200310_1.jpg)
+- 설정하다가 현재 작업한 CMS에서 시큐니티관련 필요없는 파일 정리(아래)
+- context-egovuserdetailshelper.xml 초기엔 필요한 것인줄 알았으나, 삭제해도 스프링 시큐리티 정상 작동.
+- egovframework.com.sec.ram.service 패키지 필요한 것인줄 알았으나, 삭제해도 스프링 시큐리티 정상 작동.
+- EgovUserDetailsHelper.java클래스 파일 원본.
+```java
+	public static List<String> getAuthorities() {
+		List<String> listAuth = new ArrayList<String>();
+			
+			if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+				// log.debug("## authentication object is null!!");
+				return null;
+			}
+			
+			return listAuth;
+		
+	}
+```
+
+- EgovUserDetailsHelper.java클래스 파일 수정본.
+```java
+	public static List<String> getAuthorities() {
+		List<String> listAuth = new ArrayList<String>();
+		
+		if (EgovObjectUtil.isNull((LoginVO) RequestContextHolder.getRequestAttributes().getAttribute("LoginVO", RequestAttributes.SCOPE_SESSION))) {
+				// log.debug("## authentication object is null!!");
+				return null;
+			}
+			
+		/* 권한 값 자동등록이 되지 않아서 수동 등록 코드 Start */
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String listAuthTemp1 = authentication.getAuthorities().toString();
+		listAuthTemp1 = listAuthTemp1.replace("[", "");
+		listAuthTemp1 = listAuthTemp1.replace("]", "");
+		listAuthTemp1 = listAuthTemp1.replace(" ", "");
+		String[] listAuthTemp2 = listAuthTemp1.split(",");
+		//for(int i=0;i<listAuthTemp2.length;i++) {
+		//	listAuth.add(listAuthTemp2[i]);
+		//}
+		listAuth = Arrays.asList(listAuthTemp2);
+		System.out.println("EgovUserDetailsHelper 실행");
+		/* 권한 값 자동등록이 되지 않아서 수동 등록 코드 End */
+		
+		return listAuth;
+		
+	}
+```
+- 앞으로 작업예정: 위 작업에 이어서 화면에 대한 권한 처리 확인예정.
+
 >작업일자(아래): 20200309
 ### 스프링 시큐리티로 인증과 권한을 관리자에서 지정할 수 있게 추가 작업.
 - 관리자단은 권한관리 입력/수정/삭제 처리 추가(MyBatis사용) OK.

@@ -7,23 +7,23 @@ import egovframework.let.uat.uia.service.EgovLoginService;
 import egovframework.rte.fdl.cmmn.trace.LeaveaTrace;
 import egovframework.rte.fdl.property.EgovPropertyService;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -85,7 +85,7 @@ public class LoginControllerSeccurity {
 		if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
 			// 2. spring security 연동
 			//초기값 확인 -> 실제는 하단에서 각각 resultVO.getId(), resultVO.getPassword() 로 변경 처리
-			System.out.println("username=" + resultVO.getUserSe() + resultVO.getId() + " password=" + resultVO.getUniqId());
+			//System.out.println("username=" + resultVO.getUserSe() + resultVO.getId() + " password=" + resultVO.getUniqId());
 			request.getSession().setAttribute("LoginVO", resultVO);
 			UsernamePasswordAuthenticationFilter springSecurity = null;
 			ApplicationContext act = WebApplicationContextUtils
@@ -106,6 +106,38 @@ public class LoginControllerSeccurity {
 			request.getSession().setAttribute("LoginVO", resultVO);
 
 			springSecurity.doFilter(new RequestWrapperForSecurity(request, resultVO.getId(), resultVO.getPassword()), response, null);
+			
+			/* 전자정부 기반이 아닌 스프링 시큐리티 기본 출력 
+	    	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    	 Object details = authentication.getDetails();
+	    	 System.out.println(authentication);
+	    	 System.out.println(details);
+	    	 System.out.println(authentication.getAuthorities());
+	    	 System.out.println(authentication.getPrincipal());
+	    	*/
+			/* 전자정부 기반 스프링 시큐리티 확인 */
+			Boolean isLogin = EgovUserDetailsHelper.isAuthenticated();
+	    	System.out.println("isLogin " + isLogin);
+	    	LoginVO user = null;
+	    	user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+	    	System.out.println("사용자 ID " + user.getId());
+	    	List<String> authorities = EgovUserDetailsHelper.getAuthorities();
+	    	// 1. authorites 에  권한이 있는지 체크 TRUE/FALSE
+	    	System.out.println(authorities.contains("ROLE_ADMIN"));
+	    	System.out.println(authorities.contains("ROLE_USER"));
+	    	System.out.println(authorities.contains("ROLE_ANONYMOUS"));
+	    	// 2. authorites 에  ROLE 이 여러개 설정된 경우
+	    	if(authorities.size()!=0){
+		    	for(Iterator<String> it=authorities.iterator();it.hasNext();){
+		    		String auth = it.next();
+		    		System.out.println("사용자 권한 " + auth);
+		    	}
+	    	}
+	    	/*
+	    	// 3. authorites 에  ROLE 이 하나만 설정된 경우
+	    	String auth = (String) authorities.toArray()[0];
+	    	System.out.println("권한 auth : " + auth);
+	    	*/
 
 			return "forward:/main/template/mainPage.do"; // 성공 시 페이지.. (redirect 불가)
 		} else {
