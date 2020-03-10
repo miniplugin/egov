@@ -115,12 +115,14 @@ public class LoginControllerSeccurity {
 	    	 System.out.println(authentication.getAuthorities());
 	    	 System.out.println(authentication.getPrincipal());
 	    	*/
-			/* 전자정부 기반 스프링 시큐리티 확인 */
+			/* 전자정부 기반 스프링 시큐리티 확인 
 			Boolean isLogin = EgovUserDetailsHelper.isAuthenticated();
 	    	System.out.println("isLogin " + isLogin);
 	    	LoginVO user = null;
 	    	user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 	    	System.out.println("사용자 ID " + user.getId());
+	    	*/
+			System.out.println("context-security.xml파일의 jdbcAuthoritiesByUsernameQuery 확인");
 	    	List<String> authorities = EgovUserDetailsHelper.getAuthorities();
 	    	// 1. authorites 에  권한이 있는지 체크 TRUE/FALSE
 	    	System.out.println(authorities.contains("ROLE_ADMIN"));

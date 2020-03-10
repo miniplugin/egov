@@ -63,8 +63,7 @@ public class EgovSessionMapping extends EgovUsersByUsernameMapping  {
         String strUniqId    = rs.getString("esntl_id");
         /**2010.06.30 *이용   *조직명 추가  */
         String strOrgnztNm    = rs.getString("orgnzt_nm");
-        //System.out.println("EgovUserDetails mapRow" + strUserSe);
-
+        System.out.println("context-security.xml파일의 jdbcUsersByUsernameQuery: " + strUserSe);
 
         // 세션 항목 설정
         LoginVO loginVO = new LoginVO();

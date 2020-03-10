@@ -8,9 +8,9 @@
 ### 스프링 시큐리티로 인증과 권한 테스트 작업.
 - (주.사용자단 로그인만 스프링시큐리티 적용되었음.) LoginControllerSeccurity.java 클래스.
 - 권한 계층은 ROLE_ADMIN > ROLE_USER > ROLE_ANONYMOUS 3가지로 지정 후 테스트OK.
-- timespace.let.uat.uia.service.impl 패키지의 EgovSessionMapping 클래스 실행 확인 필요.
-- ROLE_USER 로 로그인 했을때, ROLE_USER, ROLE_ANONYMOUS 2가지가 활성화 됨 확인.(아래)
+- ROLE_USER 로 로그인 했을때, ROLE_USER, ROLE_ANONYMOUS 2가지가 활성화 됨 확인OK.(아래)
 ![ex_screenshot](./git_img/20200310.jpg)
+- timespace.let.uat.uia.service.impl 패키지의 EgovSessionMapping 클래스 실행 확인 OK.(아래)
 ![ex_screenshot](./git_img/20200310_1.jpg)
 - 설정하다가 현재 작업한 CMS에서 시큐니티관련 필요없는 파일 정리(아래)
 - context-egovuserdetailshelper.xml 초기엔 필요한 것인줄 알았으나, 삭제해도 스프링 시큐리티 정상 작동.
