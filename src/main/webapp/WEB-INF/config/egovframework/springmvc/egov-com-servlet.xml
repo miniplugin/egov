@@ -32,7 +32,7 @@
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
-    <!-- 일반 로그인 체크가 필요한 URL과 로그인 여부를 체크해준다 스프링 시큐리티 사용시 필요 없음. -->
+    <!-- 일반 로그인 체크가 필요한 URL과 로그인 여부를 체크해준다 스프링 시큐리티 사용으로 주석처리. 
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/cop/com/*.do"/>
@@ -52,7 +52,7 @@
 		  <bean class="timespace.miniplugin.com.AuthenticInterceptor" />
 		</mvc:interceptor>
     </mvc:interceptors>
-	
+	-->
 	
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
